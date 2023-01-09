@@ -9,7 +9,7 @@ use App\Models\UsersModel;
 use \Dompdf\Dompdf;
 use \Dompdf\Options;
 
-class PKYGR extends BaseController
+class PKYGK extends BaseController
 {
     public function __construct()
     {
@@ -22,14 +22,14 @@ class PKYGR extends BaseController
     {
         if (session()->get('name') == True) {
             $data = [
-                'title' => 'Page | Document PK-YGR',
+                'title' => 'Page | Document PK-YGK',
                 'user' => $this->User->getData(),
-                'doc' => $this->Doc->getPKYGR(),
+                'doc' => $this->Doc->getPKYGK(),
                 'acdoc' => $this->Doc->getAcdoc(),
                 'acreg' => $this->Acreg->getData()
             ];
             //dd($data);
-            return view('doconboard/pkygr/V_ygr', $data);
+            return view('doconboard/pkygk/V_ygk', $data);
         } else {
             return redirect()->to('/');
         }
@@ -48,8 +48,6 @@ class PKYGR extends BaseController
             'status' => $this->request->getPost('status'),
             'remark' => $this->request->getPost('remark'),
             'doc_onboard' => $nama_file
-
-
         ];
 
         $image->move('Document-Onboard/', $nama_file);
@@ -57,17 +55,17 @@ class PKYGR extends BaseController
 
         session()->setFlashdata('pesan', 'Congratulation data successfully added');
         //dd($data);
-        return redirect()->to('/PK-YGR');
+        return redirect()->to('/PK-YGK');
     }
     public function getPdf($id_document)
     {
         if (session()->get('name') == True) {
             $data = [
-                'doc' => $this->Doc->getDetailPKYGR($id_document),
+                'doc' => $this->Doc->getDetailPKYGK($id_document),
                 'user' => $this->User->getData(),
             ];
 
-            return view('doconboard/pkygr/pdf', $data);
+            return view('doconboard/pkygk/pdf', $data);
         } else {
             return redirect()->to('/');
         }
@@ -76,13 +74,13 @@ class PKYGR extends BaseController
     {
         if (session()->get('name') == True) {
             $data = [
-                'title' => 'Page Update | PK-YGR',
-                'doc' => $this->Doc->getDetailPKYGR($id_document),
+                'title' => 'Page Update | PK-YGK',
+                'doc' => $this->Doc->getDetailPKYGK($id_document),
                 'user' => $this->User->getData(),
                 'acdoc' => $this->Doc->getAcdoc()
             ];
 
-            return view('doconboard/pkygr/V_update', $data);
+            return view('doconboard/pkygk/V_update', $data);
         } else {
             return redirect()->to('/');
         }
@@ -120,14 +118,14 @@ class PKYGR extends BaseController
         }
 
         session()->setFlashdata('pesan', 'Data Successfully Updated.');
-        return redirect()->to('/PK-YGR');
+        return redirect()->to('/PK-YGK');
     }
     public function deleteData($id_document)
     {
 
         $this->Doc->deleteData($id_document);
         session()->setFlashdata('pesan', 'Data Successfully Deleted.');
-        return redirect()->to('/PK-YGR');
+        return redirect()->to('/PK-YGK');
     }
     public function Convert()
     {
@@ -135,14 +133,14 @@ class PKYGR extends BaseController
 
             $data = [
 
-                'doc' => $this->Doc->getPKYGR(),
+                'doc' => $this->Doc->getPKYGK(),
 
 
 
             ];
             //dd($data);
             //return 
-            $html = view('doconboard/pkygr/V_Pdf', $data);
+            $html = view('doconboard/pkygk/V_Pdf', $data);
 
             $this->Option->setIsRemoteEnabled(true);
             $this->Option->setIsHtml5ParserEnabled(true);
@@ -151,7 +149,7 @@ class PKYGR extends BaseController
             $dompdf->loadHtml($html);
             $dompdf->setPaper('A4', 'potrait');
             $dompdf->render();
-            $dompdf->stream('REPORT DOCUMENT ONBOARD PK-YGR ' . date('F Y') . '.pdf');
+            $dompdf->stream('REPORT DOCUMENT ONBOARD PK-YGK ' . date('F Y') . '.pdf');
         } else {
             return redirect()->to('/');
         }
@@ -162,10 +160,10 @@ class PKYGR extends BaseController
         if (session()->get('name') == True) {
 
             $data = [
-                'doc' => $this->Doc->getPKYGR()
+                'doc' => $this->Doc->getPKYGK()
             ];
             //dd($data);
-            return view('doconboard/pkygr/Print', $data);
+            return view('doconboard/pkygk/Print', $data);
         } else {
             return redirect()->to('/');
         }

@@ -59,6 +59,67 @@ class DocumentModel extends Model
             ->where('document.id_acreg', '2')
             ->get()->getResultArray();
     }
+    public function getDetailPKYGR($id_document)
+    {
+        return $this->db->table('document')
+            ->join('acregist', 'acregist.id_acreg=document.id_acreg')
+            ->join('acdoc', 'acdoc.id_acdoc=document.id_acdoc')
+            ->where('document.id_document', $id_document)
+            ->where('document.id_acreg', '2')
+            ->get()->getResultArray();
+    }
+
+    public function getPKYGK()
+    {
+        return $this->db->table('document')
+            ->join('acregist', 'acregist.id_acreg=document.id_acreg')
+            ->join('acdoc', 'acdoc.id_acdoc=document.id_acdoc')
+            ->where('document.id_acreg', '3')
+            ->get()->getResultArray();
+    }
+    public function getDetailPKYGK($id_document)
+    {
+        return $this->db->table('document')
+            ->join('acregist', 'acregist.id_acreg=document.id_acreg')
+            ->join('acdoc', 'acdoc.id_acdoc=document.id_acdoc')
+            ->where('document.id_document', $id_document)
+            ->where('document.id_acreg', '3')
+            ->get()->getResultArray();
+    }
+    public function getPKRDA()
+    {
+        return $this->db->table('document')
+            ->join('acregist', 'acregist.id_acreg=document.id_acreg')
+            ->join('acdoc', 'acdoc.id_acdoc=document.id_acdoc')
+            ->where('document.id_acreg', '4')
+            ->get()->getResultArray();
+    }
+    public function getDetailPKRDA($id_document)
+    {
+        return $this->db->table('document')
+            ->join('acregist', 'acregist.id_acreg=document.id_acreg')
+            ->join('acdoc', 'acdoc.id_acdoc=document.id_acdoc')
+            ->where('document.id_document', $id_document)
+            ->where('document.id_acreg', '4')
+            ->get()->getResultArray();
+    }
+    public function getPKRDG()
+    {
+        return $this->db->table('document')
+            ->join('acregist', 'acregist.id_acreg=document.id_acreg')
+            ->join('acdoc', 'acdoc.id_acdoc=document.id_acdoc')
+            ->where('document.id_acreg', '5')
+            ->get()->getResultArray();
+    }
+    public function getDetailPKRDG($id_document)
+    {
+        return $this->db->table('document')
+            ->join('acregist', 'acregist.id_acreg=document.id_acreg')
+            ->join('acdoc', 'acdoc.id_acdoc=document.id_acdoc')
+            ->where('document.id_document', $id_document)
+            ->where('document.id_acreg', '5')
+            ->get()->getResultArray();
+    }
 
     public function getAcdoc()
     {
@@ -70,5 +131,9 @@ class DocumentModel extends Model
         $this->db->table('document')
             ->where('id_document', $data['id_document'])
             ->update($data);
+    }
+    public function deleteData($id_document)
+    {
+        $this->db->table('document')->delete(array('id_document' => $id_document));
     }
 }

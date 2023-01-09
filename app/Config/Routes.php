@@ -339,7 +339,7 @@ $routes->delete('/Manual/Delete/(:num)', 'Manual::deleteData/$1');
 
 /*
 * --------------------------------------------------------------------
- * Routes Manual
+ * Routes PK-YGR
  * --------------------------------------------------------------------
  */
 $routes->get('/PK-YGR', 'DocOnboard\PKYGR::index');
@@ -354,6 +354,59 @@ $routes->get('/PK-YGR/update/(:num)', 'Auth::index');
 $routes->post('/Edit-PK-YGR/(:num)', 'DocOnboard\PKYGR::EditAction/$1');
 $routes->delete('/PK-YGR/Delete/(:num)', 'DocOnboard\PKYGR::deleteData/$1');
 
+
+/*
+* --------------------------------------------------------------------
+ * Routes PK-YGK
+ * --------------------------------------------------------------------
+ */
+$routes->get('/PK-YGK', 'DocOnboard\PKYGK::index');
+$routes->post('PK-YGK-add', 'DocOnboard\PKYGK::insert');
+$routes->post('/PK-YGK/update/(:num)', 'DocOnboard\PKYGK::update/$1');
+$routes->post('/PK-YGK/pdf/(:num)', 'DocOnboard\PKYGK::getPdf/$1');
+$routes->get('/PK-YGK/pdf/(:num)', 'Auth::index');
+$routes->get('/PK-YGK/pdf/(:num)', 'Auth::index');
+$routes->get('/PK-YGK/Convert', 'DocOnboard\PKYGK::Convert');
+$routes->get('/PK-YGK/Print', 'DocOnboard\PKYGK::Print');
+$routes->get('/PK-YGK/update/(:num)', 'Auth::index');
+$routes->post('/Edit-PK-YGK/(:num)', 'DocOnboard\PKYGK::EditAction/$1');
+$routes->delete('/PK-YGK/Delete/(:num)', 'DocOnboard\PKYGK::deleteData/$1');
+
+
+/*
+* --------------------------------------------------------------------
+ * Routes PK-RDA
+ * --------------------------------------------------------------------
+ */
+$routes->get('/PK-RDA', 'DocOnboard\PKRDA::index');
+$routes->post('PK-RDA-add', 'DocOnboard\PKRDA::insert');
+$routes->post('/PK-RDA/update/(:num)', 'DocOnboard\PKRDA::update/$1');
+$routes->post('/PK-RDA/pdf/(:num)', 'DocOnboard\PKRDA::getPdf/$1');
+$routes->get('/PK-RDA/pdf/(:num)', 'Auth::index');
+$routes->get('/PK-RDA/pdf/(:num)', 'Auth::index');
+$routes->get('/PK-RDA/Convert', 'DocOnboard\PKRDA::Convert');
+$routes->get('/PK-RDA/Print', 'DocOnboard\PKRDA::Print');
+$routes->get('/PK-RDA/update/(:num)', 'Auth::index');
+$routes->post('/Edit-PK-RDA/(:num)', 'DocOnboard\PKRDA::EditAction/$1');
+$routes->delete('/PK-RDA/Delete/(:num)', 'DocOnboard\PKRDA::deleteData/$1');
+
+
+/*
+* --------------------------------------------------------------------
+ * Routes PK-RDA
+ * --------------------------------------------------------------------
+ */
+$routes->get('/PK-RDG', 'DocOnboard\PKRDG::index');
+$routes->post('PK-RDG-add', 'DocOnboard\PKRDG::insert');
+$routes->post('/PK-RDG/update/(:num)', 'DocOnboard\PKRDG::update/$1');
+$routes->post('/PK-RDG/pdf/(:num)', 'DocOnboard\PKRDG::getPdf/$1');
+$routes->get('/PK-RDG/pdf/(:num)', 'Auth::index');
+$routes->get('/PK-RDG/pdf/(:num)', 'Auth::index');
+$routes->get('/PK-RDG/Convert', 'DocOnboard\PKRDG::Convert');
+$routes->get('/PK-RDG/Print', 'DocOnboard\PKRDG::Print');
+$routes->get('/PK-RDG/update/(:num)', 'Auth::index');
+$routes->post('/Edit-PK-RDG/(:num)', 'DocOnboard\PKRDG::EditAction/$1');
+$routes->delete('/PK-RDG/Delete/(:num)', 'DocOnboard\PKRDG::deleteData/$1');
 
 /*
  * --------------------------------------------------------------------

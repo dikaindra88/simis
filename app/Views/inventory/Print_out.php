@@ -21,7 +21,7 @@
 </style>
 
 <body>
-    <img src="img/RDG.png" style="width:200px; height:auto; position:absolute;margin-top:1%;">
+    <img src="img/logo2.png" style="width:120px; height:auto; position:absolute;margin-top:1%;">
     <!-- <img src="assets/img/soetta.jpg" style="width:auto; height:60px; position:absolute; margin-left:88%;">
      -->
     <table width="100%">
