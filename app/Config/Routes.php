@@ -408,6 +408,24 @@ $routes->get('/PK-RDG/update/(:num)', 'Auth::index');
 $routes->post('/Edit-PK-RDG/(:num)', 'DocOnboard\PKRDG::EditAction/$1');
 $routes->delete('/PK-RDG/Delete/(:num)', 'DocOnboard\PKRDG::deleteData/$1');
 
+
+/*
+* --------------------------------------------------------------------
+ * Routes PK-RDA
+ * --------------------------------------------------------------------
+ */
+$routes->get('/Personnel', 'Personnel::index');
+$routes->post('Personnel-add', 'Personnel::insert');
+$routes->post('/Personnel/update/(:num)', 'Personnel::update/$1');
+$routes->post('/Personnel/pdf/(:num)', 'Personnel::getPdf/$1');
+$routes->get('/Personnel/pdf/(:num)', 'Auth::index');
+$routes->get('/Personnel/pdf/(:num)', 'Auth::index');
+$routes->get('/Personnel/Convert', 'Personnel::Convert');
+$routes->get('/Personnel/Print', 'Personnel::Print');
+$routes->get('/Personnel/update/(:num)', 'Auth::index');
+$routes->post('/Edit-Personnel/(:num)', 'Personnel::EditAction/$1');
+$routes->delete('/Personnel/Delete/(:num)', 'Personnel::deleteData/$1');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

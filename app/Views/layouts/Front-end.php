@@ -541,14 +541,16 @@
                                 </li>
                             </ul>
                         </li>
-                        <!-- <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-user-tie"></i>
-                            <p>
-                                Jabatan
-                            </p>
-                        </a>
-                    </li> -->
+                        <li class="nav-item">
+                            <a href="/Personnel" class="nav-link <?php if (current_url(true)->getSegment('2') == 'Personnel') {
+                                                                        echo "active";
+                                                                    } ?>">
+                                <i class="nav-icon fas fa-user-tie"></i>
+                                <p>
+                                    Data Personnel
+                                </p>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a href="/Users" class="nav-link <?php if (current_url(true)->getSegment('2') == 'Users') {
                                                                     echo "active";
