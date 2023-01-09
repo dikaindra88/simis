@@ -320,6 +320,23 @@ $routes->get('N_W/print/(:any)', 'SpareCondition\NW::print/$1');
 
 
 /*
+* --------------------------------------------------------------------
+ * Routes Manual
+ * --------------------------------------------------------------------
+ */
+$routes->get('/Manual', 'Manual::index');
+$routes->post('Manual-add', 'Manual::insert');
+$routes->post('/Manual/update/(:num)', 'Manual::update/$1');
+$routes->post('/Manual/pdf/(:num)', 'Manual::getPdf/$1');
+$routes->get('/Manual/pdf/(:num)', 'Auth::index');
+$routes->get('/Manual/pdf/(:num)', 'Auth::index');
+$routes->get('/Manual/Convert', 'Manual::Convert');
+$routes->get('/Manual/Print', 'Manual::Print');
+$routes->get('/Manual/update/(:num)', 'Auth::index');
+$routes->post('/Edit-Manual/(:num)', 'Manual::EditAction/$1');
+$routes->delete('/Manual/Delete/(:num)', 'Manual::deleteData/$1');
+
+/*
  * --------------------------------------------------------------------
  * Additional Routing
  * --------------------------------------------------------------------
