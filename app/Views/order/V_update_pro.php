@@ -42,12 +42,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Update List Order</h1>
+                    <h1 class="m-0">Update List PO / RO</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Update List Order</li>
+                        <li class="breadcrumb-item active">Update List PO / RO</li>
                     </ol>
 
                 </div><!-- /.col -->
@@ -70,7 +70,7 @@
                                     <input type="text" name="kd_sparepart" value="" class="form-control" id="part_number" placeholder="Sparepart Code" required>
                                 </div> -->
                                 <div class="form-group">
-                                    <label>Oum Name</label>
+                                    <label>PO / RO</label>
                                     <input type="text" name="order_name" value="<?= $order[0]['order_name'] ?>" class="form-control" id="part_number" required>
                                 </div>
                             </div>

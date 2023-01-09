@@ -96,15 +96,15 @@ echo view('layouts/Top') ?>
                                     <input type="text" name="password" class="form-control" placeholder="Password" required>
                                 </div>
                                 <div class="form-group">
-                      <label>Status</label>
-                      <select name="status" id="kd_sparepart" data-placeholder="Select Item" class="form-control select2bs4" required>
-                        <option value="" selected disabled>Choose Item</option>
-                        
-                          <option value="admin">Admin</option>
-                          <option value="staff">Staff</option>
-                        
-                      </select>
-                    </div>
+                                    <label>Status</label>
+                                    <select name="status" id="kd_sparepart" data-placeholder="Select Item" class="form-control select2bs4" required>
+                                        <option value="" selected disabled>Choose Item</option>
+
+                                        <option value="admin">Admin</option>
+                                        <option value="staff">Staff</option>
+
+                                    </select>
+                                </div>
                                 <!-- <div class="form-group">
                                     <label>Stock</label>
                                     <input type="text" name="stock" value="1" class="form-control" id="part_number" placeholder="Stock">
@@ -145,7 +145,7 @@ echo view('layouts/Top') ?>
                     <div class="table-responsive">
                         <table class="table table-hover table-striped table-condensed " id="example3">
                             <thead>
-                                <tr class="bg-navy color-light text-md text-center" style=" font-size: 9pt; height:30px;">
+                                <tr class="bg-navy color-light text-center" style=" font-size: 9pt;">
                                     <th>No</th>
                                     <th>Name</th>
                                     <th>Email</th>
@@ -176,7 +176,7 @@ echo view('layouts/Top') ?>
                                                         <?= csrf_field(); ?>
                                                         <input type="hidden" name="_method" value="Edit">
                                                         <button type="submit" class="dropdown-item"><i class="nav-icon fas fa-edit"></i>
-                                                            Ubah
+                                                            Update
                                                         </button>
                                                     </form>
                                                     <div class="dropdown-divider"></div>
@@ -184,7 +184,7 @@ echo view('layouts/Top') ?>
                                                         <?= csrf_field(); ?>
                                                         <input type="hidden" name="_method" value="Delete">
                                                         <button type="submit" class="dropdown-item" onclick="return confirm('Apakah anda yakin?');"><i class="nav-icon fas fa-trash-alt"></i>
-                                                            Hapus
+                                                            Delete
                                                         </button>
                                                     </form>
                                                 </div>

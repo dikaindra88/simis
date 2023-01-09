@@ -1,39 +1,115 @@
 <?php echo view('layouts/Top') ?>
 <?php echo view('layouts/Front-end') ?>
 <style>
-  #upload {
-    opacity: 0;
+  .file-upload {
+    background-color: #ffffff;
+    width: auto;
+    padding: 20px;
   }
 
-  #upload-label {
-    position: absolute;
-    top: 50%;
-    left: 1rem;
-    transform: translateY(-50%);
-  }
-
-  .image-area {
-    border: 2px dashed rgba(255, 255, 255, 0.7);
-    padding: 1rem;
-    position: relative;
-  }
-
-  .image-area::before {
-    content: 'Uploaded image result';
+  .file-upload-btn {
+    width: 100%;
+    margin: 0;
     color: #fff;
-    font-weight: bold;
+    background: #1FB264;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    border-bottom: 4px solid #15824B;
+    transition: all .2s ease;
+    outline: none;
     text-transform: uppercase;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 0.8rem;
-    z-index: 1;
+    font-weight: 700;
   }
 
-  .image-area img {
-    z-index: 2;
+  .file-upload-btn:hover {
+    background: #1AA059;
+    color: #ffffff;
+    transition: all .2s ease;
+    cursor: pointer;
+  }
+
+  .file-upload-btn:active {
+    border: 0;
+    transition: all .2s ease;
+  }
+
+  .file-upload-content {
+    display: none;
+    text-align: center;
+  }
+
+  .file-upload-input {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    outline: none;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .image-upload-wrap {
+    margin-top: 20px;
+    border: 4px dashed #999;
     position: relative;
+  }
+
+  .image-dropping,
+  .image-upload-wrap:hover {
+    background-color: #999;
+    border: 4px dashed #ffffff;
+  }
+
+  .image-title-wrap {
+    padding: 0 15px 15px 15px;
+    color: #222;
+  }
+
+  .drag-text {
+    text-align: center;
+  }
+
+  .drag-text h3 {
+    font-weight: 100;
+    text-transform: uppercase;
+    color: #000;
+    padding: 60px 0;
+  }
+
+  .file-upload-image {
+    max-height: 200px;
+    max-width: 200px;
+    margin: auto;
+    padding: 20px;
+  }
+
+  .remove-image {
+    width: 200px;
+    margin: 0;
+    color: #fff;
+    background: #cd4535;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    border-bottom: 4px solid #b02818;
+    transition: all .2s ease;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  .remove-image:hover {
+    background: #c13b2a;
+    color: #ffffff;
+    transition: all .2s ease;
+    cursor: pointer;
+  }
+
+  .remove-image:active {
+    border: 0;
+    transition: all .2s ease;
   }
 </style>
 <div class="content-wrapper">
@@ -46,7 +122,7 @@
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
             <li class="breadcrumb-item active">Data Sparepart Incoming</li>
           </ol>
         </div><!-- /.col -->
@@ -103,7 +179,7 @@
                     <div class="form-group">
                       <label>Location</label>
                       <select class="form-control select2bs4" name="id_location" data-placeholder="Select Location" style="width: 100%;">
-                      <option value="" selected disabled>Choose Item</option>
+                        <option value="" selected disabled>Choose Item</option>
                         <?php foreach ($location as $value) : ?>
                           <option value="<?= $value['id_location'] ?>"><?= $value['location_name'] ?></option>
                         <?php endforeach ?>
@@ -116,7 +192,7 @@
                     <div class="form-group">
                       <label>OUM</label>
                       <select class="form-control select2bs4" name="id_oum" data-placeholder="Select Oum" style="width: 100%;">
-                      <option value="" selected disabled>Choose Item</option>
+                        <option value="" selected disabled>Choose Item</option>
                         <?php foreach ($oum as $value) : ?>
                           <option value="<?= $value['id_oum'] ?>"><?= $value['oum_name'] ?></option>
                         <?php endforeach ?>
@@ -134,7 +210,7 @@
                     <div class="form-group">
                       <label>PO / RO</label>
                       <select class="form-control select2bs4" name="id_pro" data-placeholder="Select PO / RO" style="width: 100%;">
-                      <option value="" selected disabled>Choose Item</option>
+                        <option value="" selected disabled>Choose Item</option>
                         <?php foreach ($order as $value) : ?>
                           <option value="<?= $value['id_pro'] ?>"><?= $value['order_name'] ?></option>
                         <?php endforeach ?>
@@ -163,7 +239,7 @@
                     <div class="form-group">
                       <label>Conditions</label>
                       <select class="form-control select2bs4" name="id_condition" data-placeholder="Select Condition" style="width: 100%;">
-                      <option value="" selected disabled>Choose Item</option>
+                        <option value="" selected disabled>Choose Item</option>
                         <?php foreach ($condition as $value) : ?>
                           <option value="<?= $value['id_condition'] ?>"><?= $value['condition_name'] ?></option>
                         <?php endforeach ?>
@@ -180,7 +256,7 @@
                     <div class="form-group">
                       <label>A / C Registration</label>
                       <select class="form-control select2bs4" name="id_acreg" data-placeholder="Select A / C Registration" style="width: 100%;">
-                      <option value="" selected disabled>Choose Item</option>
+                        <option value="" selected disabled>Choose Item</option>
                         <?php foreach ($acreg as $value) : ?>
                           <option value="<?= $value['id_acreg'] ?>"><?= $value['acreg_name'] ?></option>
                         <?php endforeach ?>
@@ -230,23 +306,21 @@
                       </div>
                     </div>
                     <div class="form-group">
-                      <label>Image Item</label>
-                      <div class="row py-4">
-                        <div class="col-lg-6 mx-auto">
-
-                          <!-- Upload image input-->
-                          <div class="input-group mb-0 px-2 py-2 rounded-pill bg-white shadow-sm">
-                            <input id="upload" name="image" type="file" onchange="readURL(this);" class="form-control border-0">
-                            <label id="upload-label" for="upload" class="font-weight-light text-muted"></label>
-                            <div class="input-group-append">
-                              <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fa fa-cloud-upload mr-2 text-muted"></i><small class=" font-weight-bold text-muted">Choose Image</small></label>
+                      <label for="exampleInputFile">Document ARC</i></label>
+                      <div class="input-group">
+                        <div class="file-upload">
+                          <div class="image-upload-wrap">
+                            <input class="file-upload-input" type='file' name="document_arc" onchange="readURL(this);" accept="image/*" />
+                            <div class="drag-text">
+                              <h3>Click or Drag and drop a Image</h3>
                             </div>
                           </div>
-
-                          <!-- Uploaded image area-->
-
-                          <div class="image-area mt-1"><img id="imageResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block"></div>
-
+                          <div class="file-upload-content">
+                            <img class="file-upload-image" src="#" alt="your image" />
+                            <div class="image-title-wrap">
+                              <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -288,7 +362,7 @@
           <div class="table-responsive">
             <table class="table table-hover table-striped table-condensed" id="example3">
               <thead>
-                <tr class="bg-navy color-light text-md text-center" style=" font-size: 9pt; height:30px;">
+                <tr class="bg-navy color-light text-center" style=" font-size: 9pt;">
                   <th rowspan="2">No</th>
                   <th rowspan="2">Date In</th>
                   <th rowspan="2">Description</th>
@@ -300,7 +374,7 @@
                   <th rowspan="2">Qty</th>
 
 
-                  <th rowspan="2">Image</th>
+                  <th rowspan="2">Document ARC</th>
                   <th colspan="2">Document</th>
 
                   <th rowspan="2">Action</th>
@@ -331,7 +405,7 @@
                     <td><?= $row['vendors'] ?></td>
                     <td><?= $row['condition_name'] ?></td>
                     <td><?= $row['qty_in'] ?></td>
-                    <td><img class="img-thumbnail" width="80px" height="80px" src="<?= base_url('foto/' . $row['image']) ?>"></td>
+                    <td><img class="img-thumbnail" width="80px" height="80px" src="<?= base_url('foto/' . $row['document_arc']) ?>"></td>
                     <td><?php
                         if ($row['document'] == 'yes') {
                         ?>
@@ -372,7 +446,7 @@
                             <?= csrf_field(); ?>
                             <input type="hidden" name="_method" value="Details">
                             <button type="submit" data-toggle="modal" data-target="#modal-lg" class="dropdown-item"><i class="nav-icon fas fa-eye"></i>
-                              Lihat
+                              View
                             </button>
                           </form>
                           <div class="dropdown-divider"></div>
@@ -381,7 +455,7 @@
                             <?= csrf_field(); ?>
                             <input type="hidden" name="_method" value="Edit">
                             <button type="submit" class="dropdown-item"><i class="nav-icon fas fa-edit"></i>
-                              Ubah
+                              Update
                             </button>
                           </form>
                           <div class="dropdown-divider"></div>
@@ -389,7 +463,7 @@
                             <?= csrf_field(); ?>
                             <input type="hidden" name="_method" value="Delete">
                             <button type="submit" class="dropdown-item" onclick="return confirm('Apakah anda yakin?');"><i class="nav-icon fas fa-trash-alt"></i>
-                              Hapus
+                              Delete
                             </button>
                           </form>
                         </div>
@@ -412,49 +486,50 @@
   <script>
     function readURL(input) {
       if (input.files && input.files[0]) {
+
         var reader = new FileReader();
 
         reader.onload = function(e) {
-          $('#imageResult')
-            .attr('src', e.target.result);
+          $('.image-upload-wrap').hide();
+
+          $('.file-upload-image').attr('src', e.target.result);
+          $('.file-upload-image1').hide();
+          $('.file-upload-content').show();
+          $('.file-upload-content1').show();
+
+          $('.image-title').html(input.files[0].name);
         };
+
         reader.readAsDataURL(input.files[0]);
+
+      } else {
+        removeUpload();
       }
     }
 
-    $(function() {
-      $('#upload').on('change', function() {
-        readURL(input);
-      });
-    });
-
-    /*  ==========================================
-        SHOW UPLOADED IMAGE NAME
-    * ========================================== */
-    var input = document.getElementById('upload');
-    var infoArea = document.getElementById('upload-label');
-
-    input.addEventListener('change', showFileName);
-
-    function showFileName(event) {
-      var input = event.srcElement;
-      var fileName = input.files[0].name;
-      infoArea.textContent = 'File name: ' + fileName;
+    function removeUpload() {
+      $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+      $('.file-upload-content').hide();
+      $('.image-upload-wrap').show();
     }
+
+    function removeUpload1() {
+
+      $('.file-upload-content1').hide();
+      $('.image-title-wrap1').hide();
+    }
+    $('.image-upload-wrap').bind('dragover', function() {
+      $('.image-upload-wrap').addClass('image-dropping');
+    });
+    $('.image-upload-wrap').bind('dragleave', function() {
+      $('.image-upload-wrap').removeClass('image-dropping');
+    });
   </script>
-  <script>
-    $.ajax('#id_sparepart').on('change', (event) => {
-      getData(event.target.value).then(out => {
-        $('#part_number').val(out.part_number);
-        $('#serial_number').val(out.serial_number);
+  <script type="text/javascript">
+    window.setTimeout(function() {
+      $('#flash_data').fadeTo(500, 0).slideUp(500, function() {
+        $(this).remove()
       });
-    });
-
-    async function getData(id_sparepart) {
-      let response = await get('/api/home/' + id_sparepart);
-      let data = await response.json();
-
-      return data;
-    }
+    }, 2500);
   </script>
   <?php echo view('layouts/Bottom') ?>

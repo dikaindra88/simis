@@ -112,7 +112,7 @@ echo view('layouts/Top') ?>
                     <div class="form-group">
                       <label>Conditions</label>
                       <select class="form-control select2bs4" name="id_condition" data-placeholder="Select a Condition" style="width: 100%;">
-                      <option value="" selected disabled>Choose Item</option>
+                        <option value="" selected disabled>Choose Item</option>
                         <?php foreach ($condition as $value) : ?>
                           <option value="<?= $value['id_condition'] ?>"><?= $value['condition_name'] ?></option>
                         <?php endforeach ?>
@@ -137,7 +137,7 @@ echo view('layouts/Top') ?>
                     <div class="form-group">
                       <label>OUM</label>
                       <select class="form-control select2bs4" name="id_oum" data-placeholder="Select Oum" style="width: 100%;">
-                      <option value="" selected disabled>Choose Item</option>
+                        <option value="" selected disabled>Choose Item</option>
                         <?php foreach ($oum as $value) : ?>
                           <option value="<?= $value['id_oum'] ?>"><?= $value['oum_name'] ?></option>
                         <?php endforeach ?>
@@ -148,7 +148,7 @@ echo view('layouts/Top') ?>
                     <div class="form-group">
                       <label>Given to / Remarks</label>
                       <select class="form-control select2bs4" name="id_given_to" data-placeholder="Select Given" style="width: 100%;">
-                      <option value="" selected disabled>Choose Item</option>
+                        <option value="" selected disabled>Choose Item</option>
                         <?php foreach ($given as $value) : ?>
                           <option value="<?= $value['id_given_to'] ?>"><?= $value['name'] ?></option>
                         <?php endforeach ?>
@@ -189,7 +189,7 @@ echo view('layouts/Top') ?>
           <div class="table-responsive">
             <table class="table table-hover table-striped table-condensed " id="example3">
               <thead>
-                <tr class="bg-navy color-light text-md text-center" style=" font-size: 9pt; height:30px;">
+                <tr class="bg-navy color-light text-center" style=" font-size: 9pt;">
                   <th>No</th>
                   <th>Date Out</th>
                   <th>Description</th>
@@ -229,7 +229,7 @@ echo view('layouts/Top') ?>
                             <?= csrf_field(); ?>
                             <input type="hidden" name="_method" value="Details">
                             <button type="submit" data-toggle="modal" data-target="#modal-lg" class="dropdown-item"><i class="nav-icon fas fa-eye"></i>
-                              Lihat
+                              View
                             </button>
                           </form>
                           <div class="dropdown-divider"></div>
@@ -238,7 +238,7 @@ echo view('layouts/Top') ?>
                             <?= csrf_field(); ?>
                             <input type="hidden" name="_method" value="Edit">
                             <button type="submit" class="dropdown-item"><i class="nav-icon fas fa-edit"></i>
-                              Ubah
+                              Ipdate
                             </button>
                           </form>
                           <div class="dropdown-divider"></div>
@@ -246,7 +246,7 @@ echo view('layouts/Top') ?>
                             <?= csrf_field(); ?>
                             <input type="hidden" name="_method" value="Delete">
                             <button type="submit" class="dropdown-item" onclick="return confirm('Apakah anda yakin?');"><i class="nav-icon fas fa-trash-alt"></i>
-                              Hapus
+                              Delete
                             </button>
                           </form>
                         </div>

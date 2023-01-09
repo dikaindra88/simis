@@ -31,7 +31,7 @@
                 <!-- /.card-header -->
                 <div class="card-body">
                     <button type="button" class="btn btn-info btn-sm" onclick="javascript:history.back()">
-                        <i class="fa fa-arrow-circle-left"></i> Kembali
+                        <i class="fa fa-arrow-circle-left"></i> Back
                     </button>
                     <h1></h1>
                     <table class="table table-striped table-middle">

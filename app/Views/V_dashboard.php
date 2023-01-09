@@ -11,7 +11,7 @@
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
             <li class="breadcrumb-item active">Dashboard</li>
           </ol>
         </div><!-- /.col -->
@@ -33,7 +33,7 @@
             <div class="info-box-content">
               <span class="info-box-text">Inventory Sparepart</span>
               <span class="info-box-number">
-                <?php echo $sparepart?>
+                <?php echo $sparepart ?>
               </span>
             </div>
             <!-- /.info-box-content -->
@@ -47,7 +47,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text">Data Incoming</span>
-              <span class="info-box-number"><?php echo $sparepartin?></span>
+              <span class="info-box-number"><?php echo $sparepartin ?></span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -64,7 +64,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text">Data Outgoing</span>
-              <span class="info-box-number"><?php echo $sparepartout?></span>
+              <span class="info-box-number"><?php echo $sparepartout ?></span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -77,7 +77,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text">Data Users</span>
-              <span class="info-box-number"><?php echo $users?></span>
+              <span class="info-box-number"><?php echo $users ?></span>
             </div>
             <!-- /.info-box-content -->
           </div>

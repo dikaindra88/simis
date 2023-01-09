@@ -46,12 +46,12 @@ echo view('layouts/Top') ?>
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">List A / C Reg</h1>
+                    <h1 class="m-0">List A / C Regist</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                        <li class="breadcrumb-item active">List A / C Reg</li>
+                        <li class="breadcrumb-item active">List A / C Regist</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -84,7 +84,7 @@ echo view('layouts/Top') ?>
                             <div class="card-body">
 
                                 <div class="form-group">
-                                    <label>A / C Reg Name</label>
+                                    <label>A / C Regist Name</label>
                                     <input type="text" name="acreg_name" class="form-control" placeholder="A / C Reg Name" required>
                                 </div>
 
@@ -128,9 +128,9 @@ echo view('layouts/Top') ?>
                     <div class="table-responsive">
                         <table class="table table-hover table-striped table-condensed " id="example3">
                             <thead>
-                                <tr class="bg-navy color-light text-md text-center" style=" font-size: 9pt; height:30px;">
+                                <tr class="bg-navy color-light text-center" style=" font-size: 9pt;">
                                     <th>No</th>
-                                    <th>A / C Reg Name</th>
+                                    <th>A / C Regist Name</th>
 
 
                                     <th>Action</th>
@@ -159,7 +159,7 @@ echo view('layouts/Top') ?>
                                                         <?= csrf_field(); ?>
                                                         <input type="hidden" name="_method" value="Edit">
                                                         <button type="submit" class="dropdown-item"><i class="nav-icon fas fa-edit"></i>
-                                                            Ubah
+                                                            Update
                                                         </button>
                                                     </form>
                                                     <div class="dropdown-divider"></div>
@@ -167,7 +167,7 @@ echo view('layouts/Top') ?>
                                                         <?= csrf_field(); ?>
                                                         <input type="hidden" name="_method" value="Delete">
                                                         <button type="submit" class="dropdown-item" onclick="return confirm('Apakah anda yakin?');"><i class="nav-icon fas fa-trash-alt"></i>
-                                                            Hapus
+                                                            Delete
                                                         </button>
                                                     </form>
                                                 </div>

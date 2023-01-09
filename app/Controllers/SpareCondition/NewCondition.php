@@ -100,7 +100,7 @@ class NewCondition extends BaseController
         $dompdf->loadHtml($html);
         $dompdf->setPaper('A4', 'landscape');
         $dompdf->render();
-        $dompdf->stream();
+        $dompdf->stream('Report Data List New ' . date('F Y') . '.pdf');
     }else{
         return redirect()->to('/');
     }

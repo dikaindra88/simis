@@ -11,7 +11,7 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Halaman</a></li>
+                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
                         <li class="breadcrumb-item active">Detail Sparepart Incoming</li>
                     </ol>
 
@@ -31,7 +31,7 @@
                 <!-- /.card-header -->
                 <div class="card-body">
                     <button type="button" class="btn btn-info btn-sm" onclick="javascript:history.back()">
-                        <i class="fa fa-arrow-circle-left"></i> Kembali
+                        <i class="fa fa-arrow-circle-left"></i> Back
                     </button>
                     <h1></h1>
                     <table class="table table-middle">
@@ -78,7 +78,7 @@
                         <tr>
                             <th>Image</th>
                             <td>:</td>
-                            <td><a href="<?= base_url('foto/' . $in[0]['image']) ?>" class="preview" target="_blink"><img class="img-thumbnail" width="100px" height="100px" src="<?= base_url('foto/' . $in[0]['image']) ?>"></a></td>
+                            <td><a href="<?= base_url('foto/' . $in[0]['document_arc']) ?>" class="preview" target="_blink"><img class="img-thumbnail" width="100px" height="100px" src="<?= base_url('foto/' . $in[0]['document_arc']) ?>"></a></td>
                             </td>
                         </tr>
                         <tr>

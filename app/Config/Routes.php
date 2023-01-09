@@ -195,23 +195,23 @@ $routes->delete('/Acreg/Delete/(:num)', 'ListData\Acreg::deleteData/$1');
  * --------------------------------------------------------------------
  */
 
- $routes->get('/Givento', 'ListData\Given::index');
- $routes->post('Add-givento', 'ListData\Given::insert');
- $routes->post('/Givento/update/(:num)', 'ListData\Given::update/$1');
- $routes->get('/Givento/update/(:num)', 'Home::index/$1');
- $routes->post('/Edit-givento/(:num)', 'ListData\Given::EditAction/$1');
- $routes->delete('/Givento/Delete/(:num)', 'ListData\Given::deleteData/$1');
- 
- 
+$routes->get('/Givento', 'ListData\Given::index');
+$routes->post('Add-givento', 'ListData\Given::insert');
+$routes->post('/Givento/update/(:num)', 'ListData\Given::update/$1');
+$routes->get('/Givento/update/(:num)', 'Home::index/$1');
+$routes->post('/Edit-givento/(:num)', 'ListData\Given::EditAction/$1');
+$routes->delete('/Givento/Delete/(:num)', 'ListData\Given::deleteData/$1');
+
+
 /*
 * --------------------------------------------------------------------
  * Routes List Serviceable
  * --------------------------------------------------------------------
  */
 
- $routes->get('/Serviceable', 'SpareCondition\Serviceable::index');
- $routes->post('Serviceable-search', 'SpareCondition\Serviceable::show');
- $routes->get('Serviceable-search', 'Auth::index');
+$routes->get('/Serviceable', 'SpareCondition\Serviceable::index');
+$routes->post('Serviceable-search', 'SpareCondition\Serviceable::show');
+$routes->get('Serviceable-search', 'Auth::index');
 $routes->get('Serviceable/Print/(:any)', 'SpareCondition\Serviceable::excel/$1');
 $routes->get('Serviceable/print//', 'Inventory::alert');
 $routes->get('Serviceable/Print//', 'Inventory::alert');
@@ -223,9 +223,9 @@ $routes->get('Serviceable/print/(:any)', 'SpareCondition\Serviceable::print/$1')
  * --------------------------------------------------------------------
  */
 
- $routes->get('/Unserviceable', 'SpareCondition\Unserviceable::index');
- $routes->post('Unserviceable-search', 'SpareCondition\Unserviceable::show');
- $routes->get('Unserviceable-search', 'Auth::index');
+$routes->get('/Unserviceable', 'SpareCondition\Unserviceable::index');
+$routes->post('Unserviceable-search', 'SpareCondition\Unserviceable::show');
+$routes->get('Unserviceable-search', 'Auth::index');
 $routes->get('Unserviceable/Print/(:any)', 'SpareCondition\Unserviceable::excel/$1');
 $routes->get('Unserviceable/print//', 'Inventory::alert');
 $routes->get('Unserviceable/Print//', 'Inventory::alert');
@@ -238,9 +238,9 @@ $routes->get('Unserviceable/print/(:any)', 'SpareCondition\Unserviceable::print/
  * --------------------------------------------------------------------
  */
 
- $routes->get('/Flameable', 'SpareCondition\Flameable::index');
- $routes->post('Flameable-search', 'SpareCondition\Flameable::show');
- $routes->get('Flameable-search', 'Auth::index');
+$routes->get('/Flameable', 'SpareCondition\Flameable::index');
+$routes->post('Flameable-search', 'SpareCondition\Flameable::show');
+$routes->get('Flameable-search', 'Auth::index');
 $routes->get('Flameable/Print/(:any)', 'SpareCondition\Flameable::excel/$1');
 $routes->get('Flameable/print//', 'Inventory::alert');
 $routes->get('Flameable/Print//', 'Inventory::alert');
@@ -252,9 +252,9 @@ $routes->get('Flameable/print/(:any)', 'SpareCondition\Flameable::print/$1');
  * --------------------------------------------------------------------
  */
 
- $routes->get('/New', 'SpareCondition\NewCondition::index');
- $routes->post('New-search', 'SpareCondition\NewCondition::show');
- $routes->get('New-search', 'Auth::index');
+$routes->get('/New', 'SpareCondition\NewCondition::index');
+$routes->post('New-search', 'SpareCondition\NewCondition::show');
+$routes->get('New-search', 'Auth::index');
 $routes->get('New/Print/(:any)', 'SpareCondition\NewCondition::excel/$1');
 $routes->get('New/print//', 'Inventory::alert');
 $routes->get('New/Print//', 'Inventory::alert');
@@ -267,9 +267,9 @@ $routes->get('New/print/(:any)', 'SpareCondition\NewCondition::print/$1');
  * --------------------------------------------------------------------
  */
 
- $routes->get('/Inspected', 'SpareCondition\Inspected::index');
- $routes->post('Inspected-search', 'SpareCondition\Inspected::show');
- $routes->get('Inspected-search', 'Auth::index');
+$routes->get('/Inspected', 'SpareCondition\Inspected::index');
+$routes->post('Inspected-search', 'SpareCondition\Inspected::show');
+$routes->get('Inspected-search', 'Auth::index');
 $routes->get('Inspected/Print/(:any)', 'SpareCondition\Inspected::excel/$1');
 $routes->get('Inspected/print//', 'Inventory::alert');
 $routes->get('Inspected/Print//', 'Inventory::alert');
@@ -282,9 +282,9 @@ $routes->get('Inspected/print/(:any)', 'SpareCondition\Inspected::print/$1');
  * --------------------------------------------------------------------
  */
 
- $routes->get('/Repair', 'SpareCondition\Repair::index');
- $routes->post('Repair-search', 'SpareCondition\Repair::show');
- $routes->get('Repair-search', 'Auth::index');
+$routes->get('/Repair', 'SpareCondition\Repair::index');
+$routes->post('Repair-search', 'SpareCondition\Repair::show');
+$routes->get('Repair-search', 'Auth::index');
 $routes->get('Repair/Print/(:any)', 'SpareCondition\Repair::excel/$1');
 $routes->get('Repair/print//', 'Inventory::alert');
 $routes->get('Repair/Print//', 'Inventory::alert');
@@ -296,9 +296,9 @@ $routes->get('Repair/print/(:any)', 'SpareCondition\Repair::print/$1');
  * --------------------------------------------------------------------
  */
 
- $routes->get('/Overhauled', 'SpareCondition\Overhauled::index');
- $routes->post('Overhauled-search', 'SpareCondition\Overhauled::show');
- $routes->get('Overhauled-search', 'Auth::index');
+$routes->get('/Overhauled', 'SpareCondition\Overhauled::index');
+$routes->post('Overhauled-search', 'SpareCondition\Overhauled::show');
+$routes->get('Overhauled-search', 'Auth::index');
 $routes->get('Overhauled/Print/(:any)', 'SpareCondition\Overhauled::excel/$1');
 $routes->get('Overhauled/print//', 'Inventory::alert');
 $routes->get('Overhauled/Print//', 'Inventory::alert');
@@ -310,15 +310,15 @@ $routes->get('Overhauled/print/(:any)', 'SpareCondition\Overhauled::print/$1');
  * --------------------------------------------------------------------
  */
 
- $routes->get('/N_W', 'SpareCondition\NW::index');
- $routes->post('N_W-search', 'SpareCondition\NW::show');
- $routes->get('N_W-search', 'Auth::index');
+$routes->get('/N_W', 'SpareCondition\NW::index');
+$routes->post('N_W-search', 'SpareCondition\NW::show');
+$routes->get('N_W-search', 'Auth::index');
 $routes->get('N_W/Print/(:any)', 'SpareCondition\NW::excel/$1');
 $routes->get('N_W/print//', 'Inventory::alert');
 $routes->get('N_W/Print//', 'Inventory::alert');
 $routes->get('N_W/print/(:any)', 'SpareCondition\NW::print/$1');
 
- 
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

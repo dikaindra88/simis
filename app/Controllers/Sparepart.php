@@ -30,22 +30,22 @@ class Sparepart extends BaseController
     public function in()
     {
         if (session()->get('name') == True) {
-        $data = [
-            'title' => 'Page | Sparepart Incoming',
-            'out' => $this->Sparepart->getData(),
-            'sparepart' => $this->Spareparts->getDatas(),
-            'condition' => $this->Condition->getData(),
-            'location' => $this->Location->getData(),
-            'acreg' => $this->Acreg->getData(),
-            'order' => $this->Order->getData(),
-            'oum' => $this->Oum->getData(),
-            'user' => $this->User->getData(),
-        ];
-         //dd($data);
-        return view('sparepart/V_data_in', $data);
-    }else{
-        return redirect()->to('/');
-    }
+            $data = [
+                'title' => 'Page | Sparepart Incoming',
+                'out' => $this->Sparepart->getData(),
+                'sparepart' => $this->Spareparts->getDatas(),
+                'condition' => $this->Condition->getData(),
+                'location' => $this->Location->getData(),
+                'acreg' => $this->Acreg->getData(),
+                'order' => $this->Order->getData(),
+                'oum' => $this->Oum->getData(),
+                'user' => $this->User->getData(),
+            ];
+            //dd($data);
+            return view('sparepart/V_data_in', $data);
+        } else {
+            return redirect()->to('/');
+        }
     }
     public function update($id_partin)
     {
@@ -65,7 +65,7 @@ class Sparepart extends BaseController
     }
     public function EditAction($id_partin)
     {
-        $file = $this->request->getFile('image');
+        $file = $this->request->getFile('document_arc');
         if ($file->getError() == 4) {
             $data = [
                 'id_partin' => $id_partin,
@@ -95,8 +95,8 @@ class Sparepart extends BaseController
 
 
 
-            $file = $this->request->getFile('image');
-            $nama_file = $file->getRandomName();
+            $file = $this->request->getFile('document_arc');
+            $nama_file = $file->getName();
             $data = [
                 'id_partin' => $id_partin,
                 'kd_sparepart' => $this->request->getPost('kd_sparepart'),
@@ -119,7 +119,7 @@ class Sparepart extends BaseController
                 'document' => $this->request->getPost('document'),
                 'create_date' => $this->request->getPost('create_date'),
                 'expired_date' => $this->request->getPost('expired_date'),
-                'image' => $nama_file
+                'document_arc' => $nama_file
             ];
             // upload file foto
             $file->move('foto/', $nama_file);
@@ -145,8 +145,8 @@ class Sparepart extends BaseController
     {
 
 
-        $image = $this->request->getFile('image');
-        $nama_file = $image->getRandomName();
+        $image = $this->request->getFile('document_arc');
+        $nama_file = $image->getName();
         $data = [
             'part_number' => $this->request->getPost('part_number'),
             'kd_sparepart' => $this->request->getPost('kd_sparepart'),
@@ -167,8 +167,8 @@ class Sparepart extends BaseController
             'remarks' => $this->request->getPost('remarks'),
             'document' => $this->request->getPost('document'),
             'create_date' => $this->request->getPost('create_date'),
-                'expired_date' => $this->request->getPost('expired_date'),
-            'image' => $nama_file,
+            'expired_date' => $this->request->getPost('expired_date'),
+            'document_arc' => $nama_file,
 
 
         ];

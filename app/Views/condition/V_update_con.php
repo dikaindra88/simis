@@ -70,7 +70,7 @@
                                     <input type="text" name="kd_sparepart" value="" class="form-control" id="part_number" placeholder="Sparepart Code" required>
                                 </div> -->
                                 <div class="form-group">
-                                    <label>Oum Name</label>
+                                    <label>Condition Name</label>
                                     <input type="text" name="condition_name" value="<?= $condition[0]['condition_name'] ?>" class="form-control" id="part_number" required>
                                 </div>
                             </div>
