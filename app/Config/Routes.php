@@ -336,6 +336,25 @@ $routes->get('/Manual/update/(:num)', 'Auth::index');
 $routes->post('/Edit-Manual/(:num)', 'Manual::EditAction/$1');
 $routes->delete('/Manual/Delete/(:num)', 'Manual::deleteData/$1');
 
+
+/*
+* --------------------------------------------------------------------
+ * Routes Manual
+ * --------------------------------------------------------------------
+ */
+$routes->get('/PK-YGR', 'DocOnboard\PKYGR::index');
+$routes->post('PK-YGR-add', 'DocOnboard\PKYGR::insert');
+$routes->post('/PK-YGR/update/(:num)', 'DocOnboard\PKYGR::update/$1');
+$routes->post('/PK-YGR/pdf/(:num)', 'DocOnboard\PKYGR::getPdf/$1');
+$routes->get('/PK-YGR/pdf/(:num)', 'Auth::index');
+$routes->get('/PK-YGR/pdf/(:num)', 'Auth::index');
+$routes->get('/PK-YGR/Convert', 'DocOnboard\PKYGR::Convert');
+$routes->get('/PK-YGR/Print', 'DocOnboard\PKYGR::Print');
+$routes->get('/PK-YGR/update/(:num)', 'Auth::index');
+$routes->post('/Edit-PK-YGR/(:num)', 'DocOnboard\PKYGR::EditAction/$1');
+$routes->delete('/PK-YGR/Delete/(:num)', 'DocOnboard\PKYGR::deleteData/$1');
+
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

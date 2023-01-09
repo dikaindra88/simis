@@ -179,16 +179,16 @@
                                                                                 } ?><?php if (current_url(true)->getSegment('2') == 'Repair') {
                                                                                         echo "menu-open";
                                                                                     } ?><?php if (current_url(true)->getSegment('2') == 'Repair-search') {
-                                                                                        echo "menu-open";
-                                                                                    } ?><?php if (current_url(true)->getSegment('2') == 'Overhauled') {
-                                                                                        echo "menu-open";
-                                                                                    } ?><?php if (current_url(true)->getSegment('2') == 'Overhauled-search') {
-                                                                                        echo "menu-open";
-                                                                                    } ?><?php if (current_url(true)->getSegment('2') == 'N_W') {
-                                                                                        echo "menu-open";
-                                                                                    } ?><?php if (current_url(true)->getSegment('2') == 'N_W-search') {
-                                                                                        echo "menu-open";
-                                                                                    } ?>">
+                                                                                            echo "menu-open";
+                                                                                        } ?><?php if (current_url(true)->getSegment('2') == 'Overhauled') {
+                                                                                                echo "menu-open";
+                                                                                            } ?><?php if (current_url(true)->getSegment('2') == 'Overhauled-search') {
+                                                                                                    echo "menu-open";
+                                                                                                } ?><?php if (current_url(true)->getSegment('2') == 'N_W') {
+                                                                                                        echo "menu-open";
+                                                                                                    } ?><?php if (current_url(true)->getSegment('2') == 'N_W-search') {
+                                                                                                            echo "menu-open";
+                                                                                                        } ?>">
                             <a href="#" class="nav-link <?php if (current_url(true)->getSegment('2') == 'Serviceable') {
                                                             echo "active";
                                                         } ?><?php if (current_url(true)->getSegment('2') == 'Serviceable-search') {
@@ -212,16 +212,16 @@
                                                                                             } ?><?php if (current_url(true)->getSegment('2') == 'Repair') {
                                                                                                     echo "active";
                                                                                                 } ?><?php if (current_url(true)->getSegment('2') == 'Repair-search') {
-                                                                                                    echo "active";
-                                                                                                } ?><?php if (current_url(true)->getSegment('2') == 'Overhauled') {
-                                                                                                    echo "active";
-                                                                                                } ?><?php if (current_url(true)->getSegment('2') == 'Overhauled-search') {
-                                                                                                    echo "active";
-                                                                                                } ?><?php if (current_url(true)->getSegment('2') == 'N_W') {
-                                                                                                    echo "active";
-                                                                                                } ?><?php if (current_url(true)->getSegment('2') == 'N_W-search') {
-                                                                                                    echo "active";
-                                                                                                } ?>">
+                                                                                                        echo "active";
+                                                                                                    } ?><?php if (current_url(true)->getSegment('2') == 'Overhauled') {
+                                                                                                            echo "active";
+                                                                                                        } ?><?php if (current_url(true)->getSegment('2') == 'Overhauled-search') {
+                                                                                                                echo "active";
+                                                                                                            } ?><?php if (current_url(true)->getSegment('2') == 'N_W') {
+                                                                                                                    echo "active";
+                                                                                                                } ?><?php if (current_url(true)->getSegment('2') == 'N_W-search') {
+                                                                                                                        echo "active";
+                                                                                                                    } ?>">
                                 <i class="nav-icon fas fa-clipboard-list"></i>
                                 <p>
                                     Sparepart Condition
@@ -482,6 +482,65 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item <?php if (current_url(true)->getSegment('2') == 'PK-YGR') {
+                                                echo "menu-open";
+                                            } ?><?php if (current_url(true)->getSegment('2') == 'PK-YGK') {
+                                                    echo "menu-open";
+                                                } ?><?php if (current_url(true)->getSegment('2') == 'PK-RDA') {
+                                                        echo "menu-open";
+                                                    } ?><?php if (current_url(true)->getSegment('2') == 'PK-RDG') {
+                                                            echo "menu-open";
+                                                        } ?>">
+                            <a href="#" class="nav-link <?php if (current_url(true)->getSegment('2') == 'PK-YGR') {
+                                                            echo "active";
+                                                        } ?><?php if (current_url(true)->getSegment('2') == 'PK-YGK') {
+                                                                echo "active";
+                                                            } ?><?php if (current_url(true)->getSegment('2') == 'PK-RDA') {
+                                                                    echo "active";
+                                                                } ?><?php if (current_url(true)->getSegment('2') == 'PK-RDG') {
+                                                                        echo "active";
+                                                                    } ?>">
+                                <i class="nav-icon fas fa-plane"></i>
+                                <p>
+                                    List Doc Onboard
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="/PK-YGR" class="nav-link <?php if (current_url(true)->getSegment('2') == 'PK-YGR') {
+                                                                            echo "active";
+                                                                        } ?>">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>PK-YGR</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/PK-YGK" class="nav-link <?php if (current_url(true)->getSegment('2') == 'PK-YGK') {
+                                                                            echo "active";
+                                                                        } ?>">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>PK-YGK</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/PK-RDA" class="nav-link <?php if (current_url(true)->getSegment('2') == 'PK-RDA') {
+                                                                            echo "active";
+                                                                        } ?>">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>PK-RDA</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/PK-RDG" class="nav-link <?php if (current_url(true)->getSegment('2') == 'PK-RDG') {
+                                                                            echo "active";
+                                                                        } ?>">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>PK-RDG</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                         <!-- <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-user-tie"></i>
@@ -608,16 +667,16 @@
                                                                                         } ?><?php if (current_url(true)->getSegment('2') == 'Repair') {
                                                                                                 echo "menu-open";
                                                                                             } ?><?php if (current_url(true)->getSegment('2') == 'Repair-search') {
-                                                                                        echo "menu-open";
-                                                                                    } ?><?php if (current_url(true)->getSegment('2') == 'Overhauled') {
-                                                                                        echo "menu-open";
-                                                                                    } ?><?php if (current_url(true)->getSegment('2') == 'Overhauled-search') {
-                                                                                        echo "menu-open";
-                                                                                    } ?><?php if (current_url(true)->getSegment('2') == 'N_W') {
-                                                                                        echo "menu-open";
-                                                                                    } ?><?php if (current_url(true)->getSegment('2') == 'N_W-search') {
-                                                                                        echo "menu-open";
-                                                                                    } ?>">
+                                                                                                    echo "menu-open";
+                                                                                                } ?><?php if (current_url(true)->getSegment('2') == 'Overhauled') {
+                                                                                                        echo "menu-open";
+                                                                                                    } ?><?php if (current_url(true)->getSegment('2') == 'Overhauled-search') {
+                                                                                                            echo "menu-open";
+                                                                                                        } ?><?php if (current_url(true)->getSegment('2') == 'N_W') {
+                                                                                                                echo "menu-open";
+                                                                                                            } ?><?php if (current_url(true)->getSegment('2') == 'N_W-search') {
+                                                                                                                    echo "menu-open";
+                                                                                                                } ?>">
                                     <a href="#" class="nav-link <?php if (current_url(true)->getSegment('2') == 'Serviceable') {
                                                                     echo "active";
                                                                 } ?><?php if (current_url(true)->getSegment('2') == 'Serviceable-search') {
@@ -641,16 +700,16 @@
                                                                                                     } ?><?php if (current_url(true)->getSegment('2') == 'Repair') {
                                                                                                             echo "active";
                                                                                                         } ?><?php if (current_url(true)->getSegment('2') == 'Repair-search') {
-                                                                                                    echo "active";
-                                                                                                } ?><?php if (current_url(true)->getSegment('2') == 'Overhauled') {
-                                                                                                    echo "active";
-                                                                                                } ?><?php if (current_url(true)->getSegment('2') == 'Overhauled-search') {
-                                                                                                    echo "active";
-                                                                                                } ?><?php if (current_url(true)->getSegment('2') == 'N_W') {
-                                                                                                    echo "active";
-                                                                                                } ?><?php if (current_url(true)->getSegment('2') == 'N_W-search') {
-                                                                                                    echo "active";
-                                                                                                } ?>">
+                                                                                                                echo "active";
+                                                                                                            } ?><?php if (current_url(true)->getSegment('2') == 'Overhauled') {
+                                                                                                                    echo "active";
+                                                                                                                } ?><?php if (current_url(true)->getSegment('2') == 'Overhauled-search') {
+                                                                                                                        echo "active";
+                                                                                                                    } ?><?php if (current_url(true)->getSegment('2') == 'N_W') {
+                                                                                                                            echo "active";
+                                                                                                                        } ?><?php if (current_url(true)->getSegment('2') == 'N_W-search') {
+                                                                                                                                echo "active";
+                                                                                                                            } ?>">
                                         <i class="nav-icon fas fa-clipboard-list"></i>
                                         <p>
                                             Sparepart Condition
