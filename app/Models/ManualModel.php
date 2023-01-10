@@ -40,6 +40,12 @@ class ManualModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
+    public function countManual()
+    {
+        $query = $this->db->query("SELECT * FROM manual");
+        $manual = $query->getNumRows();
+        return $manual;
+    }
     public function getData()
     {
         return $this->db->table('manual')

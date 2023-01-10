@@ -238,7 +238,7 @@ echo view('layouts/Top') ?>
                             <?= csrf_field(); ?>
                             <input type="hidden" name="_method" value="Edit">
                             <button type="submit" class="dropdown-item"><i class="nav-icon fas fa-edit"></i>
-                              Ipdate
+                              Update
                             </button>
                           </form>
                           <div class="dropdown-divider"></div>

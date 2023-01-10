@@ -40,22 +40,47 @@ class PersonnelModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
+    public function countPersonnel()
+    {
+        $query = $this->db->query("SELECT * FROM personnel");
+        $personnel = $query->getNumRows();
+        return $personnel;
+    }
     public function getData()
     {
         return $this->db->table('personnel')
             ->join('position', 'position.id_position=personnel.id_position')
-            ->join('authorized', 'authorized.id_auth=personnel.id_auth')
-            ->join('rii', 'rii.id_rii=personnel.id_rii')
-            ->join('ac_type', 'ac_type.id_aircraft=personnel.id_aircraft')
             ->get()->getResultArray();
     }
+
+    public function getAircraft()
+    {
+        return $this->db->table('ac_type')
+            ->get()->getResultArray();
+    }
+
+    public function getRii()
+    {
+        return $this->db->table('rii')
+            ->get()->getResultArray();
+    }
+
+    public function getAuth()
+    {
+        return $this->db->table('authorized')
+            ->get()->getResultArray();
+    }
+
+    public function getPosition()
+    {
+        return $this->db->table('position')
+            ->get()->getResultArray();
+    }
+
     public function getDetail($id_personnel)
     {
         return $this->db->table('personnel')
             ->join('position', 'position.id_position=personnel.id_position')
-            ->join('authorized', 'authorized.id_auth=personnel.id_auth')
-            ->join('rii', 'rii.id_rii=personnel.id_rii')
-            ->join('ac_type', 'ac_type.id_aircraft=personnel.id_aircraft')
             ->where('personnel.id_personnel', $id_personnel)
             ->get()->getResultArray();
     }

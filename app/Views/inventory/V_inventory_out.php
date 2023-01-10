@@ -57,41 +57,41 @@ echo view('layouts/Top') ?>
       </div><!-- /.row -->
       <hr>
       <form action="Report-Search" method="POST" enctype="multipart/form-data">
-            <div class="row ml-2">
-                <div class="col-lg-3">
-                    <div class="form-group">
-                       
-                      <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                        <input type="text" name="first_date" class="form-control datetimepicker-input" data-target="#reservationdate" placeholder="First Date" />
-                        <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                        </div>
-                      </div>
-                      </div>
+        <div class="row ml-2">
+          <div class="col-lg-3">
+            <div class="form-group">
+
+              <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                <input type="text" name="first_date" class="form-control datetimepicker-input" data-target="#reservationdate" placeholder="First Date" required />
+                <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                 </div>
-                <div class="col-lg-3">
-                <div class="form-group">
-                        
-                      <div class="input-group date" id="reservationdate1" data-target-input="nearest">
-                        <input type="text" name="end_date" class="form-control datetimepicker-input" data-target="#reservationdate1" placeholder="End Date" />
-                        <div class="input-group-append" data-target="#reservationdate1" data-toggle="datetimepicker">
-                          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                        </div>
-                      </div>
-                      </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="form-group">
-                    <button type="submit" name="show" class="btn btn-info">Show</button>
-                    <a href="<?= base_url('Report/Print') . '/' . $first_date . '/' . $end_date?>" target="_blank" class="btn btn-outline btn-danger ">
-                        <i class="fas fa-file-pdf"></i> Pdf
-                    </a>
-                    <a href="<?= base_url('print-out') .'/'. $first_date . '/' . $end_date?>" target="_blink"class="btn btn-outline-secondary btn-light">
-                        <i class="fas fa-print"></i> Print</a>
-                    </div>
-                </div>
+              </div>
             </div>
-        </form>
+          </div>
+          <div class="col-lg-3">
+            <div class="form-group">
+
+              <div class="input-group date" id="reservationdate1" data-target-input="nearest">
+                <input type="text" name="end_date" class="form-control datetimepicker-input" data-target="#reservationdate1" placeholder="End Date" required />
+                <div class="input-group-append" data-target="#reservationdate1" data-toggle="datetimepicker">
+                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="form-group">
+              <button type="submit" name="show" class="btn btn-info">Show</button>
+              <a href="<?= base_url('Report/Print') . '/' . $first_date . '/' . $end_date ?>" target="_blank" class="btn btn-outline btn-danger ">
+                <i class="fas fa-file-pdf"></i> Pdf
+              </a>
+              <a href="<?= base_url('print-out') . '/' . $first_date . '/' . $end_date ?>" target="_blink" class="btn btn-outline-secondary btn-light">
+                <i class="fas fa-print"></i> Print</a>
+            </div>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 

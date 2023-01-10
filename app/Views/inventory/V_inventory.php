@@ -55,43 +55,43 @@
 
             <hr>
             <form action="Report-search" method="POST" enctype="multipart/form-data">
-            <div class="row ml-2">
-                <div class="col-lg-3">
-                    <div class="form-group">
-                       
-                      <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                        <input type="text" name="first_date" class="form-control datetimepicker-input" data-target="#reservationdate" placeholder="First Date" />
-                        <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                        </div>
-                      </div>
-                      </div>
-                </div>
-                <div class="col-lg-3">
-                <div class="form-group">
-                        
-                      <div class="input-group date" id="reservationdate1" data-target-input="nearest">
-                        <input type="text" name="end_date" class="form-control datetimepicker-input" data-target="#reservationdate1" placeholder="End Date" />
-                        <div class="input-group-append" data-target="#reservationdate1" data-toggle="datetimepicker">
-                          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                        </div>
-                      </div>
-                      </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="form-group">
-                    <button type="submit" name="show" class="btn btn-info">Show</button>
-                    <a href="<?= base_url('Report/print') . '/' . $first_date . '/' . $end_date?>" target="_blank" class="btn btn-outline btn-danger ">
-                        <i class="fas fa-file-pdf"></i> Pdf
-                    </a>
-                    <a href="<?= base_url('print-in') .'/'. $first_date . '/' . $end_date?>" target="_blink"class="btn btn-outline-secondary btn-light">
-                        <i class="fas fa-print"></i> Print</a>
-                    </div>
-                </div>
+                <div class="row ml-2">
+                    <div class="col-lg-3">
+                        <div class="form-group">
 
-                
-            </div>
-        </form>
+                            <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                                <input type="text" name="first_date" class="form-control datetimepicker-input" data-target="#reservationdate" placeholder="First Date" required />
+                                <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+
+                            <div class="input-group date" id="reservationdate1" data-target-input="nearest">
+                                <input type="text" name="end_date" class="form-control datetimepicker-input" data-target="#reservationdate1" placeholder="End Date" required />
+                                <div class="input-group-append" data-target="#reservationdate1" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <button type="submit" name="show" class="btn btn-info">Show</button>
+                            <a href="<?= base_url('Report/print') . '/' . $first_date . '/' . $end_date ?>" target="_blank" class="btn btn-outline btn-danger ">
+                                <i class="fas fa-file-pdf"></i> Pdf
+                            </a>
+                            <a href="<?= base_url('print-in') . '/' . $first_date . '/' . $end_date ?>" target="_blink" class="btn btn-outline-secondary btn-light">
+                                <i class="fas fa-print"></i> Print</a>
+                        </div>
+                    </div>
+
+
+                </div>
+            </form>
 
         </div>
     </div>
@@ -116,81 +116,81 @@
 
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-hover table-striped table-condensed "  id="example3">
+                        <table class="table table-hover table-striped table-condensed " id="example3">
                             <thead>
                                 <tr class="bg-navy color-light text-center" style=" font-size: 9pt;">
-                                <th rowspan="2">No</th>
-                  <th rowspan="2">Date In</th>
-                  <th rowspan="2">Description</th>
-                  <th rowspan="2">Part Number</th>
-                  <th rowspan="2">Serial Number</th>
-                  <!-- <th>Lahir</th> -->
-                  <th rowspan="2">Vendors</th>
-                  <th rowspan="2">Condition</th>
-                  <th rowspan="2">Qty</th>
+                                    <th rowspan="2">No</th>
+                                    <th rowspan="2">Date In</th>
+                                    <th rowspan="2">Description</th>
+                                    <th rowspan="2">Part Number</th>
+                                    <th rowspan="2">Serial Number</th>
+                                    <!-- <th>Lahir</th> -->
+                                    <th rowspan="2">Vendors</th>
+                                    <th rowspan="2">Condition</th>
+                                    <th rowspan="2">Qty</th>
 
 
-                  <th colspan="2">Document</th>
-                                    
+                                    <th colspan="2">Document</th>
+
 
                                 </tr>
                                 <tr class="bg-navy color-light text-center" style=" font-size: 9pt;">
 
 
 
-                  <!-- <th>Lahir</th> -->
+                                    <!-- <th>Lahir</th> -->
 
 
-                  <th>Yes</th>
-                  <th>No</th>
+                                    <th>Yes</th>
+                                    <th>No</th>
 
 
-                </tr>
+                                </tr>
                             </thead>
                             <tbody>
                                 <?php $nomor = 1; ?>
 
                                 <?php foreach ($in  as $row) : ?>
                                     <tr class="text-center" style="padding: 5%; font-size: 9pt;">
-                                    <td><?php echo $nomor++ ?>.</td>
-                    <td><?= $row['date_in'] ?></td>
-                    <td><?= $row['description'] ?></td>
-                    <td><?= $row['part_number'] ?></td>
+                                        <td><?php echo $nomor++ ?>.</td>
+                                        <td><?= $row['date_in'] ?></td>
+                                        <td><?= $row['description'] ?></td>
+                                        <td><?= $row['part_number'] ?></td>
 
-                    <td><?= $row['serial_number'] ?></td>
-                    <td><?= $row['vendors'] ?></td>
-                    <td><?= $row['condition_name'] ?></td>
-                    <td><?= $row['qty_in'] ?></td>
-                    <td><?php
-                        if ($row['document'] == 'yes') {
-                        ?>
-
-
-                        <input type="checkbox" checked="checked" disabled>
+                                        <td><?= $row['serial_number'] ?></td>
+                                        <td><?= $row['vendors'] ?></td>
+                                        <td><?= $row['condition_name'] ?></td>
+                                        <td><?= $row['qty_in'] ?></td>
+                                        <td><?php
+                                            if ($row['document'] == 'yes') {
+                                            ?>
 
 
+                                                <input type="checkbox" checked="checked" disabled>
 
-                      <?php } else {
-                      ?>
 
-                        <input type="checkbox" disabled>
 
-                      <?php } ?>
-                    </td>
-                    <td><?php
-                        if ($row['document'] == 'no') {
-                        ?>
+                                            <?php } else {
+                                            ?>
 
-                        <input type="checkbox" checked="checked" disabled>
+                                                <input type="checkbox" disabled>
 
-                      <?php } else {
-                      ?>
+                                            <?php } ?>
+                                        </td>
+                                        <td><?php
+                                            if ($row['document'] == 'no') {
+                                            ?>
 
-                        <input type="checkbox" disabled>
+                                                <input type="checkbox" checked="checked" disabled>
 
-                      <?php } ?>
-                    </td>
-                                        </div>
+                                            <?php } else {
+                                            ?>
+
+                                                <input type="checkbox" disabled>
+
+                                            <?php } ?>
+                                        </td>
+                    </div>
                     </tr>
                 <?php endforeach ?>
 

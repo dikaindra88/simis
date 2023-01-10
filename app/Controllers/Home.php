@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Controllers;
+
+use App\Models\ManualModel;
+use App\Models\PersonnelModel;
 use App\Models\SparepartModel;
 use App\Models\SparepartOutModel;
 use App\Models\Spareparts;
@@ -14,7 +17,9 @@ class Home extends BaseController
         $this->Sparepart = new SparepartModel();
         $this->Spareparts = new Spareparts();
         $this->User = new UsersModel();
-       
+        $this->Person = new PersonnelModel();
+        $this->Manual = new ManualModel();
+
         helper('form');
     }
     //Page Login
@@ -30,19 +35,22 @@ class Home extends BaseController
     }
 
     //Page Dashboard
-    public function dashboard(){
+    public function dashboard()
+    {
         if (session()->get('name') == True) {
-$data =[
-    'title' => 'Page | Dashboard',
-    'sparepart' => $this->Spareparts->countSparepart(),
-    'sparepartout' => $this->SparepartsOut->countSparepartOut(),
-    'sparepartin' => $this->Sparepart->countSparepartIn(),
-    'users' => $this->User->countUser(),
-    'user' => $this->User->getData()
-];
-        return view('V_dashboard', $data);
-}else{
-    return redirect()->to('/');
-}
+            $data = [
+                'title' => 'Page | Dashboard',
+                'sparepart' => $this->Spareparts->countSparepart(),
+                'sparepartout' => $this->SparepartsOut->countSparepartOut(),
+                'sparepartin' => $this->Sparepart->countSparepartIn(),
+                'users' => $this->User->countUser(),
+                'user' => $this->User->getData(),
+                'person' => $this->Person->countPersonnel(),
+                'manual' => $this->Manual->countManual()
+            ];
+            return view('V_dashboard', $data);
+        } else {
+            return redirect()->to('/');
+        }
     }
 }

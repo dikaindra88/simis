@@ -55,50 +55,50 @@
 
             <hr>
             <form action="Flameable-search" method="POST" enctype="multipart/form-data">
-            <div class="row ml-2">
-                
-                <div class="col-lg-3">
-                    <div class="form-group">
-                       
-                      <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                        <input type="text" name="first_date" class="form-control datetimepicker-input" data-target="#reservationdate" placeholder="First Date" />
-                        <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                <div class="row ml-2">
+
+                    <div class="col-lg-3">
+                        <div class="form-group">
+
+                            <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                                <input type="text" name="first_date" class="form-control datetimepicker-input" data-target="#reservationdate" placeholder="First Date" required />
+                                <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                            </div>
                         </div>
-                      </div>
-                      </div>
-                </div>
-                <div class="col-lg-3">
-                <div class="form-group">
-                      <div class="input-group date" id="reservationdate1" data-target-input="nearest">
-                        <input type="text" name="end_date" class="form-control datetimepicker-input" data-target="#reservationdate1" placeholder="End Date" />
-                        <div class="input-group-append" data-target="#reservationdate1" data-toggle="datetimepicker">
-                          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                        </div>
-                      </div>
-                      </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="form-group">
-                    <button type="submit" name="show" class="btn btn-info">Show</button>
-                    <a href="<?= base_url('Flameable/print') . '/' . $first_date . '/' . $end_date?>" target="_blank" class="btn btn-outline btn-danger ">
-                        <i class="fas fa-file-pdf"></i> Pdf
-                    </a>
-                    <a href="<?= base_url('Flameable/Print') .'/'. $first_date . '/' . $end_date?>" target="_blink"class="btn btn-outline-secondary btn-light">
-                        <i class="fas fa-print"></i> Print</a>
                     </div>
-                   
-                </div>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <div class="input-group date" id="reservationdate1" data-target-input="nearest">
+                                <input type="text" name="end_date" class="form-control datetimepicker-input" data-target="#reservationdate1" placeholder="End Date" required />
+                                <div class="input-group-append" data-target="#reservationdate1" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <button type="submit" name="show" class="btn btn-info">Show</button>
+                            <a href="<?= base_url('Flameable/print') . '/' . $first_date . '/' . $end_date ?>" target="_blank" class="btn btn-outline btn-danger ">
+                                <i class="fas fa-file-pdf"></i> Pdf
+                            </a>
+                            <a href="<?= base_url('Flameable/Print') . '/' . $first_date . '/' . $end_date ?>" target="_blink" class="btn btn-outline-secondary btn-light">
+                                <i class="fas fa-print"></i> Print</a>
+                        </div>
 
-                <div class="col-lg-3">
-                
-               
-                    
+                    </div>
 
-                
+                    <div class="col-lg-3">
+
+
+
+
+
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
 
         </div>
     </div>
@@ -123,19 +123,19 @@
 
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-hover table-striped table-condensed "  id="example3">
+                        <table class="table table-hover table-striped table-condensed " id="example3">
                             <thead>
                                 <tr class="bg-navy color-light text-center" style=" font-size: 9pt;">
                                     <th>No</th>
                                     <th>Description</th>
                                     <th>Part Number</th>
-                                    
+
                                     <th>Qty</th>
                                     <th>Oum</th>
                                     <th>Create Date</th>
                                     <th>Expired Date</th>
-                                    
-                                    
+
+
 
                                 </tr>
                             </thead>
@@ -151,7 +151,7 @@
                                         <td><?= $rows['oum_name'] ?></td>
                                         <td><?= $rows['create_date'] ?></td>
                                         <td><?= $rows['expired_date'] ?></td>
-                                        </div>
+                    </div>
                     </tr>
                 <?php endforeach ?>
 

@@ -966,7 +966,86 @@
                             </li> -->
                                     </ul>
                                 </li>
-
+                                <li class="nav-header">COMPANY DOCUMENT</li>
+                                <li class="nav-item">
+                                    <a href="/Manual" class="nav-link <?php if (current_url(true)->getSegment('2') == 'Manual') {
+                                                                            echo "active";
+                                                                        } ?>">
+                                        <i class="nav-icon fas fa-swatchbook"></i>
+                                        <p>
+                                            Manage Manual
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item <?php if (current_url(true)->getSegment('2') == 'PK-YGR') {
+                                                        echo "menu-open";
+                                                    } ?><?php if (current_url(true)->getSegment('2') == 'PK-YGK') {
+                                                    echo "menu-open";
+                                                } ?><?php if (current_url(true)->getSegment('2') == 'PK-RDA') {
+                                                        echo "menu-open";
+                                                    } ?><?php if (current_url(true)->getSegment('2') == 'PK-RDG') {
+                                                            echo "menu-open";
+                                                        } ?>">
+                                    <a href="#" class="nav-link <?php if (current_url(true)->getSegment('2') == 'PK-YGR') {
+                                                                    echo "active";
+                                                                } ?><?php if (current_url(true)->getSegment('2') == 'PK-YGK') {
+                                                                echo "active";
+                                                            } ?><?php if (current_url(true)->getSegment('2') == 'PK-RDA') {
+                                                                    echo "active";
+                                                                } ?><?php if (current_url(true)->getSegment('2') == 'PK-RDG') {
+                                                                        echo "active";
+                                                                    } ?>">
+                                        <i class="nav-icon fas fa-plane"></i>
+                                        <p>
+                                            List Doc Onboard
+                                            <i class="right fas fa-angle-left"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a href="/PK-YGR" class="nav-link <?php if (current_url(true)->getSegment('2') == 'PK-YGR') {
+                                                                                    echo "active";
+                                                                                } ?>">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>PK-YGR</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="/PK-YGK" class="nav-link <?php if (current_url(true)->getSegment('2') == 'PK-YGK') {
+                                                                                    echo "active";
+                                                                                } ?>">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>PK-YGK</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="/PK-RDA" class="nav-link <?php if (current_url(true)->getSegment('2') == 'PK-RDA') {
+                                                                                    echo "active";
+                                                                                } ?>">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>PK-RDA</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="/PK-RDG" class="nav-link <?php if (current_url(true)->getSegment('2') == 'PK-RDG') {
+                                                                                    echo "active";
+                                                                                } ?>">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>PK-RDG</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/Personnel" class="nav-link <?php if (current_url(true)->getSegment('2') == 'Personnel') {
+                                                                                echo "active";
+                                                                            } ?>">
+                                        <i class="nav-icon fas fa-user-tie"></i>
+                                        <p>
+                                            Data Personnel
+                                        </p>
+                                    </a>
+                                </li>
                             </ul>
                         </nav>
                     <?php } ?>
