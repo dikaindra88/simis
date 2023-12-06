@@ -7,12 +7,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Detail Sparepart Incoming</h1>
+                    <h1 class="m-0">Detail Spare Part Masuk</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Detail Sparepart Incoming</li>
+                        <li class="breadcrumb-item active">Detail Spare Part Masuk</li>
                     </ol>
 
                 </div><!-- /.col -->
@@ -31,20 +31,26 @@
                 <!-- /.card-header -->
                 <div class="card-body">
                     <button type="button" class="btn btn-info btn-sm" onclick="javascript:history.back()">
-                        <i class="fa fa-arrow-circle-left"></i> Back
+                        <i class="fa fa-arrow-circle-left"></i> Kembali
                     </button>
                     <h1></h1>
                     <table class="table table-middle">
                         <tr>
-                            <th width="20%">Date In</th>
+                            <th width="20%">Tanggal Masuk</th>
                             <td width="1%">:</td>
-                            <td><?php echo $in[0]['date_in'];
+                            <td><?php echo $in[0]['tgl_masuk'];
                                 ?></td>
                         </tr>
                         <tr>
-                            <th>Description</th>
+                            <th>Kode Barang</th>
                             <td>:</td>
-                            <td><?php echo $in[0]['description'];
+                            <td><?php echo $in[0]['kd_barang'];
+                                ?></td>
+                        </tr>
+                        <tr>
+                            <th>Nama Barang / Sparepart</th>
+                            <td>:</td>
+                            <td><?php echo $in[0]['nm_barang'];
                                 ?></td>
                         </tr>
                         <tr>
@@ -61,13 +67,13 @@
                         <tr>
                             <th>Vendors</th>
                             <td>:</td>
-                            <td><?php echo $in[0]['vendors'];
+                            <td><?php echo $in[0]['vendor'];
                                 ?></td>
                         </tr>
                         <tr>
-                            <th>Condition</th>
+                            <th>Kondisi</th>
                             <td>:</td>
-                            <td><?php echo $in[0]['condition_name']; ?></td>
+                            <td><?php echo $in[0]['kondisi']; ?></td>
                         </tr>
                         <tr>
                             <th>Qty</th>
@@ -76,27 +82,28 @@
                                 ?></td>
                         </tr>
                         <tr>
-                            <th>Image</th>
+                            <th>Dokumen ARC</th>
                             <td>:</td>
                             <td><a href="<?= base_url('foto/' . $in[0]['document_arc']) ?>" class="preview" target="_blink"><img class="img-thumbnail" width="100px" height="100px" src="<?= base_url('foto/' . $in[0]['document_arc']) ?>"></a></td>
                             </td>
                         </tr>
                         <tr>
-                            <th>Document</th>
+                            <th>Rak</th>
                             <td>:</td>
-                            <td><?php echo $in[0]['document'];
+                            <td><?php echo $in[0]['nama_rak'];
                                 ?></td>
+                            </td>
                         </tr>
                         <tr>
-                            <th>Create Date</th>
+                            <th>Tanggal Di buat</th>
                             <td>:</td>
                             <td><?php echo $in[0]['create_date'];
                                 ?></td>
                         </tr>
                         <tr>
-                            <th>Expired Date</th>
+                            <th>Tanggal Expired</th>
                             <td>:</td>
-                            <td><?php echo $in[0]['expired_date'];
+                            <td><?php echo $in[0]['exp_date'];
                                 ?></td>
                         </tr>
                     </table>

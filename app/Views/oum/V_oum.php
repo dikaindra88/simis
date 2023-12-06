@@ -46,19 +46,19 @@ echo view('layouts/Top') ?>
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">List Oum</h1>
+                    <h1 class="m-0">List Satuan</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                        <li class="breadcrumb-item active">List Oum</li>
+                        <li class="breadcrumb-item active">List Satuan</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
 
             <hr>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">
-                <i class="fas fa-plus"></i>
+                <i class="fas fa-plus"></i> Tambah
             </button>
 
         </div>
@@ -69,23 +69,23 @@ echo view('layouts/Top') ?>
     <div class="modal fade" id="modal-default">
 
         <div class="modal-dialog modal-default">
-            <div class="modal-content">
+            <div class="modal-content bg-dark">
                 <div class="modal-header">
-                    <h4 class="modal-title" style="font-family: arial black; color:#000080;font-size:18pt;">&nbsp;Input Oum</h4>
+                    <h4 class="modal-title" style="font-family: arial black; color:#F3CB51;font-size:18pt;">&nbsp;Input Satuan</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <img class="modal-title" src="<?= base_url('img/RDG.png') ?>" height="30">
+                        <img class="modal-title" src="<?= base_url('img/ATS.png') ?>" height="50">
                     </button>
 
                 </div>
                 <form method="post" action="Add-oum" enctype="multipart/form-data">
                     <div class="modal-body">
 
-                        <div class="card">
+                        <div class="card bg-dark">
                             <div class="card-body">
 
                                 <div class="form-group">
-                                    <label>Oum Name</label>
-                                    <input type="text" name="oum_name" class="form-control" placeholder="Oum Name" required>
+                                    <label>Satuan</label>
+                                    <input type="text" name="satuan" class="form-control" placeholder="Satuan" required>
                                 </div>
 
                                 <!-- <div class="form-group">
@@ -101,8 +101,8 @@ echo view('layouts/Top') ?>
                         <!-- /.form-group -->
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
                     </div>
                 </form>
             </div>
@@ -126,14 +126,14 @@ echo view('layouts/Top') ?>
 
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-hover table-striped table-condensed " id="example3">
+                        <table class="table table-bordered table-hover table-striped table-condensed " id="example3">
                             <thead>
-                                <tr class="bg-navy color-light text-center" style=" font-size: 9pt;">
+                                <tr class="text-center" style=" font-size: 9pt;">
                                     <th>No</th>
-                                    <th>Oum Name</th>
+                                    <th>Satuan</th>
 
 
-                                    <th>Action</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -141,7 +141,7 @@ echo view('layouts/Top') ?>
                                 <?php foreach ($oum as $row) : ?>
                                     <tr class="text-center" style="padding: 5%; font-size: 9pt;">
                                         <td><?= $nomor++ ?></td>
-                                        <td><?= $row['oum_name'] ?></td>
+                                        <td><?= $row['satuan'] ?></td>
 
 
 
@@ -155,19 +155,19 @@ echo view('layouts/Top') ?>
 
 
 
-                                                    <form action="<?= base_url('/Oum/update') . '/' . $row['id_oum'] ?>" method="post">
+                                                    <form action="<?= base_url('/Satuan/update') . '/' . $row['id_satuan'] ?>" method="post">
                                                         <?= csrf_field(); ?>
                                                         <input type="hidden" name="_method" value="Edit">
                                                         <button type="submit" class="dropdown-item"><i class="nav-icon fas fa-edit"></i>
-                                                            Update
+                                                            Ubah
                                                         </button>
                                                     </form>
                                                     <div class="dropdown-divider"></div>
-                                                    <form action="<?= base_url('/Oum/Delete') . '/' . $row['id_oum'] ?>" method="post">
+                                                    <form action="<?= base_url('/Satuan/Delete') . '/' . $row['id_satuan'] ?>" method="post">
                                                         <?= csrf_field(); ?>
                                                         <input type="hidden" name="_method" value="Delete">
                                                         <button type="submit" class="dropdown-item" onclick="return confirm('Apakah anda yakin?');"><i class="nav-icon fas fa-trash-alt"></i>
-                                                            Delete
+                                                            Hapus
                                                         </button>
                                                     </form>
                                                 </div>

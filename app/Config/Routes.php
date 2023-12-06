@@ -36,8 +36,10 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
+$routes->get('/Login-personnel', 'Home::personnel');
 // $routes->resource('/Data-out', ['controller' => 'SparepartKeluar::data']);
 $routes->get('/Dashboard', 'Home::dashboard');
+$routes->get('/Dashboard-personnel', 'Home::dashboard_personnel');
 
 /*
 * --------------------------------------------------------------------
@@ -45,8 +47,26 @@ $routes->get('/Dashboard', 'Home::dashboard');
  * --------------------------------------------------------------------
  */
 $routes->post('cek_login', 'Auth::cek_login');
+$routes->post('cek_login1', 'Auth::cek_login1');
 $routes->get('V_login', 'Auth::index');
 $routes->get('logout', 'Auth::logout');
+$routes->get('logout2', 'Auth::logout2');
+
+/*
+* --------------------------------------------------------------------
+ * Routes Request
+ * --------------------------------------------------------------------
+ */
+
+$routes->get('/Request-sparepart', 'Request::index');
+$routes->post('/Request-sparepart/update/(:num)', 'Request::update/$1');
+$routes->get('/Request-sparepart/update/(:num)', 'Home::index/$1');
+$routes->post('/Edit-request/(:num)', 'Request::editData/$1');
+$routes->post('Add-request', 'Request::insert');
+$routes->post('/Dashboard-personnel/update-request/(:num)', 'Request::update2/$1');
+$routes->get('/Dashboard-personnel/update-request/(:num)', 'Home::index/$1');
+$routes->post('/Edit-request-personnel/(:num)', 'Request::EditAction/$1');
+
 
 /*
 * --------------------------------------------------------------------
@@ -83,18 +103,22 @@ $routes->get('/Data-in/detail/(:num)', 'Home::index');
 
 $routes->get('/Report-incoming', 'Inventory::index');
 $routes->post('Report-search', 'Inventory::show');
+$routes->post('Report-Search', 'Inventory::tampil');
+$routes->post('Reports-Search', 'Inventory::shows');
 $routes->get('Report-search', 'Auth::index');
 $routes->get('Report-Search', 'Auth::index');
-$routes->post('Report-Search', 'Inventory::tampil');
-$routes->get('print-in/(:any)', 'Inventory::excel/$1');
-$routes->get('print-out/(:any)', 'Inventory::excels/$1');
+$routes->get('print-in/(:any)/(:any)', 'Inventory::excel/$1/$2');
+$routes->get('print-out/(:any)/(:any)', 'Inventory::excels/$1/$2');
+$routes->get('print-stock', 'Inventory::stocks');
 $routes->get('Report/print//', 'Inventory::alert');
 $routes->get('Report/Print//', 'Inventory::alert');
 $routes->get('print-out//', 'Inventory::alert');
 $routes->get('print-in//', 'Inventory::alert');
-$routes->get('Report/print/(:any)', 'Inventory::print/$1');
-$routes->get('Report/Print/(:any)', 'Inventory::prints/$1');
+$routes->get('Report/print/(:any)/(:any)', 'Inventory::print/$1/$2');
+$routes->get('Report/Print/(:any)/(:any)', 'Inventory::prints/$1/$2');
+$routes->get('Report/Prints', 'Inventory::pdf');
 $routes->get('/Report-outgoing', 'Inventory::out');
+$routes->get('/Report-stock', 'Inventory::stock');
 
 /*
 * --------------------------------------------------------------------
@@ -130,12 +154,12 @@ $routes->delete('/Sparepart/Delete/(:num)', 'ListData\ListSparepart::deleteData/
  * --------------------------------------------------------------------
  */
 
-$routes->get('/Location', 'ListData\Location::index');
+$routes->get('/Rack', 'ListData\Location::index');
 $routes->post('Add-location', 'ListData\Location::insert');
-$routes->post('/Location/update/(:num)', 'ListData\Location::update/$1');
-$routes->get('/Location/update/(:num)', 'Home::index/$1');
+$routes->post('/Rack/update/(:num)', 'ListData\Location::update/$1');
+$routes->get('/Rack/update/(:num)', 'Home::index/$1');
 $routes->post('/Edit-location/(:num)', 'ListData\Location::EditAction/$1');
-$routes->delete('/Location/Delete/(:num)', 'ListData\Location::deleteData/$1');
+$routes->delete('/Rack/Delete/(:num)', 'ListData\Location::deleteData/$1');
 
 /*
 * --------------------------------------------------------------------
@@ -143,25 +167,13 @@ $routes->delete('/Location/Delete/(:num)', 'ListData\Location::deleteData/$1');
  * --------------------------------------------------------------------
  */
 
-$routes->get('/Oum', 'ListData\Oum::index');
+$routes->get('/Satuan', 'ListData\Oum::index');
 $routes->post('Add-oum', 'ListData\Oum::insert');
-$routes->post('/Oum/update/(:num)', 'ListData\Oum::update/$1');
-$routes->get('/Oum/update/(:num)', 'Home::index/$1');
+$routes->post('/Satuan/update/(:num)', 'ListData\Oum::update/$1');
+$routes->get('/Satuan/update/(:num)', 'Home::index/$1');
 $routes->post('/Edit-oum/(:num)', 'ListData\Oum::EditAction/$1');
-$routes->delete('/Oum/Delete/(:num)', 'ListData\Oum::deleteData/$1');
+$routes->delete('/Satuan/Delete/(:num)', 'ListData\Oum::deleteData/$1');
 
-/*
-* --------------------------------------------------------------------
- * Routes List Orders
- * --------------------------------------------------------------------
- */
-
-$routes->get('/Orders', 'ListData\Orders::index');
-$routes->post('Add-orders', 'ListData\Orders::insert');
-$routes->post('/Orders/update/(:num)', 'ListData\Orders::update/$1');
-$routes->get('/Orders/update/(:num)', 'Home::index/$1');
-$routes->post('/Edit-orders/(:num)', 'ListData\Orders::EditAction/$1');
-$routes->delete('/Orders/Delete/(:num)', 'ListData\Orders::deleteData/$1');
 
 /*
 * --------------------------------------------------------------------
@@ -169,38 +181,26 @@ $routes->delete('/Orders/Delete/(:num)', 'ListData\Orders::deleteData/$1');
  * --------------------------------------------------------------------
  */
 
-$routes->get('/Conditions', 'ListData\Conditions::index');
+$routes->get('/Kondisi', 'ListData\Conditions::index');
 $routes->post('Add-conditions', 'ListData\Conditions::insert');
-$routes->post('/Conditions/update/(:num)', 'ListData\Conditions::update/$1');
-$routes->get('/Conditions/update/(:num)', 'Home::index/$1');
+$routes->post('/Kondisi/update/(:num)', 'ListData\Conditions::update/$1');
+$routes->get('/Kondisi/update/(:num)', 'Home::index/$1');
 $routes->post('/Edit-conditions/(:num)', 'ListData\Conditions::EditAction/$1');
-$routes->delete('/Conditions/Delete/(:num)', 'ListData\Conditions::deleteData/$1');
+$routes->delete('/Kondisi/Delete/(:num)', 'ListData\Conditions::deleteData/$1');
+
 
 /*
 * --------------------------------------------------------------------
- * Routes List A C Regist
+ * Routes List personnel
  * --------------------------------------------------------------------
  */
 
-$routes->get('/Acregist', 'ListData\Acreg::index');
-$routes->post('Add-acreg', 'ListData\Acreg::insert');
-$routes->post('/Acregist/update/(:num)', 'ListData\Acreg::update/$1');
-$routes->get('/Acregist/update/(:num)', 'Home::index/$1');
-$routes->post('/Edit-acreg/(:num)', 'ListData\Acreg::EditAction/$1');
-$routes->delete('/Acreg/Delete/(:num)', 'ListData\Acreg::deleteData/$1');
-
-/*
-* --------------------------------------------------------------------
- * Routes List Givento
- * --------------------------------------------------------------------
- */
-
-$routes->get('/Givento', 'ListData\Given::index');
+$routes->get('/Personnel', 'ListData\Given::index');
 $routes->post('Add-givento', 'ListData\Given::insert');
-$routes->post('/Givento/update/(:num)', 'ListData\Given::update/$1');
-$routes->get('/Givento/update/(:num)', 'Home::index/$1');
+$routes->post('/Personnel/update/(:num)', 'ListData\Given::update/$1');
+$routes->get('/Personnel/update/(:num)', 'Home::index/$1');
 $routes->post('/Edit-givento/(:num)', 'ListData\Given::EditAction/$1');
-$routes->delete('/Givento/Delete/(:num)', 'ListData\Given::deleteData/$1');
+$routes->delete('/Personnel/Delete/(:num)', 'ListData\Given::deleteData/$1');
 
 
 /*

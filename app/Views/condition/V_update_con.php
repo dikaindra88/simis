@@ -42,12 +42,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Update List Condition</h1>
+                    <h1 class="m-0">Ubah List Kondisi</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Update List Condition</li>
+                        <li class="breadcrumb-item active">Ubah List Kondisi</li>
                     </ol>
 
                 </div><!-- /.col -->
@@ -60,7 +60,7 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-body">
-                    <form method="post" action="/Edit-conditions/<?= $condition[0]['id_condition'] ?>" enctype="multipart/form-data">
+                    <form method="post" action="/Edit-conditions/<?= $condition[0]['id_kondisi'] ?>" enctype="multipart/form-data">
 
                         <div class="card">
                             <div class="card-body">
@@ -70,8 +70,8 @@
                                     <input type="text" name="kd_sparepart" value="" class="form-control" id="part_number" placeholder="Sparepart Code" required>
                                 </div> -->
                                 <div class="form-group">
-                                    <label>Condition Name</label>
-                                    <input type="text" name="condition_name" value="<?= $condition[0]['condition_name'] ?>" class="form-control" id="part_number" required>
+                                    <label>Kondisi</label>
+                                    <input type="text" name="kondisi" value="<?= $condition[0]['kondisi'] ?>" class="form-control" id="part_number" required>
                                 </div>
                             </div>
 
@@ -80,12 +80,12 @@
                 </div>
                 <div class="card-footer bg-transparent border-success">
                     <button type="submit" class="btn btn-outline-success d-grid gap-2 col-2 mx-auto">
-                        <i class="far fa-save"></i> Save
+                        <i class="far fa-save"></i> Simpan
                     </button>
                     <button type="button" class="btn btn-outline-danger d-grid gap-2 col-2 mx-auto" onclick="javascript:history.back()">
-                        <i class="fa fa-arrow-circle-left"></i> Cancel
+                        <i class="fa fa-arrow-circle-left"></i> Batal
                     </button>
-                    <input type="hidden" name="id_condition" value="<?php echo $condition[0]['id_condition']; ?>">
+                    <input type="hidden" name="id_kondisi" value="<?php echo $condition[0]['id_kondisi']; ?>">
                 </div>
             </div>
         </div>

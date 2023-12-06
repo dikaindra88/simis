@@ -8,7 +8,7 @@ class UsersModel extends Model
 {
     protected $DBGroup          = 'default';
     protected $table            = 'users';
-    protected $primaryKey       = 'user_id';
+    protected $primaryKey       = 'id_user';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = 'array';
@@ -68,23 +68,23 @@ class UsersModel extends Model
         $this->db->table('users')
             ->insert($data);
     }
-    public function getDetail($user_id)
+    public function getDetail($id_user)
     {
         return $this->db->table('users')
             //->join('spareparts', 'spareparts.kd_sparepart=spareparts_out.kd_sparepart')
             // ->join('airlane', 'airlane.airline_id=passanger.airline_id')
-            ->where('users.user_id', $user_id)
+            ->where('users.id_user', $id_user)
 
             ->get()->getResultArray();
     }
     public function editData($data)
     {
         $this->db->table('users')
-            ->where('user_id', $data['user_id'])
+            ->where('id_user', $data['id_user'])
             ->update($data);
     }
-    public function deleteUsers($user_id)
+    public function deleteUsers($id_user)
     {
-        $this->db->table('users')->delete(array('user_id' => $user_id));
+        $this->db->table('users')->delete(array('id_user' => $id_user));
     }
 }

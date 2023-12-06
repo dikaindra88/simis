@@ -17,22 +17,22 @@ class Oum extends BaseController
     public function index()
     {
         if (session()->get('name') == True) {
-        $data = [
-            'title' => 'Page | List OUM',
-            'oum' => $this->Oum->getData(),
-            'user' => $this->User->getData()
-        ];
-        return view('oum/V_oum', $data);
-    }else{
-        return redirect()->to('/');
-    }
+            $data = [
+                'title' => 'Page | List OUM',
+                'oum' => $this->Oum->getData(),
+                'user' => $this->User->getData()
+            ];
+            return view('oum/V_oum', $data);
+        } else {
+            return redirect()->to('/');
+        }
     }
     public function insert()
     {
 
         $data = [
 
-            'oum_name' => $this->request->getPost('oum_name')
+            'satuan' => $this->request->getPost('satuan')
 
         ];
 
@@ -54,24 +54,22 @@ class Oum extends BaseController
         //dd($data);
         return view('oum/V_update_oum', $data);
     }
-    public function EditAction($id_oum)
+    public function EditAction($id_satuan)
     {
         $data = [
-            'id_oum' => $id_oum,
-            'oum_name' => $this->request->getPost('oum_name')
+            'id_satuan' => $id_satuan,
+            'satuan' => $this->request->getPost('satuan')
         ];
-
-
         $this->Oum->editData($data);
 
 
         session()->setFlashdata('pesan', 'Data Successfully Updated.');
         return redirect()->to('/Oum');
     }
-    public function deleteData($id_oum)
+    public function deleteData($id_satuan)
     {
 
-        $this->Oum->deleteOum($id_oum);
+        $this->Oum->deleteOum($id_satuan);
         session()->setFlashdata('pesan', 'Data Successfully Deleted.');
         return redirect()->to('/Oum');
     }

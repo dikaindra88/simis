@@ -16,66 +16,86 @@ class Users extends BaseController
     public function index()
     {
         if (session()->get('name') == True) {
-        $data = [
-            'title' => 'Page | Users',
-            'user' => $this->Users->getData()
-        ];
-        return view('admin/V_admin', $data);
-    }else{
-        return redirect()->to('/');
-    }
+            $data = [
+                'title' => 'Page | Users',
+                'users' => $this->Users->getData(),
+                'user' => $this->Users->getData()
+            ];
+            return view('admin/V_admin', $data);
+        } else {
+            return redirect()->to('/');
+        }
     }
     public function insert()
     {
-$password = $this->request->getPost('password');
-$passx = md5($password);
+        $image = $this->request->getFile('foto');
+        $nama_file = $image->getName();
+        $password = $this->request->getPost('password');
+        $passx = md5($password);
         $data = [
 
             'name' => $this->request->getPost('name'),
             'email' => $this->request->getPost('email'),
             'password' => $passx,
-            'status' => $this->request->getPost('status')
+            'status' => $this->request->getPost('status'),
+            'foto' => $nama_file
 
         ];
+        $image->move('img/', $nama_file);
         $this->Users->insertUsers($data);
 
-        session()->setFlashdata('pesan', 'Congratulation data successfully added');
+        session()->setFlashdata('pesan', 'Data Berhasil Di Tambahkan');
         //dd($data);
         return redirect()->to('/Users');
     }
-    public function update($user_id)
+    public function update($id_user)
     {
         $data = [
             'title' => 'Page Update | Users',
-            'user' => $this->Users->getDetail($user_id),
+            'users' => $this->Users->getDetail($id_user),
+            'user' => $this->Users->getData()
 
         ];
         //dd($data);
         return view('admin/V_update', $data);
     }
-    public function EditAction($user_id)
+    public function EditAction($id_user)
     {
+
+        $file = $this->request->getFile('foto');
         $password = $this->request->getPost('password');
-$passx = md5($password);
-        $data = [
-            'user_id' => $user_id,
-            'name' => $this->request->getPost('name'),
-            'email' => $this->request->getPost('email'),
-            'password' => $passx,
-            'status' => $this->request->getPost('status')
+        $passx = md5($password);
+        if ($file->getError() == 4) {
+            $data = [
+                'id_user' => $id_user,
+                'name' => $this->request->getPost('name'),
+                'email' => $this->request->getPost('email'),
+                'password' => $passx,
+            ];
+            $this->Users->editData($data);
+        } else {
+            $file = $this->request->getFile('foto');
+            $nama_file = $file->getName();
+            $data = [
+                'id_user' => $id_user,
+                'name' => $this->request->getPost('name'),
+                'email' => $this->request->getPost('email'),
+                'password' => $passx,
+                'foto' => $nama_file
+            ];
+            // upload file foto
+            $file->move('img/', $nama_file);
+            $this->Users->editData($data);
+        }
 
-        ];
-        $this->Users->editData($data);
-
-
-        session()->setFlashdata('pesan', 'Data Successfully Updated.');
+        session()->setFlashdata('pesan', 'Data Berhasil Di Ubah.');
         return redirect()->to('/Users');
     }
-    public function deleteData($user_id)
+    public function deleteData($id_user)
     {
 
-        $this->Users->deleteOum($user_id);
-        session()->setFlashdata('pesan', 'Data Successfully Deleted.');
+        $this->Users->deleteUsers($id_user);
+        session()->setFlashdata('pesan', 'Data Berhasil Di Hapus.');
         return redirect()->to('/Users');
     }
 }

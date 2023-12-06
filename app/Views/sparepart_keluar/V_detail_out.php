@@ -7,12 +7,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Detail Data Sparepart Outgoing</h1>
+                    <h1 class="m-0">Detail Data Sparepart Keluar</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Detail Data Sparepart Outgoing</li>
+                        <li class="breadcrumb-item active">Detail Data Sparepart Keluar</li>
                     </ol>
 
                 </div><!-- /.col -->
@@ -31,20 +31,20 @@
                 <!-- /.card-header -->
                 <div class="card-body">
                     <button type="button" class="btn btn-info btn-sm" onclick="javascript:history.back()">
-                        <i class="fa fa-arrow-circle-left"></i> Back
+                        <i class="fa fa-arrow-circle-left"></i> Kembali
                     </button>
                     <h1></h1>
                     <table class="table table-striped table-middle">
                         <tr>
-                            <th width="20%">Date Out</th>
+                            <th width="20%">Tanggal Keluar</th>
                             <td width="1%">:</td>
-                            <td><?php echo $out[0]['date_out'];
+                            <td><?php echo $out[0]['tgl_keluar'];
                                 ?></td>
                         </tr>
                         <tr>
-                            <th>Description</th>
+                            <th>Nama Barang / Sparepart</th>
                             <td>:</td>
-                            <td><?php echo $out[0]['description'];
+                            <td><?php echo $out[0]['nm_barang'];
                                 ?></td>
                         </tr>
                         <tr>
@@ -59,14 +59,14 @@
                             <td><?php echo $out[0]['serial_number']; ?></td>
                         </tr>
                         <tr>
-                            <th>Condition</th>
+                            <th>Kondisi</th>
                             <td>:</td>
-                            <td><?php echo $out[0]['condition_name']; ?></td>
+                            <td><?php echo $out[0]['kondisi']; ?></td>
                         </tr>
                         <tr>
-                            <th>Reason Out</th>
+                            <th>Keterangan</th>
                             <td>:</td>
-                            <td><?php echo $out[0]['reason_out']; ?></td>
+                            <td><?php echo $out[0]['keterangan']; ?></td>
                         </tr>
                         <tr>
                             <th>Qty</th>
@@ -75,15 +75,15 @@
                                 ?></td>
                         </tr>
                         <tr>
-                            <th>Oum</th>
+                            <th>Satuan</th>
                             <td>:</td>
-                            <td><?php echo $out[0]['oum_name'];
+                            <td><?php echo $out[0]['satuan'];
                                 ?></td>
                         </tr>
                         <tr>
-                            <th>Given To</th>
+                            <th>Di Berikan Kepada</th>
                             <td>:</td>
-                            <td><?php echo $out[0]['name'];
+                            <td><?php echo $out[0]['nama_personnel'];
                                 ?></td>
                         </tr>
                     </table>

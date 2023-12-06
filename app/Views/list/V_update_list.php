@@ -42,12 +42,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Update List Sparepart</h1>
+                    <h1 class="m-0">Ubah List Sparepart</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Update List Sparepart</li>
+                        <li class="breadcrumb-item active">Ubah List Sparepart</li>
                     </ol>
 
                 </div><!-- /.col -->
@@ -60,18 +60,27 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-body">
-                    <form method="post" action="/Edit-sparepart/<?= $in[0]['id_sparepart'] ?>" enctype="multipart/form-data">
+                    <form method="post" action="/Edit-sparepart/<?= $in[0]['id_barang'] ?>" enctype="multipart/form-data">
 
                         <div class="card">
                             <div class="card-body">
 
                                 <div class="form-group">
-                                    <label>Sparepart Code</label>
-                                    <input type="text" name="kd_sparepart" value="<?= $in[0]['kd_sparepart'] ?>" class="form-control" id="part_number" placeholder="Sparepart Code" required>
+                                    <label>Kode Barang / Sparepart</label>
+                                    <input type="text" name="kd_barang" value="<?= $in[0]['kd_barang'] ?>" class="form-control" id="part_number" placeholder="Kode Barang" required>
                                 </div>
                                 <div class="form-group">
-                                    <label>Description</label>
-                                    <input type="text" name="description" value="<?= $in[0]['description'] ?>" class="form-control" id="part_number" placeholder="Description" required>
+                                    <label>Nama Barang / Sparepart</label>
+                                    <input type="text" name="nm_barang" value="<?= $in[0]['nm_barang'] ?>" class="form-control" id="part_number" placeholder="Nama Barang" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Satuan</label>
+                                    <select class="form-control select2bs4" name="id_satuan" data-placeholder="Pilih Satuan" style="width: 100%;">
+                                        <option selected="selected" value="<?= $in[0]['id_satuan'] ?>"><?= $in[0]['satuan'] ?></option>
+                                        <?php foreach ($oum as $row) : ?>
+                                            <option value="<?= $row['id_satuan'] ?>"><?= $row['satuan'] ?></option>
+                                        <?php endforeach ?>
+                                    </select>
                                 </div>
                             </div>
 
@@ -80,12 +89,12 @@
                 </div>
                 <div class="card-footer bg-transparent border-success">
                     <button type="submit" class="btn btn-outline-success d-grid gap-2 col-2 mx-auto">
-                        <i class="far fa-save"></i> Save
+                        <i class="far fa-save"></i> Simpan
                     </button>
                     <button type="button" class="btn btn-outline-danger d-grid gap-2 col-2 mx-auto" onclick="javascript:history.back()">
-                        <i class="fa fa-arrow-circle-left"></i> Cancel
+                        <i class="fa fa-arrow-circle-left"></i> Batal
                     </button>
-                    <input type="hidden" name="id_sparepart" value="<?php echo $in[0]['id_sparepart']; ?>">
+                    <input type="hidden" name="id_sparepart" value="<?php echo $in[0]['id_barang']; ?>">
                 </div>
             </div>
         </div>

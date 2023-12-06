@@ -29,48 +29,48 @@ class SparepartKeluar extends BaseController
     public function index()
     {
         if (session()->get('name') == True) {
-        $data = [
-            'title' => 'Page | Sparepart Outgoing',
-            'out' => $this->Spareparts->getData(),
-            'sparepart' => $this->Sparepart->getDatas(),
-            'condition' => $this->Condition->getData(),
-            'location' => $this->Location->getData(),
-            'given' => $this->Given->getData(),
-            'user' => $this->User->getData(),
-            'oum' => $this->Oum->getData()
-        ];
-        //dd($data);
-        return view('sparepart_keluar/V_data_out', $data);
-    }else{
-        return redirect()->to('/');
-    }
+            $data = [
+                'title' => 'Page | Sparepart Outgoing',
+                'out' => $this->Spareparts->getData(),
+                'sparepart' => $this->Sparepart->getDatas(),
+                'condition' => $this->Condition->getData(),
+                'location' => $this->Location->getData(),
+                'given' => $this->Given->getData(),
+                'user' => $this->User->getData(),
+                'oum' => $this->Oum->getData()
+            ];
+            //dd($data);
+            return view('sparepart_keluar/V_data_out', $data);
+        } else {
+            return redirect()->to('/');
+        }
     }
     public function insert()
     {
         $data = [
             'part_number' => $this->request->getPost('part_number'),
-            'kd_sparepart' => $this->request->getPost('kd_sparepart'),
+            'kd_barang' => $this->request->getPost('kd_barang'),
             'serial_number' => $this->request->getPost('serial_number'),
             'qty_out' => $this->request->getPost('qty_out'),
-            'id_oum' => $this->request->getPost('id_oum'),
-            'date_out' => $this->request->getPost('date_out'),
-            'reason_out' => $this->request->getPost('reason_out'),
-            'id_condition' => $this->request->getPost('id_condition'),
-            'id_given_to' => $this->request->getPost('id_given_to')
+            'id_satuan' => $this->request->getPost('id_satuan'),
+            'tgl_keluar' => $this->request->getPost('tgl_keluar'),
+            'keterangan' => $this->request->getPost('keterangan'),
+            'id_kondisi' => $this->request->getPost('id_kondisi'),
+            'id_personnel' => $this->request->getPost('id_personnel')
         ];
 
 
         $this->Spareparts->dataKeluar($data);
 
-        session()->setFlashdata('pesan', 'Congratulation data successfully added');
+        session()->setFlashdata('pesan', 'Data Berhasil Di Tambahkan');
         //dd($data);
         return redirect()->to('/Data-out');
     }
-    public function getDetail($id_partout)
+    public function getDetail($id_keluar)
     {
         $data = [
             'title' => 'Page Detail | Sparepart Outgoing',
-            'out' => $this->Spareparts->getData($id_partout),
+            'out' => $this->Spareparts->getData($id_keluar),
             'sparepart' => $this->Sparepart->getDatas(),
             'condition' => $this->Condition->getData(),
             'location' => $this->Location->getData(),
@@ -81,11 +81,11 @@ class SparepartKeluar extends BaseController
 
         return view('sparepart_keluar/V_detail_out', $data);
     }
-    public function update($id_partout)
+    public function update($id_keluar)
     {
         $data = [
             'title' => 'Page Update | Sparepart Outgoing',
-            'out' => $this->Spareparts->getData($id_partout),
+            'out' => $this->Spareparts->getData2($id_keluar),
             'sparepart' => $this->Sparepart->getDatas(),
             'condition' => $this->Condition->getData(),
             'location' => $this->Location->getData(),
@@ -96,33 +96,30 @@ class SparepartKeluar extends BaseController
         //dd($data);
         return view('sparepart_keluar/V_Update_out', $data);
     }
-    public function EditAction($id_partout)
+    public function EditAction($id_keluar)
     {
+        $time = date('Y-m-d H:i:s');
         $data = [
-            'id_partout' => $id_partout,
+            'id_keluar' => $id_keluar,
             'part_number' => $this->request->getPost('part_number'),
-            'kd_sparepart' => $this->request->getPost('kd_sparepart'),
+            'kd_barang' => $this->request->getPost('kd_barang'),
             'serial_number' => $this->request->getPost('serial_number'),
             'qty_out' => $this->request->getPost('qty_out'),
-            'id_oum' => $this->request->getPost('id_oum'),
-            'date_out' => $this->request->getPost('date_out'),
-            'reason_out' => $this->request->getPost('reason_out'),
-            'id_condition' => $this->request->getPost('id_condition'),
-            'id_given_to' => $this->request->getPost('id_given_to')
+            'id_satuan' => $this->request->getPost('id_satuan'),
+            'tgl_keluar' => $this->request->getPost('tgl_keluar'),
+            'keterangan' => $this->request->getPost('keterangan'),
+            'id_kondisi' => $this->request->getPost('id_kondisi'),
+            'id_personnel' => $this->request->getPost('id_personnel'),
+            'updated_at' => $time
         ];
-
-
         $this->Spareparts->editData($data);
-
-
-        session()->setFlashdata('pesan', 'Data Successfully Updated.');
+        session()->setFlashdata('pesan', 'Data Berhasil Di Ubah.');
         return redirect()->to('/Data-out');
     }
-    public function deleteData($id_partout)
+    public function deleteData($id_keluar)
     {
-
-        $this->Spareparts->deleteSparepart($id_partout);
-        session()->setFlashdata('pesan', 'Data Successfully Deleted.');
+        $this->Spareparts->deleteSparepart($id_keluar);
+        session()->setFlashdata('pesan', 'Data Berhasil Di Hapus.');
         return redirect()->to('/Data-out');
     }
 }

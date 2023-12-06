@@ -7,8 +7,8 @@ use CodeIgniter\Model;
 class ConditionModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'conditions';
-    protected $primaryKey       = 'id_condition';
+    protected $table            = 'tb_kondisi';
+    protected $primaryKey       = 'id_kondisi';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = 'array';
@@ -42,7 +42,7 @@ class ConditionModel extends Model
 
     public function getData()
     {
-        return $this->db->table('conditions')
+        return $this->db->table('tb_kondisi')
             //->join('spareparts', 'spareparts.kd_sparepart=spareparts_in.kd_sparepart')
             // ->join('airlane', 'airlane.airline_id=passanger.airline_id')
             // ->where('passanger.role_id', '2')
@@ -50,26 +50,26 @@ class ConditionModel extends Model
     }
     public function insertCondition($data)
     {
-        $this->db->table('conditions')
+        $this->db->table('tb_kondisi')
             ->insert($data);
     }
-    public function getDetail($id_condition)
+    public function getDetail($id_kondisi)
     {
-        return $this->db->table('conditions')
+        return $this->db->table('tb_kondisi')
             //->join('spareparts', 'spareparts.kd_sparepart=spareparts_out.kd_sparepart')
             // ->join('airlane', 'airlane.airline_id=passanger.airline_id')
-            ->where('conditions.id_condition', $id_condition)
+            ->where('tb_kondisi.id_kondisi', $id_kondisi)
 
             ->get()->getResultArray();
     }
     public function editData($data)
     {
-        $this->db->table('conditions')
-            ->where('id_condition', $data['id_condition'])
+        $this->db->table('tb_kondisi')
+            ->where('id_kondisi', $data['id_kondisi'])
             ->update($data);
     }
-    public function deleteCondition($id_condition)
+    public function deleteCondition($id_kondisi)
     {
-        $this->db->table('conditions')->delete(array('id_condition' => $id_condition));
+        $this->db->table('tb_kondisi')->delete(array('id_kondisi' => $id_kondisi));
     }
 }

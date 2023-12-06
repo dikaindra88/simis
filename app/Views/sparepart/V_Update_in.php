@@ -118,12 +118,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Update Data Sparepart Incoming</h1>
+                    <h1 class="m-0">Ubah Data Spare Part Masuk</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Update Data Sparepart Incoming</li>
+                        <li class="breadcrumb-item active">Ubah Data Spare Part Masuk</li>
                     </ol>
 
                 </div><!-- /.col -->
@@ -136,18 +136,18 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-body">
-                    <form method="post" action="/Edit-in/<?= $in[0]['id_partin'] ?>" enctype="multipart/form-data">
+                    <form method="post" action="/Edit-in/<?= $in[0]['id_masuk'] ?>" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="card">
                                     <div class="card-body">
 
                                         <div class="form-group">
-                                            <label>Description</label>
-                                            <select class="form-control select2bs4" name="kd_sparepart" data-placeholder="Select a State" style="width: 100%;">
-                                                <option value="<?php echo $in[0]['kd_sparepart'] ?>" selected><?php echo $in[0]['description'] ?></option>
+                                            <label>Nama Barang / Sparepart</label>
+                                            <select class="form-control select2bs4" name="kd_barang" data-placeholder="Select a State" style="width: 100%;">
+                                                <option value="<?php echo $in[0]['kd_barang'] ?>" selected><?php echo $in[0]['nm_barang'] ?></option>
                                                 <?php foreach ($sparepart as $row) : ?>
-                                                    <option value="<?= $row['kd_sparepart'] ?>"><?= $row['description'] ?></option>
+                                                    <option value="<?= $row['kd_barang'] ?>"><?= $row['nm_barang'] ?></option>
                                                 <?php endforeach ?>
                                             </select>
                                         </div>
@@ -160,11 +160,11 @@
                                             <input type="text" value="<?= $in[0]['serial_number'] ?>" name="serial_number" class="form-control" placeholder="Serial number item">
                                         </div>
                                         <div class="form-group">
-                                            <label>Location</label>
-                                            <select class="form-control select2bs4" name="id_location" data-placeholder="Select a State" style="width: 100%;">
-                                                <option selected="selected" value="<?= $in[0]['id_location'] ?>"><?= $in[0]['location_name'] ?></option>
+                                            <label>Rak</label>
+                                            <select class="form-control select2bs4" name="id_rak" data-placeholder="Select a State" style="width: 100%;">
+                                                <option selected="selected" value="<?= $in[0]['id_rak'] ?>"><?= $in[0]['nama_rak'] ?></option>
                                                 <?php foreach ($location as $row) : ?>
-                                                    <option value="<?= $row['id_location'] ?>"><?= $row['location_name'] ?></option>
+                                                    <option value="<?= $row['id_rak'] ?>"><?= $row['nama_rak'] ?></option>
                                                 <?php endforeach ?>
                                             </select>
                                         </div>
@@ -173,38 +173,30 @@
                                             <input type="text" value="<?= $in[0]['qty_in'] ?>" name="qty_in" class="form-control" placeholder="Quantity">
                                         </div>
                                         <div class="form-group">
-                                            <label>OUM</label>
-                                            <select class="form-control select2bs4" name="id_oum" data-placeholder="Select a State" style="width: 100%;">
-                                                <option selected="selected" value="<?= $in[0]['id_oum'] ?>"><?= $in[0]['oum_name'] ?></option>
-                                                <?php foreach ($oum as $row) : ?>
-                                                    <option value="<?= $row['id_oum'] ?>"><?= $row['oum_name'] ?></option>
+                                            <label>Satuan</label>
+                                            <select class="form-control select2bs4" name="id_satuan" data-placeholder="Select a State" style="width: 100%;">
+                                                <option selected="selected" value="<?= $in[0]['id_satuan'] ?>"><?= $in[0]['satuan'] ?></option>
+                                                <?php foreach ($satuan as $row) : ?>
+                                                    <option value="<?= $row['id_satuan'] ?>"><?= $row['satuan'] ?></option>
                                                 <?php endforeach ?>
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <label>Date in</label>
+                                            <label>Tanggal Masuk</label>
                                             <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                                <input type="text" name="date_in" value="<?php echo $in[0]['date_in'] ?>" class="form-control datetimepicker-input" data-target="#reservationdate" placeholder="<?php echo $in[0]['date_in'] ?>" />
+                                                <input type="text" name="tgl_masuk" value="<?php echo $in[0]['tgl_masuk'] ?>" class="form-control datetimepicker-input" data-target="#reservationdate" placeholder="<?php echo $in[0]['tgl_masuk'] ?>" />
                                                 <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="form-group">
-                                            <label>PO / RO</label>
-                                            <select class="form-control select2bs4" name="id_pro" style="width: 100%;">
-                                                <option selected="selected" value="<?= $in[0]['id_pro'] ?>"><?= $in[0]['order_name'] ?></option>
-                                                <?php foreach ($order as $row) : ?>
-                                                    <option value="<?= $row['id_pro'] ?>"><?= $row['order_name'] ?></option>
-                                                <?php endforeach ?>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>ARC Form Number</label>
+                                            <label>Nomor Form ARC</label>
                                             <input type="text" value="<?= $in[0]['arc_form_no'] ?>" name="arc_form_no" class="form-control" placeholder="ARC Form Number">
                                         </div>
                                         <div class="form-group">
-                                            <label>ARC Number</label>
+                                            <label>Nomor ARC</label>
                                             <input type="text" value="<?= $in[0]['arc_no'] ?>" name="arc_no" class="form-control" placeholder="ARC Number">
                                         </div>
                                     </div>
@@ -215,95 +207,27 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="form-group">
-                                            <label>Vendors</label>
-                                            <input type="text" value="<?= $in[0]['vendors'] ?>" name="vendors" class="form-control" placeholder="Vendor Name">
+                                            <label>Vendor</label>
+                                            <input type="text" value="<?= $in[0]['vendor'] ?>" name="vendor" class="form-control" placeholder="Vendor Name">
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Conditions</label>
-                                            <select class="form-control select2bs4" name="id_condition" data-placeholder="Select a State" style="width: 100%;">
-                                                <option selected="selected" value="<?= $in[0]['id_condition'] ?>"><?= $in[0]['condition_name'] ?></option>
+                                            <label>Kondisi</label>
+                                            <select class="form-control select2bs4" name="id_kondisi" data-placeholder="Select a State" style="width: 100%;">
+                                                <option selected="selected" value="<?= $in[0]['id_kondisi'] ?>"><?= $in[0]['kondisi'] ?></option>
                                                 <?php foreach ($condition as $row) : ?>
-                                                    <option value="<?= $row['id_condition'] ?>"><?= $row['condition_name'] ?></option>
+                                                    <option value="<?= $row['id_kondisi'] ?>"><?= $row['kondisi'] ?></option>
                                                 <?php endforeach ?>
                                             </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Consumable</label>
-                                            <input type="text" value="<?= $in[0]['consumable'] ?>" name="consumable" class="form-control" placeholder="Consumable">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>AWB</label>
-                                            <input type="text" value="<?= $in[0]['awb'] ?>" name="awb" class="form-control" placeholder="Air Way Bill Number">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>A / C Registration</label>
-                                            <select class="form-control select2bs4" name="id_acreg" data-placeholder="Select a State" style="width: 100%;">
-                                                <option selected="selected" value="<?= $in[0]['id_acreg'] ?>"><?= $in[0]['acreg_name'] ?></option>
-                                                <?php foreach ($acreg as $row) : ?>
-                                                    <option value="<?= $row['id_acreg'] ?>"><?= $row['acreg_name'] ?></option>
-                                                <?php endforeach ?>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>MR Number</label>
-                                            <input type="text" value="<?= $in[0]['mr_number'] ?>" name="mr_number" class="form-control" placeholder="MR Number">
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Remarks</label>
+                                            <label>Remark</label>
                                             <input type="text" value="<?= $in[0]['remarks'] ?>" name="remarks" class="form-control" placeholder="Remarks">
                                         </div>
+
                                         <div class="form-group">
-                                            <label>Document</label>
-
-                                            <div class="form-group clearfix">
-                                                <?php
-                                                if ($in[0]['document'] == 'yes') {
-                                                ?>
-                                                    <div class="icheck-primary d-inline">
-
-                                                        <input type="checkbox" name="document" value="yes" id="checkboxPrimary1" checked="checked">
-                                                        <label for="checkboxPrimary1">Yes
-                                                        </label>
-                                                    </div>
-                                                    <div class="icheck-primary d-inline">
-                                                        <input type="checkbox" name="document" value="no" id="checkboxPrimary2">
-                                                        <label for="checkboxPrimary2">No
-                                                        </label>
-                                                    </div>
-                                                <?php } elseif ($in[0]['document'] == 'no') {
-                                                ?>
-                                                    <div class="icheck-primary d-inline">
-
-                                                        <input type="checkbox" name="document" value="yes" id="checkboxPrimary1">
-                                                        <label for="checkboxPrimary1">Yes
-                                                        </label>
-                                                    </div>
-                                                    <div class="icheck-primary d-inline">
-                                                        <input type="checkbox" name="document" value="no" id="checkboxPrimary2" checked="checked">
-                                                        <label for="checkboxPrimary2">No
-                                                        </label>
-                                                    </div>
-                                                <?php
-                                                } else {
-                                                ?>
-                                                    <div class="icheck-primary d-inline">
-
-                                                        <input type="checkbox" name="document" value="yes" id="checkboxPrimary1">
-                                                        <label for="checkboxPrimary1">Yes
-                                                        </label>
-                                                    </div>
-                                                    <div class="icheck-primary d-inline">
-                                                        <input type="checkbox" name="document" value="no" id="checkboxPrimary2">
-                                                        <label for="checkboxPrimary2">No
-                                                        </label>
-                                                    </div>
-                                                <?php } ?>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Create_date</label>
+                                            <label>Tanggal Di Buat</label>
                                             <div class="input-group date" id="reservationdate1" data-target-input="nearest">
                                                 <input type="text" name="create_date" value="<?php echo $in[0]['create_date'] ?>" class="form-control datetimepicker-input" data-target="#reservationdate1" placeholder="<?php echo $in[0]['create_date'] ?>" />
                                                 <div class="input-group-append" data-target="#reservationdate1" data-toggle="datetimepicker">
@@ -312,9 +236,9 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label>Date in</label>
+                                            <label>Tanggal Expired</label>
                                             <div class="input-group date" id="reservationdate2" data-target-input="nearest">
-                                                <input type="text" name="expired_date" value="<?php echo $in[0]['expired_date'] ?>" class="form-control datetimepicker-input" data-target="#reservationdate2" placeholder="<?php echo $in[0]['expired_date'] ?>" />
+                                                <input type="text" name="exp_date" value="<?php echo $in[0]['exp_date'] ?>" class="form-control datetimepicker-input" data-target="#reservationdate2" placeholder="<?php echo $in[0]['exp_date'] ?>" />
                                                 <div class="input-group-append" data-target="#reservationdate2" data-toggle="datetimepicker">
                                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                                 </div>
@@ -328,20 +252,20 @@
                                                 <div class="file-upload-content1">
                                                     <center><img class="file-upload-image1" width="100px" height="100px" src="<?php echo base_url('foto/' . $in[0]['document_arc']) ?>" alt="your image" /></center>
                                                     <div class="image-title-wrap1">
-                                                        <center> <button type="button" onclick="removeUpload1()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button></center>
+                                                        <center> <button type="button" onclick="removeUpload1()" class="remove-image">Hapus <span class="image-title">Gambar</span></button></center>
                                                     </div>
                                                 </div>
                                                 <div class="image-upload-wrap">
 
                                                     <input class="file-upload-input" type="file" name="document_arc" onchange="readURL(this);" accept="image/*" />
                                                     <div class="drag-text">
-                                                        <h3>Drag and drop a Image</h3>
+                                                        <h3>Tarik dan lepaskan gambar</h3>
                                                     </div>
                                                 </div>
                                                 <div class="file-upload-content">
                                                     <img class="file-upload-image" width="100px" height="100px" src="#" alt="your image" />
                                                     <div class="image-title-wrap">
-                                                        <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+                                                        <button type="button" onclick="removeUpload()" class="remove-image">Hapus <span class="image-title">Gambar</span></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -354,12 +278,12 @@
                 </div>
                 <div class="card-footer bg-transparent border-success">
                     <button type="submit" class="btn btn-outline-success d-grid gap-2 col-2 mx-auto">
-                        <i class="far fa-save"></i> Save
+                        <i class="far fa-save"></i> Simpan
                     </button>
                     <button type="button" class="btn btn-outline-danger d-grid gap-2 col-2 mx-auto" onclick="javascript:history.back()">
-                        <i class="fa fa-arrow-circle-left"></i> Cancel
+                        <i class="fa fa-arrow-circle-left"></i> Batal
                     </button>
-                    <input type="hidden" name="id_partin" value="<?php echo $in[0]['id_partin']; ?>">
+                    <input type="hidden" name="id_masuk" value="<?php echo $in[0]['id_masuk']; ?>">
                 </div>
             </div>
         </div>

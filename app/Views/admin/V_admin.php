@@ -5,39 +5,115 @@ use Faker\Provider\Base;
 echo view('layouts/Top') ?>
 <?php echo view('layouts/Front-end') ?>
 <style>
-    #upload {
-        opacity: 0;
+    .file-upload {
+        background-color: #ffffff;
+        width: auto;
+        padding: 20px;
     }
 
-    #upload-label {
-        position: absolute;
-        top: 50%;
-        left: 1rem;
-        transform: translateY(-50%);
-    }
-
-    .image-area {
-        border: 2px dashed rgba(255, 255, 255, 0.7);
-        padding: 1rem;
-        position: relative;
-    }
-
-    .image-area::before {
-        content: 'Uploaded image result';
+    .file-upload-btn {
+        width: 100%;
+        margin: 0;
         color: #fff;
-        font-weight: bold;
+        background: #1FB264;
+        border: none;
+        padding: 10px;
+        border-radius: 4px;
+        border-bottom: 4px solid #15824B;
+        transition: all .2s ease;
+        outline: none;
         text-transform: uppercase;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 0.8rem;
-        z-index: 1;
+        font-weight: 700;
     }
 
-    .image-area img {
-        z-index: 2;
+    .file-upload-btn:hover {
+        background: #1AA059;
+        color: #ffffff;
+        transition: all .2s ease;
+        cursor: pointer;
+    }
+
+    .file-upload-btn:active {
+        border: 0;
+        transition: all .2s ease;
+    }
+
+    .file-upload-content {
+        display: none;
+        text-align: center;
+    }
+
+    .file-upload-input {
+        position: absolute;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        outline: none;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .image-upload-wrap {
+        margin-top: 20px;
+        border: 4px dashed #999;
         position: relative;
+    }
+
+    .image-dropping,
+    .image-upload-wrap:hover {
+        background-color: #999;
+        border: 4px dashed #ffffff;
+    }
+
+    .image-title-wrap {
+        padding: 0 15px 15px 15px;
+        color: #222;
+    }
+
+    .drag-text {
+        text-align: center;
+    }
+
+    .drag-text h3 {
+        font-weight: 100;
+        text-transform: uppercase;
+        color: #000;
+        padding: 60px 0;
+    }
+
+    .file-upload-image {
+        max-height: 200px;
+        max-width: 200px;
+        margin: auto;
+        padding: 20px;
+    }
+
+    .remove-image {
+        width: 200px;
+        margin: 0;
+        color: #fff;
+        background: #cd4535;
+        border: none;
+        padding: 10px;
+        border-radius: 4px;
+        border-bottom: 4px solid #b02818;
+        transition: all .2s ease;
+        outline: none;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+
+    .remove-image:hover {
+        background: #c13b2a;
+        color: #ffffff;
+        transition: all .2s ease;
+        cursor: pointer;
+    }
+
+    .remove-image:active {
+        border: 0;
+        transition: all .2s ease;
     }
 </style>
 <div class="content-wrapper">
@@ -58,7 +134,7 @@ echo view('layouts/Top') ?>
 
             <hr>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">
-                <i class="fas fa-plus"></i>
+                <i class="fas fa-plus"></i> Tambah
             </button>
 
         </div>
@@ -69,23 +145,23 @@ echo view('layouts/Top') ?>
     <div class="modal fade" id="modal-default">
 
         <div class="modal-dialog modal-default">
-            <div class="modal-content">
+            <div class="modal-content bg-dark">
                 <div class="modal-header">
-                    <h4 class="modal-title" style="font-family: arial black; color:#000080;font-size:18pt;">&nbsp;Input Users</h4>
+                    <h4 class="modal-title" style="font-family: arial black; color:#F3CB51;font-size:18pt;">&nbsp;Input Users</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <img class="modal-title" src="<?= base_url('img/RDG.png') ?>" height="30">
+                        <img class="modal-title" src="<?= base_url('img/ATS.png') ?>" height="50">
                     </button>
 
                 </div>
                 <form method="post" action="Add-users" enctype="multipart/form-data">
                     <div class="modal-body">
 
-                        <div class="card">
+                        <div class="card bg-dark">
                             <div class="card-body">
 
                                 <div class="form-group">
-                                    <label>Name</label>
-                                    <input type="text" name="name" class="form-control" placeholder="Name" required>
+                                    <label>Nama</label>
+                                    <input type="text" name="name" class="form-control" placeholder="Nama" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Email</label>
@@ -97,13 +173,32 @@ echo view('layouts/Top') ?>
                                 </div>
                                 <div class="form-group">
                                     <label>Status</label>
-                                    <select name="status" id="kd_sparepart" data-placeholder="Select Item" class="form-control select2bs4" required>
-                                        <option value="" selected disabled>Choose Item</option>
+                                    <select name="status" id="kd_sparepart" data-placeholder="Pilih Status" class="form-control select2bs4" required>
+                                        <option value="" selected disabled>Pilih Status</option>
 
                                         <option value="admin">Admin</option>
                                         <option value="staff">Staff</option>
 
                                     </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputFile">Foto</i></label>
+                                    <div class="input-group">
+                                        <div class="file-upload">
+                                            <div class="image-upload-wrap">
+                                                <input class="file-upload-input" type="file" name="foto" onchange="readURL(this);" accept="image/*" required />
+                                                <div class="drag-text">
+                                                    <h3>Klik atau Tarik dan lepaskan gambar</h3>
+                                                </div>
+                                            </div>
+                                            <div class="file-upload-content">
+                                                <img class="file-upload-image" src="#" alt="your image" />
+                                                <div class="image-title-wrap">
+                                                    <button type="button" onclick="removeUpload()" class="remove-image">Hapus <span class="image-title">Gambar</span></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <!-- <div class="form-group">
                                     <label>Stock</label>
@@ -118,8 +213,8 @@ echo view('layouts/Top') ?>
                         <!-- /.form-group -->
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
                     </div>
                 </form>
             </div>
@@ -143,25 +238,26 @@ echo view('layouts/Top') ?>
 
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-hover table-striped table-condensed " id="example3">
+                        <table class="table table-bordered table-hover table-striped table-condensed " id="example3">
                             <thead>
-                                <tr class="bg-navy color-light text-center" style=" font-size: 9pt;">
+                                <tr class="text-center" style=" font-size: 9pt;">
                                     <th>No</th>
-                                    <th>Name</th>
+                                    <th>Nama</th>
                                     <th>Email</th>
                                     <th>Status</th>
-                                    <th>Action</th>
+                                    <th>Foto</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php $nomor = 1; ?>
-                                <?php foreach ($user as $row) : ?>
+                                <?php foreach ($users as $row) : ?>
                                     <tr class="text-center" style="padding: 5%; font-size: 9pt;">
                                         <td><?= $nomor++ ?></td>
                                         <td><?= $row['name'] ?></td>
                                         <td><?= $row['email'] ?></td>
                                         <td><?= $row['status'] ?></td>
-
+                                        <td><img class="img-thumbnail" width="80px" height="80px" src="<?= base_url('img/' . $row['foto']) ?>"></td>
                                         <td>
 
                                             <div class="nav-item dropup">
@@ -172,19 +268,19 @@ echo view('layouts/Top') ?>
 
 
 
-                                                    <form action="<?= base_url('/Users/update') . '/' . $row['user_id'] ?>" method="post">
+                                                    <form action="<?= base_url('/Users/update') . '/' . $row['id_user'] ?>" method="post">
                                                         <?= csrf_field(); ?>
                                                         <input type="hidden" name="_method" value="Edit">
                                                         <button type="submit" class="dropdown-item"><i class="nav-icon fas fa-edit"></i>
-                                                            Update
+                                                            Ubah
                                                         </button>
                                                     </form>
                                                     <div class="dropdown-divider"></div>
-                                                    <form action="<?= base_url('/Users/Delete') . '/' . $row['user_id'] ?>" method="post">
+                                                    <form action="<?= base_url('/Users/Delete') . '/' . $row['id_user'] ?>" method="post">
                                                         <?= csrf_field(); ?>
                                                         <input type="hidden" name="_method" value="Delete">
                                                         <button type="submit" class="dropdown-item" onclick="return confirm('Apakah anda yakin?');"><i class="nav-icon fas fa-trash-alt"></i>
-                                                            Delete
+                                                            Hapus
                                                         </button>
                                                     </form>
                                                 </div>
@@ -206,49 +302,50 @@ echo view('layouts/Top') ?>
     <script>
         function readURL(input) {
             if (input.files && input.files[0]) {
+
                 var reader = new FileReader();
 
                 reader.onload = function(e) {
-                    $('#imageResult')
-                        .attr('src', e.target.result);
+                    $('.image-upload-wrap').hide();
+
+                    $('.file-upload-image').attr('src', e.target.result);
+                    $('.file-upload-image1').hide();
+                    $('.file-upload-content').show();
+                    $('.file-upload-content1').show();
+
+                    $('.image-title').html(input.files[0].name);
                 };
+
                 reader.readAsDataURL(input.files[0]);
+
+            } else {
+                removeUpload();
             }
         }
 
-        $(function() {
-            $('#upload').on('change', function() {
-                readURL(input);
-            });
-        });
-
-        /*  ==========================================
-            SHOW UPLOADED IMAGE NAME
-        * ========================================== */
-        var input = document.getElementById('upload');
-        var infoArea = document.getElementById('upload-label');
-
-        input.addEventListener('change', showFileName);
-
-        function showFileName(event) {
-            var input = event.srcElement;
-            var fileName = input.files[0].name;
-            infoArea.textContent = 'File name: ' + fileName;
+        function removeUpload() {
+            $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+            $('.file-upload-content').hide();
+            $('.image-upload-wrap').show();
         }
+
+        function removeUpload1() {
+
+            $('.file-upload-content1').hide();
+            $('.image-title-wrap1').hide();
+        }
+        $('.image-upload-wrap').bind('dragover', function() {
+            $('.image-upload-wrap').addClass('image-dropping');
+        });
+        $('.image-upload-wrap').bind('dragleave', function() {
+            $('.image-upload-wrap').removeClass('image-dropping');
+        });
     </script>
-    <!-- <script>
-    $('#description').on('change', function(event) {
-      getData(event.target.value).then(out => {
-        $('#part_number').val(out.part_number);
-        $('#serial_number').val(out.serial_number);
-      });
-    });
-
-    async function getData(id_partin) {
-      let response = await fetch('/api/home/' + id_partin)
-      let data = await response.json();
-
-      return data;
-    }
-  </script> -->
+    <script type="text/javascript">
+        window.setTimeout(function() {
+            $('#flash_data').fadeTo(500, 0).slideUp(500, function() {
+                $(this).remove()
+            });
+        }, 2500);
+    </script>
     <?php echo view('layouts/Bottom') ?>

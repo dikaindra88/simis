@@ -17,22 +17,22 @@ class Location extends BaseController
     public function index()
     {
         if (session()->get('name') == True) {
-        $data = [
-            'title' => 'Page | List Location',
-            'location' => $this->Location->getData(),
-            'user' => $this->User->getData()
-        ];
-        return view('location/V_location', $data);
-    }else{
-        return redirect()->to('/');
-    }
+            $data = [
+                'title' => 'Page | List Location',
+                'location' => $this->Location->getData(),
+                'user' => $this->User->getData()
+            ];
+            return view('location/V_location', $data);
+        } else {
+            return redirect()->to('/');
+        }
     }
     public function insert()
     {
 
         $data = [
 
-            'location_name' => $this->request->getPost('location_name')
+            'nama_rak' => $this->request->getPost('nama_rak')
 
         ];
 
@@ -43,22 +43,22 @@ class Location extends BaseController
         //dd($data);
         return redirect()->to('/Location');
     }
-    public function update($id_location)
+    public function update($id_rak)
     {
         $data = [
             'title' => 'Page Update | List Location',
-            'loc' => $this->Location->getDetail($id_location),
+            'loc' => $this->Location->getDetail($id_rak),
             'user' => $this->User->getData()
 
         ];
         //dd($data);
         return view('location/V_update_loc', $data);
     }
-    public function EditAction($id_location)
+    public function EditAction($id_rak)
     {
         $data = [
-            'id_location' => $id_location,
-            'location_name' => $this->request->getPost('location_name')
+            'id_rak' => $id_rak,
+            'nama_rak' => $this->request->getPost('nama_rak')
         ];
 
 

@@ -46,7 +46,7 @@ echo view('layouts/Top') ?>
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">List Sparepart</h1>
+                    <h1 class="m-0">List Barang / Sparepart</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -58,7 +58,7 @@ echo view('layouts/Top') ?>
 
             <hr>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">
-                <i class="fas fa-plus"></i>
+                <i class="fas fa-plus"></i> Tambah
             </button>
 
         </div>
@@ -69,27 +69,36 @@ echo view('layouts/Top') ?>
     <div class="modal fade" id="modal-default">
 
         <div class="modal-dialog modal-default">
-            <div class="modal-content">
+            <div class="modal-content bg-dark">
                 <div class="modal-header">
-                    <h4 class="modal-title" style="font-family: arial black; color:#000080;font-size:18pt;">&nbsp;Input Sparepart</h4>
+                    <h4 class="modal-title" style="font-family: arial black; color:#F3CB51;font-size:18pt;">&nbsp;Input Sparepart</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <img class="modal-title" src="<?= base_url('img/RDG.png') ?>" height="30">
+                        <img class="modal-title" src="<?= base_url('img/ATS.png') ?>" height="50">
                     </button>
 
                 </div>
                 <form method="post" action="Add-sparepart" enctype="multipart/form-data">
                     <div class="modal-body">
 
-                        <div class="card">
+                        <div class="card bg-dark">
                             <div class="card-body">
 
                                 <div class="form-group">
-                                    <label>Sparepart Code</label>
-                                    <input type="text" name="kd_sparepart" class="form-control" id="part_number" placeholder="Sparepart Code" required>
+                                    <label>Kode Barang / Sparepart</label>
+                                    <input type="text" name="kd_barang" class="form-control" id="part_number" placeholder="Kode Barang / Sparepart" required>
                                 </div>
                                 <div class="form-group">
-                                    <label>Description</label>
-                                    <input type="text" name="description" class="form-control" id="part_number" placeholder="Description" required>
+                                    <label>Nama Barang / Sparepart</label>
+                                    <input type="text" name="nm_barang" class="form-control" id="part_number" placeholder="Nama Barang / Sparepart" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Satuan</label>
+                                    <select class="form-control select2bs4" name="id_satuan" data-placeholder="Pilih Satuan" style="width: 100%;">
+                                        <option value="" selected disabled>Choose Item</option>
+                                        <?php foreach ($oum as $value) : ?>
+                                            <option value="<?= $value['id_satuan'] ?>"><?= $value['satuan'] ?></option>
+                                        <?php endforeach ?>
+                                    </select>
                                 </div>
                                 <!-- <div class="form-group">
                                     <label>Stock</label>
@@ -104,8 +113,8 @@ echo view('layouts/Top') ?>
                         <!-- /.form-group -->
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
                     </div>
                 </form>
             </div>
@@ -129,15 +138,15 @@ echo view('layouts/Top') ?>
 
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-hover table-striped table-condensed " id="example3">
+                        <table class="table table-bordered table-hover table-striped table-condensed " id="example3">
                             <thead>
-                                <tr class="bg-navy color-light text-center" style=" font-size: 9pt;">
+                                <tr class="text-center" style=" font-size: 9pt;">
                                     <th>No</th>
-                                    <th>Sparepart Code</th>
-                                    <th>Description</th>
+                                    <th>Kode Barang</th>
+                                    <th>Nama Barang</th>
                                     <th>Stock</th>
-
-                                    <th>Action</th>
+                                    <th>Satuan</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -145,10 +154,10 @@ echo view('layouts/Top') ?>
                                 <?php foreach ($sparepart as $row) : ?>
                                     <tr class="text-center" style="padding: 5%; font-size: 9pt;">
                                         <td><?= $nomor++ ?></td>
-                                        <td><?= $row['kd_sparepart'] ?></td>
-                                        <td><?= $row['description'] ?></td>
+                                        <td><?= $row['kd_barang'] ?></td>
+                                        <td><?= $row['nm_barang'] ?></td>
                                         <td><?= $row['stock'] ?></td>
-
+                                        <td><?= $row['satuan'] ?></td>
 
                                         <td>
 
@@ -160,19 +169,19 @@ echo view('layouts/Top') ?>
 
 
 
-                                                    <form action="<?= base_url('/Sparepart/update') . '/' . $row['id_sparepart'] ?>" method="post">
+                                                    <form action="<?= base_url('/Sparepart/update') . '/' . $row['id_barang'] ?>" method="post">
                                                         <?= csrf_field(); ?>
                                                         <input type="hidden" name="_method" value="Edit">
                                                         <button type="submit" class="dropdown-item"><i class="nav-icon fas fa-edit"></i>
-                                                            Update
+                                                            Ubah
                                                         </button>
                                                     </form>
                                                     <div class="dropdown-divider"></div>
-                                                    <form action="<?= base_url('/Sparepart/Delete') . '/' . $row['id_sparepart'] ?>" method="post">
+                                                    <form action="<?= base_url('/Sparepart/Delete') . '/' . $row['id_barang'] ?>" method="post">
                                                         <?= csrf_field(); ?>
                                                         <input type="hidden" name="_method" value="Delete">
                                                         <button type="submit" class="dropdown-item" onclick="return confirm('Apakah anda yakin?');"><i class="nav-icon fas fa-trash-alt"></i>
-                                                            Delete
+                                                            Hapus
                                                         </button>
                                                     </form>
                                                 </div>

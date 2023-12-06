@@ -7,8 +7,8 @@ use CodeIgniter\Model;
 class GivenModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'givento';
-    protected $primaryKey       = 'id_given_to';
+    protected $table            = 'tb_personnel';
+    protected $primaryKey       = 'id_personnel';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = 'array';
@@ -40,9 +40,24 @@ class GivenModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
+    public function login_user($nip)
+    {
+        return $this->db->table('tb_personnel')->where(
+            [
+                'nip_personnel' => $nip
+            ]
+        )->get()->getRowArray();
+    }
+
+    public function countPersonnel()
+    {
+        $query = $this->db->query("Select * From tb_personnel")->getNumRows();
+        return $query;
+    }
     public function getData()
     {
-        return $this->db->table('givento')
+        return $this->db->table('tb_personnel')
+            ->join('tb_departement', 'tb_departement.id_depart=tb_personnel.id_depart')
             //->join('spareparts', 'spareparts.kd_sparepart=spareparts_in.kd_sparepart')
             // ->join('airlane', 'airlane.airline_id=passanger.airline_id')
             // ->where('passanger.role_id', '2')
@@ -50,26 +65,27 @@ class GivenModel extends Model
     }
     public function insertAcreg($data)
     {
-        $this->db->table('givento')
+        $this->db->table('tb_personnel')
             ->insert($data);
     }
-    public function getDetail($id_given_to)
+    public function getDetail($id_personnel)
     {
-        return $this->db->table('givento')
+        return $this->db->table('tb_personnel')
+            ->join('tb_departement', 'tb_departement.id_depart=tb_personnel.id_depart')
             //->join('spareparts', 'spareparts.kd_sparepart=spareparts_out.kd_sparepart')
             // ->join('airlane', 'airlane.airline_id=passanger.airline_id')
-            ->where('givento.id_given_to', $id_given_to)
+            ->where('tb_personnel.id_personnel', $id_personnel)
 
             ->get()->getResultArray();
     }
     public function editData($data)
     {
-        $this->db->table('givento')
-            ->where('id_given_to', $data['id_given_to'])
+        $this->db->table('tb_personnel')
+            ->where('id_personnel', $data['id_personnel'])
             ->update($data);
     }
-    public function deleteAcreg($id_given_to)
+    public function deleteAcreg($id_personnel)
     {
-        $this->db->table('givento')->delete(array('id_given_to' => $id_given_to));
+        $this->db->table('tb_personnel')->delete(array('id_personnel' => $id_personnel));
     }
 }

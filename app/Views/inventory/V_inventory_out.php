@@ -46,12 +46,12 @@ echo view('layouts/Top') ?>
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">Report Sparepart Outgoing</h1>
+          <h1 class="m-0">Laporan Spare Part Keluar</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-            <li class="breadcrumb-item active">Report Sparepart Outgoing</li>
+            <li class="breadcrumb-item active">Laporan Spare Part Keluar</li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -62,7 +62,7 @@ echo view('layouts/Top') ?>
             <div class="form-group">
 
               <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                <input type="text" name="first_date" class="form-control datetimepicker-input" data-target="#reservationdate" placeholder="First Date" required />
+                <input type="text" name="first_date" class="form-control datetimepicker-input" data-target="#reservationdate" placeholder="Tanggal kesatu" required />
                 <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                   <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                 </div>
@@ -73,21 +73,31 @@ echo view('layouts/Top') ?>
             <div class="form-group">
 
               <div class="input-group date" id="reservationdate1" data-target-input="nearest">
-                <input type="text" name="end_date" class="form-control datetimepicker-input" data-target="#reservationdate1" placeholder="End Date" required />
+                <input type="text" name="end_date" class="form-control datetimepicker-input" data-target="#reservationdate1" placeholder="Tanggal kedua" required />
                 <div class="input-group-append" data-target="#reservationdate1" data-toggle="datetimepicker">
                   <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                 </div>
               </div>
             </div>
           </div>
+          <div class="col-lg-2">
+            <div class="form-group">
+              <select name="kd_barang" data-placeholder="Pilih Barang" class="form-control select2bs4" required>
+                <option value="" selected disabled></option>
+                <?php foreach ($sparepart as $value) : ?>
+                  <option value="<?= $value['kd_barang'] ?>"><?= $value['nm_barang'] ?></option>
+                <?php endforeach ?>
+              </select>
+            </div>
+          </div>
           <div class="col-lg-3">
             <div class="form-group">
-              <button type="submit" name="show" class="btn btn-info">Show</button>
-              <a href="<?= base_url('Report/Print') . '/' . $first_date . '/' . $end_date ?>" target="_blank" class="btn btn-outline btn-danger ">
+              <button type="submit" name="show" class="btn btn-info">Cari</button>
+              <a href="<?= base_url('Report/Print') . '/' . $first_date . '/' . $end_date . '/' . $kd_barang ?>" target="_blank" class="btn btn-outline btn-danger ">
                 <i class="fas fa-file-pdf"></i> Pdf
               </a>
-              <a href="<?= base_url('print-out') . '/' . $first_date . '/' . $end_date ?>" target="_blink" class="btn btn-outline-secondary btn-light">
-                <i class="fas fa-print"></i> Print</a>
+              <a href="<?= base_url('print-out') . '/' . $first_date . '/' . $end_date . '/' . $kd_barang ?>" target="_blink" class="btn btn-outline-secondary btn-light">
+                <i class="fas fa-print"></i> Cetak</a>
             </div>
           </div>
         </div>
@@ -115,20 +125,19 @@ echo view('layouts/Top') ?>
 
         <div class="card-body">
           <div class="table-responsive">
-            <table class="table table-hover table-striped table-condensed " id="example3">
+            <table class="table table-bordered table-hover table-striped table-condensed " id="example3">
               <thead>
-                <tr class="bg-navy color-light text-center" style=" font-size: 9pt;">
+                <tr class="text-center" style=" font-size: 9pt;">
                   <th>No</th>
-                  <th>Date Out</th>
-                  <th>Description</th>
+                  <th>Tanggal Keluar</th>
+                  <th>Nama Barang / Sparepart</th>
                   <th>Part Number</th>
                   <th>Serial Number</th>
-                  <th>Condition</th>
-                  <th>Reason Out</th>
+                  <th>Kondisi</th>
+                  <th>Satuan</th>
+                  <th>Diberikan Kepada</th>
+                  <th>Keterangan</th>
                   <th>Qty</th>
-                  <th>Oum</th>
-                  <th>Given to / Remarks</th>
-
                 </tr>
               </thead>
               <tbody>
@@ -136,20 +145,22 @@ echo view('layouts/Top') ?>
                 <?php foreach ($out as $row) : ?>
                   <tr class="text-center" style="padding: 5%; font-size: 9pt;">
                     <td><?= $nomor++ ?></td>
-                    <td><?= $row['date_out'] ?></td>
-                    <td><?= $row['description'] ?></td>
+                    <td><?= $row['tgl_keluar'] ?></td>
+                    <td><?= $row['nm_barang'] ?></td>
                     <td><?= $row['part_number'] ?></td>
                     <td><?= $row['serial_number'] ?></td>
-                    <td><?= $row['condition_name'] ?></td>
-                    <td><?= $row['reason_out'] ?></td>
+                    <td><?= $row['kondisi'] ?></td>
+                    <td><?= $row['satuan'] ?></td>
+                    <td><?= $row['nama_personnel'] ?></td>
+                    <td><?= $row['keterangan'] ?></td>
                     <td><?= $row['qty_out'] ?></td>
-                    <td><?= $row['oum_name'] ?></td>
-                    <td><?= $row['name'] ?></td>
-
-
                   </tr>
                 <?php endforeach ?>
               </tbody>
+              <tr class="text-center" style="padding: 5%; font-size: 9pt;">
+                <th colspan="9">Total Barang / Sparepart Keluar</th>
+                <td><?= $sum[0]['qty_out'] ?></td>
+              </tr>
             </table>
           </div>
         </div>

@@ -42,12 +42,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Update Data Sparepart Outgoing</h1>
+                    <h1 class="m-0">Ubah Data Sparepart Keluar</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Update Data Sparepart Outgoing</li>
+                        <li class="breadcrumb-item active">Ubah Data Sparepart Keluar</li>
                     </ol>
 
                 </div><!-- /.col -->
@@ -60,26 +60,26 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-body">
-                    <form method="post" action="/Edit-out/<?= $out[0]['id_partout'] ?>" enctype="multipart/form-data">
+                    <form method="post" action="/Edit-out/<?= $out[0]['id_keluar'] ?>" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="form-group">
-                                            <label>Date Out</label>
+                                            <label>Tanggal Keluar</label>
                                             <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                                <input type="text" name="date_out" value="<?php echo $out[0]['date_out'] ?>" class="form-control datetimepicker-input" data-target="#reservationdate" placeholder="<?php echo $out[0]['date_out'] ?>" />
+                                                <input type="text" name="tgl_keluar" value="<?php echo $out[0]['tgl_keluar'] ?>" class="form-control datetimepicker-input" data-target="#reservationdate" placeholder="<?php echo $out[0]['tgl_keluar'] ?>" />
                                                 <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label>Description</label>
-                                            <select class="form-control select2bs4" name="kd_sparepart" data-placeholder="Select a State" style="width: 100%;">
-                                                <option value="<?php echo $out[0]['kd_sparepart'] ?>" selected><?php echo $out[0]['description'] ?></option>
+                                            <label>Nama Barang / Sparepart</label>
+                                            <select class="form-control select2bs4" name="kd_barang" data-placeholder="Select a State" style="width: 100%;">
+                                                <option value="<?php echo $out[0]['kd_barang'] ?>" selected><?php echo $out[0]['nm_barang'] ?></option>
                                                 <?php foreach ($sparepart as $row) : ?>
-                                                    <option value="<?= $row['kd_sparepart'] ?>"><?= $row['description'] ?></option>
+                                                    <option value="<?= $row['kd_barang'] ?>"><?= $row['nm_barang'] ?></option>
                                                 <?php endforeach ?>
                                             </select>
                                         </div>
@@ -107,34 +107,34 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="form-group">
-                                            <label>OUM</label>
-                                            <select class="form-control select2bs4" name="id_oum" data-placeholder="Select a State" style="width: 100%;">
-                                            <option value="<?php echo $out[0]['id_oum'] ?>" selected><?php echo $out[0]['oum_name'] ?></option>
+                                            <label>Satuan</label>
+                                            <select class="form-control select2bs4" name="id_satuan" data-placeholder="Select a State" style="width: 100%;">
+                                                <option value="<?php echo $out[0]['id_satuan'] ?>" selected><?php echo $out[0]['satuan'] ?></option>
                                                 <?php foreach ($oum as $row) : ?>
-                                                    <option value="<?= $row['id_oum'] ?>"><?= $row['oum_name'] ?></option>
+                                                    <option value="<?= $row['id_satuan'] ?>"><?= $row['satuan'] ?></option>
                                                 <?php endforeach ?>
                                             </select>
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <label>Reason Out</label>
-                                            <input type="text" name="reason_out" value="<?= $out[0]['reason_out'] ?>" class="form-control" placeholder="Reason Out">
+                                            <label>Keterangan</label>
+                                            <input type="text" name="keterangan" value="<?= $out[0]['keterangan'] ?>" class="form-control" placeholder="Reason Out">
                                         </div>
                                         <div class="form-group">
-                                            <label>Given to / Remarks</label>
-                                            <select class="form-control select2bs4" name="id_given_to" style="width: 100%;">
-                                            <option value="<?php echo $out[0]['id_given_to'] ?>" selected><?php echo $out[0]['name'] ?></option>
+                                            <label>Di Berikan Kepada</label>
+                                            <select class="form-control select2bs4" name="id_personnel" style="width: 100%;">
+                                                <option value="<?php echo $out[0]['id_personnel'] ?>" selected><?php echo $out[0]['nama_personnel'] ?></option>
                                                 <?php foreach ($given as $row) : ?>
-                                                    <option value="<?= $row['id_given_to'] ?>"><?= $row['name'] ?></option>
+                                                    <option value="<?= $row['id_personnel'] ?>"><?= $row['nama_personnel'] ?></option>
                                                 <?php endforeach ?>
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <label>Conditions</label>
-                                            <select class="form-control select2bs4" name="id_condition" data-placeholder="Select a State" style="width: 100%;">
-                                            <option value="<?php echo $out[0]['id_condition'] ?>" selected><?php echo $out[0]['condition_name'] ?></option>
+                                            <label>Kondisi</label>
+                                            <select class="form-control select2bs4" name="id_kondisi" data-placeholder="Select a State" style="width: 100%;">
+                                                <option value="<?php echo $out[0]['id_kondisi'] ?>" selected><?php echo $out[0]['kondisi'] ?></option>
                                                 <?php foreach ($condition as $row) : ?>
-                                                    <option value="<?= $row['id_condition'] ?>"><?= $row['condition_name'] ?></option>
+                                                    <option value="<?= $row['id_kondisi'] ?>"><?= $row['kondisi'] ?></option>
                                                 <?php endforeach ?>
                                             </select>
                                         </div>
@@ -147,12 +147,12 @@
                 </div>
                 <div class="card-footer bg-transparent border-success">
                     <button type="submit" class="btn btn-outline-success d-grid gap-2 col-2 mx-auto">
-                        <i class="far fa-save"></i> Save
+                        <i class="far fa-save"></i> Simpan
                     </button>
                     <button type="button" class="btn btn-outline-danger d-grid gap-2 col-2 mx-auto" onclick="javascript:history.back()">
-                        <i class="fa fa-arrow-circle-left"></i> Cancel
+                        <i class="fa fa-arrow-circle-left"></i> Batal
                     </button>
-                    <input type="hidden" name="id_partout" value="<?php echo $out[0]['id_partout']; ?>">
+                    <input type="hidden" name="id_keluar" value="<?php echo $out[0]['id_keluar']; ?>">
                 </div>
             </div>
         </div>

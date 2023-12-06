@@ -4,7 +4,7 @@
   <strong>Copyright &copy; <script>
       document.write(new Date().getFullYear());
     </script>
-    <a href="#">RDG Airlines</a>.</strong>All rights reserved.
+    <a href="#">PT. Avia Tehnik Solusindo</a>.</strong>All rights reserved.
 </footer>
 
 <!-- Control Sidebar -->

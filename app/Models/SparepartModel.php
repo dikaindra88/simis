@@ -7,8 +7,8 @@ use CodeIgniter\Model;
 class SparepartModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'spareparts_in';
-    protected $primaryKey       = 'id_partin';
+    protected $table            = 'brg_masuk';
+    protected $primaryKey       = 'id_masuk';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = 'array';
@@ -42,307 +42,86 @@ class SparepartModel extends Model
 
     public function countSparepartIn()
     {
-        $query = $this->db->query("SELECT * FROM spareparts_in");
-        $sparepart_in = $query->getNumRows();
-        return $sparepart_in;
+        return $this->db->table('brg_masuk')->get()->getNumRows();
     }
     public function insertSparepart($data)
     {
-        $this->db->table('spareparts_in')
+        $this->db->table('brg_masuk')
             ->insert($data);
+    }
+    public function countSparepart()
+    {
+        return $this->db->table('brg_masuk')->selectSum('qty_in')->get()->getResultArray();
+    }
+    public function countSparepart2($first_date, $end_date, $kd_barang)
+    {
+        return $this->db->table('brg_masuk')
+            ->selectSum('qty_in')
+            ->where('brg_masuk.tgl_masuk >=', $first_date)
+            ->where('brg_masuk.tgl_masuk <=', $end_date)
+            ->where('brg_masuk.kd_barang', $kd_barang)
+            ->get()->getResultArray();
     }
     public function getData()
     {
-        return $this->db->table('spareparts_in')
-            ->join('spareparts', 'spareparts.kd_sparepart=spareparts_in.kd_sparepart')
-            ->join('conditions', 'conditions.id_condition=spareparts_in.id_condition')
-            // ->join('airlane', 'airlane.airline_id=passanger.airline_id')
-            // ->where('passanger.role_id', '2')
-            ->orderBy('spareparts_in.id_partin', 'asc')
+        return $this->db->table('brg_masuk')
+            ->join('tb_barang', 'tb_barang.kd_barang=brg_masuk.kd_barang')
+            ->join('tb_kondisi', 'tb_kondisi.id_kondisi=brg_masuk.id_kondisi')
+            ->join('tb_rak', 'tb_rak.id_rak=brg_masuk.id_rak')
+            ->orderBy('brg_masuk.id_masuk', 'asc')
             ->get()->getResultArray();
     }
-    public function getServiceable()
-    {
-        return $this->db->table('spareparts_in')
-        ->join('spareparts', 'spareparts.kd_sparepart=spareparts_in.kd_sparepart')
-        ->join('conditions', 'conditions.id_condition=spareparts_in.id_condition')
-        ->join('location', 'location.id_location=spareparts_in.id_location')
-        ->join('oum', 'oum.id_oum=spareparts_in.id_oum')
-        ->join('orders', 'orders.id_pro=spareparts_in.id_pro')
-        ->join('acregist', 'acregist.id_acreg=spareparts_in.id_acreg')
-        ->where('spareparts_in.id_condition', '2')
-        ->get()->getResultArray();
-        
-    }
-    public function getUnserviceable()
-    {
-        return $this->db->table('spareparts_in')
-        ->join('spareparts', 'spareparts.kd_sparepart=spareparts_in.kd_sparepart')
-        ->join('conditions', 'conditions.id_condition=spareparts_in.id_condition')
-        ->join('location', 'location.id_location=spareparts_in.id_location')
-        ->join('oum', 'oum.id_oum=spareparts_in.id_oum')
-        ->join('orders', 'orders.id_pro=spareparts_in.id_pro')
-        ->join('acregist', 'acregist.id_acreg=spareparts_in.id_acreg')
-        ->where('spareparts_in.id_condition', '3')
-        ->get()->getResultArray();
-        
-    }
-    public function getFlameable()
-    {
-        return $this->db->table('spareparts_in')
-        ->join('spareparts', 'spareparts.kd_sparepart=spareparts_in.kd_sparepart')
-        ->join('conditions', 'conditions.id_condition=spareparts_in.id_condition')
-        ->join('location', 'location.id_location=spareparts_in.id_location')
-        ->join('oum', 'oum.id_oum=spareparts_in.id_oum')
-        ->join('orders', 'orders.id_pro=spareparts_in.id_pro')
-        ->join('acregist', 'acregist.id_acreg=spareparts_in.id_acreg')
-        ->where('spareparts_in.id_condition', '4')
-        ->get()->getResultArray();
-        
-    }
-    public function getNew()
-    {
-        return $this->db->table('spareparts_in')
-        ->join('spareparts', 'spareparts.kd_sparepart=spareparts_in.kd_sparepart')
-        ->join('conditions', 'conditions.id_condition=spareparts_in.id_condition')
-        ->join('location', 'location.id_location=spareparts_in.id_location')
-        ->join('oum', 'oum.id_oum=spareparts_in.id_oum')
-        ->join('orders', 'orders.id_pro=spareparts_in.id_pro')
-        ->join('acregist', 'acregist.id_acreg=spareparts_in.id_acreg')
-        ->where('conditions.id_condition', '5')
-        ->get()->getResultArray();
-        
-    }
-    public function getInspected()
-    {
-        return $this->db->table('spareparts_in')
-        ->join('spareparts', 'spareparts.kd_sparepart=spareparts_in.kd_sparepart')
-        ->join('conditions', 'conditions.id_condition=spareparts_in.id_condition')
-        ->join('location', 'location.id_location=spareparts_in.id_location')
-        ->join('oum', 'oum.id_oum=spareparts_in.id_oum')
-        ->join('orders', 'orders.id_pro=spareparts_in.id_pro')
-        ->join('acregist', 'acregist.id_acreg=spareparts_in.id_acreg')
-        ->where('conditions.id_condition', '10')
-        ->get()->getResultArray();
-        
-    }
-    public function getRepaired()
-    {
-        return $this->db->table('spareparts_in')
-        ->join('spareparts', 'spareparts.kd_sparepart=spareparts_in.kd_sparepart')
-        ->join('conditions', 'conditions.id_condition=spareparts_in.id_condition')
-        ->join('location', 'location.id_location=spareparts_in.id_location')
-        ->join('oum', 'oum.id_oum=spareparts_in.id_oum')
-        ->join('orders', 'orders.id_pro=spareparts_in.id_pro')
-        ->join('acregist', 'acregist.id_acreg=spareparts_in.id_acreg')
-        ->where('conditions.id_condition', '6')
-        ->get()->getResultArray();
-        
-    }
-    public function getOverhauled()
-    {
-        return $this->db->table('spareparts_in')
-        ->join('spareparts', 'spareparts.kd_sparepart=spareparts_in.kd_sparepart')
-        ->join('conditions', 'conditions.id_condition=spareparts_in.id_condition')
-        ->join('location', 'location.id_location=spareparts_in.id_location')
-        ->join('oum', 'oum.id_oum=spareparts_in.id_oum')
-        ->join('orders', 'orders.id_pro=spareparts_in.id_pro')
-        ->join('acregist', 'acregist.id_acreg=spareparts_in.id_acreg')
-        ->where('conditions.id_condition', '7')
-        ->get()->getResultArray();
-        
-    }
-    public function getNW()
-    {
-        return $this->db->table('spareparts_in')
-        ->join('spareparts', 'spareparts.kd_sparepart=spareparts_in.kd_sparepart')
-        ->join('conditions', 'conditions.id_condition=spareparts_in.id_condition')
-        ->join('location', 'location.id_location=spareparts_in.id_location')
-        ->join('oum', 'oum.id_oum=spareparts_in.id_oum')
-        ->join('orders', 'orders.id_pro=spareparts_in.id_pro')
-        ->join('acregist', 'acregist.id_acreg=spareparts_in.id_acreg')
-        ->where('conditions.id_condition', '9')
-        ->get()->getResultArray();
-        
-    }
 
-    public function getDetail($id_partin)
+    public function getDetail($id_masuk)
     {
-        return $this->db->table('spareparts_in')
-            ->join('spareparts', 'spareparts.kd_sparepart=spareparts_in.kd_sparepart')
-            ->join('conditions', 'conditions.id_condition=spareparts_in.id_condition')
-            ->join('location', 'location.id_location=spareparts_in.id_location')
-            ->join('oum', 'oum.id_oum=spareparts_in.id_oum')
-            ->join('orders', 'orders.id_pro=spareparts_in.id_pro')
-            ->join('acregist', 'acregist.id_acreg=spareparts_in.id_acreg')
-            // ->join('airlane', 'airlane.airline_id=passanger.airline_id')
-            ->where('spareparts_in.id_partin', $id_partin)
+        return $this->db->table('brg_masuk')
+            ->join('tb_barang', 'tb_barang.kd_barang=brg_masuk.kd_barang')
+            ->join('tb_kondisi', 'tb_kondisi.id_kondisi=brg_masuk.id_kondisi')
+            ->join('tb_rak', 'tb_rak.id_rak=brg_masuk.id_rak')
+            ->join('tb_satuan', 'tb_satuan.id_satuan=brg_masuk.id_satuan')
+            ->where('brg_masuk.id_masuk =', $id_masuk)
 
             ->get()->getResultArray();
     }
     public function editData($data)
     {
-        $this->db->table('spareparts_in')
-            ->where('id_partin', $data['id_partin'])
+        $this->db->table('brg_masuk')
+            ->where('id_masuk', $data['id_masuk'])
             ->update($data);
     }
-    public function deleteSparepart($id_partin)
+    public function deleteSparepart($id_masuk)
     {
-        $this->db->table('spareparts_in')->delete(array('id_partin' => $id_partin));
+        $this->db->table('brg_masuk')->delete(array('id_masuk' => $id_masuk));
     }
     public function getDatas()
     {
-        return $this->db->table('spareparts_in')
-            ->join('spareparts_out', 'spareparts_out.id_partin=spareparts.id_partin')
+        return $this->db->table('brg_masuk')
+            ->join('brg_keluar', 'brg_keluar.id_masuk=brg_masuk.id_masuk')
             // ->join('airlane', 'airlane.airline_id=passanger.airline_id')
             // ->where('passanger.role_id', '2')
             ->get()->getResultArray();
     }
-    public function getDetail2($first_date, $end_date)
+    public function getDetail2($first_date, $end_date, $kd_barang)
     {
-        return $this->db->table('spareparts_in')
-        ->join('spareparts', 'spareparts.kd_sparepart=spareparts_in.kd_sparepart')
-        ->join('conditions', 'conditions.id_condition=spareparts_in.id_condition')
-        ->join('location', 'location.id_location=spareparts_in.id_location')
-        ->join('oum', 'oum.id_oum=spareparts_in.id_oum')
-        ->join('orders', 'orders.id_pro=spareparts_in.id_pro')
-        ->join('acregist', 'acregist.id_acreg=spareparts_in.id_acreg')
-        ->where('spareparts_in.date_in >=', $first_date)
-        ->where('spareparts_in.date_in <=', $end_date)
+        return $this->db->table('brg_masuk')
+            ->join('tb_barang', 'tb_barang.kd_barang=brg_masuk.kd_barang')
+            ->join('tb_kondisi', 'tb_kondisi.id_kondisi=brg_masuk.id_kondisi')
+            ->join('tb_rak', 'tb_rak.id_rak=brg_masuk.id_rak')
+            ->join('tb_satuan', 'tb_satuan.id_satuan=brg_masuk.id_satuan')
+            ->where('brg_masuk.tgl_masuk >=', $first_date)
+            ->where('brg_masuk.tgl_masuk <=', $end_date)
+            ->where('brg_masuk.kd_barang =', $kd_barang)
 
-        ->get()->getResultArray();
-        
+            ->get()->getResultArray();
     }
-    public function getDetailServiceable($first_date, $end_date)
-    {
-        return $this->db->table('spareparts_in')
-        ->join('spareparts', 'spareparts.kd_sparepart=spareparts_in.kd_sparepart')
-        ->join('conditions', 'conditions.id_condition=spareparts_in.id_condition')
-        ->join('location', 'location.id_location=spareparts_in.id_location')
-        ->join('oum', 'oum.id_oum=spareparts_in.id_oum')
-        ->join('orders', 'orders.id_pro=spareparts_in.id_pro')
-        ->join('acregist', 'acregist.id_acreg=spareparts_in.id_acreg')
-        ->where('spareparts_in.date_in >=', $first_date)
-        ->where('spareparts_in.date_in <=', $end_date)
-        ->where('spareparts_in.id_condition', '2')
 
-        ->get()->getResultArray();
-        
-    }
-    public function getDetailUnserviceable($first_date, $end_date)
-    {
-        return $this->db->table('spareparts_in')
-        ->join('spareparts', 'spareparts.kd_sparepart=spareparts_in.kd_sparepart')
-        ->join('conditions', 'conditions.id_condition=spareparts_in.id_condition')
-        ->join('location', 'location.id_location=spareparts_in.id_location')
-        ->join('oum', 'oum.id_oum=spareparts_in.id_oum')
-        ->join('orders', 'orders.id_pro=spareparts_in.id_pro')
-        ->join('acregist', 'acregist.id_acreg=spareparts_in.id_acreg')
-        ->where('spareparts_in.date_in >=', $first_date)
-        ->where('spareparts_in.date_in <=', $end_date)
-        ->where('spareparts_in.id_condition', '3')
-
-        ->get()->getResultArray();
-        
-    }
-    public function getDetailFlameable($first_date, $end_date)
-    {
-        return $this->db->table('spareparts_in')
-        ->join('spareparts', 'spareparts.kd_sparepart=spareparts_in.kd_sparepart')
-        ->join('conditions', 'conditions.id_condition=spareparts_in.id_condition')
-        ->join('location', 'location.id_location=spareparts_in.id_location')
-        ->join('oum', 'oum.id_oum=spareparts_in.id_oum')
-        ->join('orders', 'orders.id_pro=spareparts_in.id_pro')
-        ->join('acregist', 'acregist.id_acreg=spareparts_in.id_acreg')
-        ->where('spareparts_in.date_in >=', $first_date)
-        ->where('spareparts_in.date_in <=', $end_date)
-        ->where('spareparts_in.id_condition', '4')
-
-        ->get()->getResultArray();
-        
-    }
-    public function getDetailNew($first_date, $end_date)
-    {
-        return $this->db->table('spareparts_in')
-        ->join('spareparts', 'spareparts.kd_sparepart=spareparts_in.kd_sparepart')
-        ->join('conditions', 'conditions.id_condition=spareparts_in.id_condition')
-        ->join('location', 'location.id_location=spareparts_in.id_location')
-        ->join('oum', 'oum.id_oum=spareparts_in.id_oum')
-        ->join('orders', 'orders.id_pro=spareparts_in.id_pro')
-        ->join('acregist', 'acregist.id_acreg=spareparts_in.id_acreg')
-        ->where('spareparts_in.date_in >=', $first_date)
-        ->where('spareparts_in.date_in <=', $end_date)
-        ->where('spareparts_in.id_condition', '5')
-        ->get()->getResultArray();
-    }
-    public function getDetailInspected($first_date, $end_date)
-    {
-        return $this->db->table('spareparts_in')
-        ->join('spareparts', 'spareparts.kd_sparepart=spareparts_in.kd_sparepart')
-        ->join('conditions', 'conditions.id_condition=spareparts_in.id_condition')
-        ->join('location', 'location.id_location=spareparts_in.id_location')
-        ->join('oum', 'oum.id_oum=spareparts_in.id_oum')
-        ->join('orders', 'orders.id_pro=spareparts_in.id_pro')
-        ->join('acregist', 'acregist.id_acreg=spareparts_in.id_acreg')
-        ->where('spareparts_in.date_in >=', $first_date)
-        ->where('spareparts_in.date_in <=', $end_date)
-        ->where('spareparts_in.id_condition', '10')
-        ->get()->getResultArray();
-    }
-    public function getDetailRepaired($first_date, $end_date)
-    {
-        return $this->db->table('spareparts_in')
-        ->join('spareparts', 'spareparts.kd_sparepart=spareparts_in.kd_sparepart')
-        ->join('conditions', 'conditions.id_condition=spareparts_in.id_condition')
-        ->join('location', 'location.id_location=spareparts_in.id_location')
-        ->join('oum', 'oum.id_oum=spareparts_in.id_oum')
-        ->join('orders', 'orders.id_pro=spareparts_in.id_pro')
-        ->join('acregist', 'acregist.id_acreg=spareparts_in.id_acreg')
-        ->where('spareparts_in.date_in >=', $first_date)
-        ->where('spareparts_in.date_in <=', $end_date)
-        ->where('spareparts_in.id_condition', '6')
-        ->get()->getResultArray();
-    }
-    public function getDetailOverhauled($first_date, $end_date)
-    {
-        return $this->db->table('spareparts_in')
-        ->join('spareparts', 'spareparts.kd_sparepart=spareparts_in.kd_sparepart')
-        ->join('conditions', 'conditions.id_condition=spareparts_in.id_condition')
-        ->join('location', 'location.id_location=spareparts_in.id_location')
-        ->join('oum', 'oum.id_oum=spareparts_in.id_oum')
-        ->join('orders', 'orders.id_pro=spareparts_in.id_pro')
-        ->join('acregist', 'acregist.id_acreg=spareparts_in.id_acreg')
-        ->where('spareparts_in.date_in >=', $first_date)
-        ->where('spareparts_in.date_in <=', $end_date)
-        ->where('conditions.id_condition', '7')
-        ->get()->getResultArray();
-        
-    }
-    public function getDetailNW($first_date, $end_date)
-    {
-        return $this->db->table('spareparts_in')
-        ->join('spareparts', 'spareparts.kd_sparepart=spareparts_in.kd_sparepart')
-        ->join('conditions', 'conditions.id_condition=spareparts_in.id_condition')
-        ->join('location', 'location.id_location=spareparts_in.id_location')
-        ->join('oum', 'oum.id_oum=spareparts_in.id_oum')
-        ->join('orders', 'orders.id_pro=spareparts_in.id_pro')
-        ->join('acregist', 'acregist.id_acreg=spareparts_in.id_acreg')
-        ->where('spareparts_in.date_in >=', $first_date)
-        ->where('spareparts_in.date_in <=', $end_date)
-        ->where('conditions.id_condition', '9')
-        ->get()->getResultArray();
-        
-    }
     public function getDetail3()
     {
-        return $this->db->table('spareparts_in')
-        ->join('spareparts', 'spareparts.kd_sparepart=spareparts_in.kd_sparepart')
-        ->join('conditions', 'conditions.id_condition=spareparts_in.id_condition')
-        ->join('location', 'location.id_location=spareparts_in.id_location')
-        ->join('oum', 'oum.id_oum=spareparts_in.id_oum')
-        ->join('orders', 'orders.id_pro=spareparts_in.id_pro')
-        ->join('acregist', 'acregist.id_acreg=spareparts_in.id_acreg')
-        ->get()->getResultArray();
-        
+        return $this->db->table('brg_masuk')
+            ->join('tb_barang', 'tb_barang.kd_barang=brg_masuk.kd_barang')
+            ->join('tb_kondisi', 'tb_kondisi.id_kondisi=brg_masuk.id_kondisi')
+            ->join('tb_rak', 'tb_rak.id_rak=brg_masuk.id_rak')
+            ->join('tb_satuan', 'tb_satuan.id_satuan=brg_masuk.id_satuan')
+            ->get()->getResultArray();
     }
 }

@@ -46,19 +46,19 @@ echo view('layouts/Top') ?>
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">List Given To</h1>
+                    <h1 class="m-0">List Personnel</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                        <li class="breadcrumb-item active">List Given To</li>
+                        <li class="breadcrumb-item active">List Personnel</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
 
             <hr>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">
-                <i class="fas fa-plus"></i>
+                <i class="fas fa-plus"></i> Tambah
             </button>
 
         </div>
@@ -69,28 +69,38 @@ echo view('layouts/Top') ?>
     <div class="modal fade" id="modal-default">
 
         <div class="modal-dialog modal-default">
-            <div class="modal-content">
+            <div class="modal-content bg-dark">
                 <div class="modal-header">
-                    <h4 class="modal-title" style="font-family: arial black; color:#000080;font-size:18pt;">&nbsp;Input Given To</h4>
+                    <h4 class="modal-title" style="font-family: arial black; color:#F3CB51;font-size:18pt;">&nbsp;Input Personnel</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <img class="modal-title" src="<?= base_url('img/RDG.png') ?>" height="30">
+                        <img class="modal-title" src="<?= base_url('img/ATS.png') ?>" height="50">
                     </button>
 
                 </div>
                 <form method="post" action="Add-givento" enctype="multipart/form-data">
                     <div class="modal-body">
 
-                        <div class="card">
+                        <div class="card bg-dark">
                             <div class="card-body">
 
                                 <div class="form-group">
-                                    <label>Name</label>
-                                    <input type="text" name="name" class="form-control" placeholder="Given Name" required>
+                                    <label>Nama Personnel</label>
+                                    <input type="text" name="nama_personnel" class="form-control" placeholder="Nama Personnel" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Nip</label>
-                                    <input type="text" name="nip" class="form-control" placeholder="Given Nip" required>
+                                    <input type="text" name="nip_personnel" class="form-control" placeholder="Nomor Induk Pegawai" required>
                                 </div>
+                                <div class="form-group">
+                                    <label>Departement</label>
+                                    <select class="form-control select2bs4" name="id_depart" data-placeholder="Pilih Departement" style="width: 100%;">
+                                        <option value="" selected disabled>Choose Item</option>
+                                        <?php foreach ($person as $value) : ?>
+                                            <option value="<?= $value['id_depart'] ?>"><?= $value['departement'] ?></option>
+                                        <?php endforeach ?>
+                                    </select>
+                                </div>
+
                                 <!-- <div class="form-group">
                                     <label>Stock</label>
                                     <input type="text" name="stock" value="1" class="form-control" id="part_number" placeholder="Stock">
@@ -104,8 +114,8 @@ echo view('layouts/Top') ?>
                         <!-- /.form-group -->
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
                     </div>
                 </form>
             </div>
@@ -129,14 +139,15 @@ echo view('layouts/Top') ?>
 
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-hover table-striped table-condensed " id="example3">
+                        <table class="table table-bordered table-hover table-striped table-condensed " id="example3">
                             <thead>
-                                <tr class="bg-navy color-light text-center" style=" font-size: 9pt;">
+                                <tr class="text-center" style=" font-size: 9pt;">
                                     <th>No</th>
                                     <th>Nip</th>
-                                    <th>Name</th>
-
-                                    <th>Action</th>
+                                    <th>Nama Personnel</th>
+                                    <th>Departement</th>
+                                    <th>Status</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -144,27 +155,29 @@ echo view('layouts/Top') ?>
                                 <?php foreach ($given as $row) : ?>
                                     <tr class="text-center" style="padding: 5%; font-size: 9pt;">
                                         <td><?= $nomor++ ?></td>
-                                        <td><?= $row['nip'] ?></td>
-                                        <td><?= $row['name'] ?></td>
+                                        <td><?= $row['nip_personnel'] ?></td>
+                                        <td><?= $row['nama_personnel'] ?></td>
+                                        <td><?= $row['departement'] ?></td>
+                                        <td><?= $row['status'] ?></td>
                                         <td>
                                             <div class="nav-item dropup">
                                                 <a class="nav-link" data-toggle="dropdown" href="#">
                                                     <i class="far fa-caret-square-down"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right">
-                                                    <form action="<?= base_url('/Givento/update') . '/' . $row['id_given_to'] ?>" method="post">
+                                                    <form action="<?= base_url('/Personnel/update') . '/' . $row['id_personnel'] ?>" method="post">
                                                         <?= csrf_field(); ?>
                                                         <input type="hidden" name="_method" value="Edit">
                                                         <button type="submit" class="dropdown-item"><i class="nav-icon fas fa-edit"></i>
-                                                            Update
+                                                            Ubah
                                                         </button>
                                                     </form>
                                                     <div class="dropdown-divider"></div>
-                                                    <form action="<?= base_url('/Givento/Delete') . '/' . $row['id_given_to'] ?>" method="post">
+                                                    <form action="<?= base_url('/Personnel/Delete') . '/' . $row['id_personnel'] ?>" method="post">
                                                         <?= csrf_field(); ?>
                                                         <input type="hidden" name="_method" value="Delete">
                                                         <button type="submit" class="dropdown-item" onclick="return confirm('Apakah anda yakin?');"><i class="nav-icon fas fa-trash-alt"></i>
-                                                            Delete
+                                                            Hapus
                                                         </button>
                                                     </form>
                                                 </div>

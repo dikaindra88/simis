@@ -43,12 +43,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Report Sparepart Incoming</h1>
+                    <h1>Laporan Spare Part Masuk</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Report Sparepart Incoming</li>
+                        <li class="breadcrumb-item active">Laporan Spare Part Masuk</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -60,32 +60,45 @@
                         <div class="form-group">
 
                             <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                <input type="text" name="first_date" class="form-control datetimepicker-input" data-target="#reservationdate" placeholder="First Date" required />
+                                <input type="text" name="first_date" class="form-control datetimepicker-input" data-target="#reservationdate" placeholder="Tanggal kesatu" required />
                                 <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                 </div>
                             </div>
+
                         </div>
+
                     </div>
+
                     <div class="col-lg-3">
                         <div class="form-group">
 
                             <div class="input-group date" id="reservationdate1" data-target-input="nearest">
-                                <input type="text" name="end_date" class="form-control datetimepicker-input" data-target="#reservationdate1" placeholder="End Date" required />
+                                <input type="text" name="end_date" class="form-control datetimepicker-input" data-target="#reservationdate1" placeholder="Tanggal kedua" required />
                                 <div class="input-group-append" data-target="#reservationdate1" data-toggle="datetimepicker">
                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="col-lg-2">
+                        <div class="form-group">
+                            <select name="kd_barang" data-placeholder="Pilih Barang" class="form-control select2bs4" required>
+                                <option value="" selected disabled></option>
+                                <?php foreach ($sparepart as $value) : ?>
+                                    <option value="<?= $value['kd_barang'] ?>"><?= $value['nm_barang'] ?></option>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
+                    </div>
                     <div class="col-lg-3">
                         <div class="form-group">
-                            <button type="submit" name="show" class="btn btn-info">Show</button>
-                            <a href="<?= base_url('Report/print') . '/' . $first_date . '/' . $end_date ?>" target="_blank" class="btn btn-outline btn-danger ">
+                            <button type="submit" name="show" class="btn btn-info">Cari</button>
+                            <a href="<?= base_url('Report/print') . '/' . $first_date . '/' . $end_date . '/' . $kd_barang ?>" target="_blank" class="btn btn-outline btn-danger ">
                                 <i class="fas fa-file-pdf"></i> Pdf
                             </a>
-                            <a href="<?= base_url('print-in') . '/' . $first_date . '/' . $end_date ?>" target="_blink" class="btn btn-outline-secondary btn-light">
-                                <i class="fas fa-print"></i> Print</a>
+                            <a href="<?= base_url('print-in') . '/' . $first_date . '/' . $end_date . '/' . $kd_barang ?>" target="_blink" class="btn btn-outline-secondary btn-light">
+                                <i class="fas fa-print"></i> Cetak</a>
                         </div>
                     </div>
 
@@ -116,36 +129,20 @@
 
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-hover table-striped table-condensed " id="example3">
+                        <table class="table table-bordered table-hover table-striped table-condensed " id="example3">
                             <thead>
-                                <tr class="bg-navy color-light text-center" style=" font-size: 9pt;">
-                                    <th rowspan="2">No</th>
-                                    <th rowspan="2">Date In</th>
-                                    <th rowspan="2">Description</th>
-                                    <th rowspan="2">Part Number</th>
-                                    <th rowspan="2">Serial Number</th>
-                                    <!-- <th>Lahir</th> -->
-                                    <th rowspan="2">Vendors</th>
-                                    <th rowspan="2">Condition</th>
-                                    <th rowspan="2">Qty</th>
-
-
-                                    <th colspan="2">Document</th>
-
-
-                                </tr>
-                                <tr class="bg-navy color-light text-center" style=" font-size: 9pt;">
-
-
-
-                                    <!-- <th>Lahir</th> -->
-
-
-                                    <th>Yes</th>
+                                <tr class="text-center" style=" font-size: 9pt;">
                                     <th>No</th>
-
-
+                                    <th>Tanggal Masuk</th>
+                                    <th>Nama Barang / Sparepart</th>
+                                    <th>Part Number</th>
+                                    <th>Serial Number</th>
+                                    <!-- <th>Lahir</th> -->
+                                    <th>Vendors</th>
+                                    <th>Kondisi</th>
+                                    <th>Qty</th>
                                 </tr>
+
                             </thead>
                             <tbody>
                                 <?php $nomor = 1; ?>
@@ -153,50 +150,25 @@
                                 <?php foreach ($in  as $row) : ?>
                                     <tr class="text-center" style="padding: 5%; font-size: 9pt;">
                                         <td><?php echo $nomor++ ?>.</td>
-                                        <td><?= $row['date_in'] ?></td>
-                                        <td><?= $row['description'] ?></td>
+                                        <td><?= $row['tgl_masuk'] ?></td>
+                                        <td><?= $row['nm_barang'] ?></td>
                                         <td><?= $row['part_number'] ?></td>
 
                                         <td><?= $row['serial_number'] ?></td>
-                                        <td><?= $row['vendors'] ?></td>
-                                        <td><?= $row['condition_name'] ?></td>
+                                        <td><?= $row['vendor'] ?></td>
+                                        <td><?= $row['kondisi'] ?></td>
                                         <td><?= $row['qty_in'] ?></td>
-                                        <td><?php
-                                            if ($row['document'] == 'yes') {
-                                            ?>
 
+                                    </tr>
+                                <?php endforeach ?>
 
-                                                <input type="checkbox" checked="checked" disabled>
-
-
-
-                                            <?php } else {
-                                            ?>
-
-                                                <input type="checkbox" disabled>
-
-                                            <?php } ?>
-                                        </td>
-                                        <td><?php
-                                            if ($row['document'] == 'no') {
-                                            ?>
-
-                                                <input type="checkbox" checked="checked" disabled>
-
-                                            <?php } else {
-                                            ?>
-
-                                                <input type="checkbox" disabled>
-
-                                            <?php } ?>
-                                        </td>
+                            </tbody>
+                            <tr class="text-center" style="padding: 5%; font-size: 9pt;">
+                                <th colspan="7">Total Barang / Sparepart Masuk</th>
+                                <td><?= $sum[0]['qty_in'] ?></td>
+                            </tr>
                     </div>
-                    </tr>
-                <?php endforeach ?>
-
-                </tbody>
-
-                </table>
+                    </table>
                 </div>
             </div>
 

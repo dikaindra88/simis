@@ -42,12 +42,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Update List Location</h1>
+                    <h1 class="m-0">Ubah List Rak</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Update List Location</li>
+                        <li class="breadcrumb-item active">Ubah List Rak</li>
                     </ol>
 
                 </div><!-- /.col -->
@@ -60,7 +60,7 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-body">
-                    <form method="post" action="/Edit-location/<?= $loc[0]['id_location'] ?>" enctype="multipart/form-data">
+                    <form method="post" action="/Edit-location/<?= $loc[0]['id_rak'] ?>" enctype="multipart/form-data">
 
                         <div class="card">
                             <div class="card-body">
@@ -70,8 +70,8 @@
                                     <input type="text" name="kd_sparepart" value="" class="form-control" id="part_number" placeholder="Sparepart Code" required>
                                 </div> -->
                                 <div class="form-group">
-                                    <label>Location Name</label>
-                                    <input type="text" name="location_name" value="<?= $loc[0]['location_name'] ?>" class="form-control" id="part_number" required>
+                                    <label>Nama Rak</label>
+                                    <input type="text" name="nama_rak" value="<?= $loc[0]['nama_rak'] ?>" class="form-control" id="part_number" required>
                                 </div>
                             </div>
 
@@ -80,12 +80,12 @@
                 </div>
                 <div class="card-footer bg-transparent border-success">
                     <button type="submit" class="btn btn-outline-success d-grid gap-2 col-2 mx-auto">
-                        <i class="far fa-save"></i> Save
+                        <i class="far fa-save"></i> Simpan
                     </button>
                     <button type="button" class="btn btn-outline-danger d-grid gap-2 col-2 mx-auto" onclick="javascript:history.back()">
-                        <i class="fa fa-arrow-circle-left"></i> Cancel
+                        <i class="fa fa-arrow-circle-left"></i> Batal
                     </button>
-                    <input type="hidden" name="id_sparepart" value="<?php echo $loc[0]['id_location']; ?>">
+                    <input type="hidden" name="id_rak" value="<?php echo $loc[0]['id_rak']; ?>">
                 </div>
             </div>
         </div>

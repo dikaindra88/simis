@@ -7,8 +7,8 @@ use CodeIgniter\Model;
 class OumModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'oum';
-    protected $primaryKey       = 'id_oum';
+    protected $table            = 'tb_satuan';
+    protected $primaryKey       = 'id_satuan';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = 'array';
@@ -42,7 +42,7 @@ class OumModel extends Model
 
     public function getData()
     {
-        return $this->db->table('oum')
+        return $this->db->table('tb_satuan')
             //->join('spareparts', 'spareparts.kd_sparepart=spareparts_in.kd_sparepart')
             // ->join('airlane', 'airlane.airline_id=passanger.airline_id')
             // ->where('passanger.role_id', '2')
@@ -50,26 +50,26 @@ class OumModel extends Model
     }
     public function insertOum($data)
     {
-        $this->db->table('oum')
+        $this->db->table('tb_satuan')
             ->insert($data);
     }
-    public function getDetail($id_oum)
+    public function getDetail($id_satuan)
     {
-        return $this->db->table('oum')
+        return $this->db->table('tb_satuan')
             //->join('spareparts', 'spareparts.kd_sparepart=spareparts_out.kd_sparepart')
             // ->join('airlane', 'airlane.airline_id=passanger.airline_id')
-            ->where('oum.id_oum', $id_oum)
+            ->where('tb_satuan.id_satuan', $id_satuan)
 
             ->get()->getResultArray();
     }
     public function editData($data)
     {
-        $this->db->table('oum')
-            ->where('id_oum', $data['id_oum'])
+        $this->db->table('tb_satuan')
+            ->where('id_satuan', $data['id_satuan'])
             ->update($data);
     }
-    public function deleteOum($id_oum)
+    public function deleteOum($id_satuan)
     {
-        $this->db->table('oum')->delete(array('id_oum' => $id_oum));
+        $this->db->table('tb_satuan')->delete(array('id_satuan' => $id_satuan));
     }
 }

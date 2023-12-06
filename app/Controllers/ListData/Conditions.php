@@ -17,22 +17,22 @@ class Conditions extends BaseController
     public function index()
     {
         if (session()->get('name') == True) {
-        $data = [
-            'title' => 'Page | List Condition',
-            'condition' => $this->Condition->getData(),
-            'user' => $this->User->getData()
-        ];
-        return view('condition/V_condition', $data);
-    }else{
-        return redirect()->to('/');
-    }
+            $data = [
+                'title' => 'Page | List Condition',
+                'condition' => $this->Condition->getData(),
+                'user' => $this->User->getData()
+            ];
+            return view('condition/V_condition', $data);
+        } else {
+            return redirect()->to('/');
+        }
     }
     public function insert()
     {
 
         $data = [
 
-            'condition_name' => $this->request->getPost('condition_name')
+            'kondisi' => $this->request->getPost('kondisi')
 
         ];
 
@@ -43,22 +43,22 @@ class Conditions extends BaseController
         //dd($data);
         return redirect()->to('/Conditions');
     }
-    public function update($id_condition)
+    public function update($id_kondisi)
     {
         $data = [
             'title' => 'Page Update | List Condition',
-            'condition' => $this->Condition->getDetail($id_condition),
+            'condition' => $this->Condition->getDetail($id_kondisi),
             'user' => $this->User->getData()
 
         ];
         //dd($data);
         return view('condition/V_update_con', $data);
     }
-    public function EditAction($id_condition)
+    public function EditAction($id_kondisi)
     {
         $data = [
-            'id_condition' => $id_condition,
-            'condition_name' => $this->request->getPost('condition_name')
+            'id_kondisi' => $id_kondisi,
+            'kondisi' => $this->request->getPost('kondisi')
         ];
 
 
@@ -68,10 +68,10 @@ class Conditions extends BaseController
         session()->setFlashdata('pesan', 'Data Successfully Updated.');
         return redirect()->to('/Conditions');
     }
-    public function deleteData($id_condition)
+    public function deleteData($id_kondisi)
     {
 
-        $this->Condition->deleteCondition($id_condition);
+        $this->Condition->deleteCondition($id_kondisi);
         session()->setFlashdata('pesan', 'Data Successfully Deleted.');
         return redirect()->to('/Conditions');
     }

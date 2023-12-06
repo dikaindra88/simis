@@ -1,39 +1,115 @@
 <?php echo view('layouts/Top') ?>
 <?php echo view('layouts/Front-end') ?>
 <style>
-    #upload {
-        opacity: 0;
+    .file-upload {
+        background-color: #ffffff;
+        width: auto;
+        padding: 20px;
     }
 
-    #upload-label {
-        position: absolute;
-        top: 50%;
-        left: 1rem;
-        transform: translateY(-50%);
-    }
-
-    .image-area {
-        border: 2px dashed rgba(255, 255, 255, 0.7);
-        padding: 1rem;
-        position: relative;
-    }
-
-    .image-area::before {
-        content: 'Uploaded image result';
+    .file-upload-btn {
+        width: 100%;
+        margin: 0;
         color: #fff;
-        font-weight: bold;
+        background: #1FB264;
+        border: none;
+        padding: 10px;
+        border-radius: 4px;
+        border-bottom: 4px solid #15824B;
+        transition: all .2s ease;
+        outline: none;
         text-transform: uppercase;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 0.8rem;
-        z-index: 1;
+        font-weight: 700;
     }
 
-    .image-area img {
-        z-index: 2;
+    .file-upload-btn:hover {
+        background: #1AA059;
+        color: #ffffff;
+        transition: all .2s ease;
+        cursor: pointer;
+    }
+
+    .file-upload-btn:active {
+        border: 0;
+        transition: all .2s ease;
+    }
+
+    .file-upload-content {
+        display: none;
+        text-align: center;
+    }
+
+    .file-upload-input {
+        position: absolute;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        outline: none;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .image-upload-wrap {
+        margin-top: 20px;
+        border: 4px dashed #999;
         position: relative;
+    }
+
+    .image-dropping,
+    .image-upload-wrap:hover {
+        background-color: #999;
+        border: 4px dashed #ffffff;
+    }
+
+    .image-title-wrap {
+        padding: 0 15px 15px 15px;
+        color: #222;
+    }
+
+    .drag-text {
+        text-align: center;
+    }
+
+    .drag-text h3 {
+        font-weight: 100;
+        text-transform: uppercase;
+        color: #000;
+        padding: 60px 0;
+    }
+
+    .file-upload-image {
+        max-height: 200px;
+        max-width: 200px;
+        margin: auto;
+        padding: 20px;
+    }
+
+    .remove-image {
+        width: 200px;
+        margin: 0;
+        color: #fff;
+        background: #cd4535;
+        border: none;
+        padding: 10px;
+        border-radius: 4px;
+        border-bottom: 4px solid #b02818;
+        transition: all .2s ease;
+        outline: none;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+
+    .remove-image:hover {
+        background: #c13b2a;
+        color: #ffffff;
+        transition: all .2s ease;
+        cursor: pointer;
+    }
+
+    .remove-image:active {
+        border: 0;
+        transition: all .2s ease;
     }
 </style>
 <div class="content-wrapper">
@@ -42,12 +118,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Update Data Users</h1>
+                    <h1 class="m-0">Ubah Data User</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Update Data Users</li>
+                        <li class="breadcrumb-item active">Ubah Data User</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -59,8 +135,8 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-body">
-                   
-                    <form method="post" action="/Edit-users/<?= $user[0]['user_id'] ?>" enctype="multipart/form-data">
+
+                    <form method="post" action="/Edit-users/<?= $users[0]['id_user'] ?>" enctype="multipart/form-data">
 
                         <div class="card">
                             <div class="card-body">
@@ -70,26 +146,44 @@
                                     <input type="text" name="kd_sparepart" value="" class="form-control" id="part_number" placeholder="Sparepart Code" required>
                                 </div> -->
                                 <div class="form-group">
-                                    <label>Name</label>
-                                    <input type="text" name="name" value="<?= $user[0]['name'] ?>" class="form-control" id="part_number" required>
+                                    <label>Nama</label>
+                                    <input type="text" name="name" value="<?= $users[0]['name'] ?>" class="form-control" id="part_number" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Email</label>
-                                    <input type="text" name="email" value="<?= $user[0]['email'] ?>" class="form-control" id="part_number" required>
+                                    <input type="text" name="email" value="<?= $users[0]['email'] ?>" class="form-control" id="part_number" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Password</label>
-                                    <input type="text" name="password" value="" class="form-control" placeholder="Insert Your Password for configuration data changed" id="part_number" required>
+                                    <input type="text" name="password" value="" class="form-control" placeholder="Masukan password anda untuk mengkonfirmasi perubahan data" id="part_number" required>
                                 </div>
                                 <div class="form-group">
-                                            <label>Status</label>
-                                            <select class="form-control select2bs4" name="status" data-placeholder="Select a State" style="width: 100%;">
-                                                <option selected="selected" value="<?= $user[0]['status']?>"><?= $user[0]['status'] ?></option>
-                                                <?php foreach ($user as $row) : ?>
-                                                    <option value="<?= $row['status'] ?>"><?= $row['status'] ?></option>
-                                                <?php endforeach ?>
-                                            </select>
+                                    <label>Foto</label>
+                                    <div class="file-upload">
+                                        <div class="drag-text">
+                                            <h5>Gambar Saat ini</h5>
                                         </div>
+                                        <div class="file-upload-content1">
+                                            <center><img class="file-upload-image1" width="100px" height="100px" src="<?php echo base_url('img/' . $users[0]['foto']) ?>" alt="your image" /></center>
+                                            <div class="image-title-wrap1">
+                                                <center> <button type="button" onclick="removeUpload1()" class="remove-image">Hapus <span class="image-title">Gambar</span></button></center>
+                                            </div>
+                                        </div>
+                                        <div class="image-upload-wrap">
+
+                                            <input class="file-upload-input" type="file" name="foto" onchange="readURL(this);" accept="image/*" />
+                                            <div class="drag-text">
+                                                <h3>Klik Atau Tarik dan lepaskan gambar</h3>
+                                            </div>
+                                        </div>
+                                        <div class="file-upload-content">
+                                            <img class="file-upload-image" width="100px" height="100px" src="#" alt="your image" />
+                                            <div class="image-title-wrap">
+                                                <button type="button" onclick="removeUpload()" class="remove-image">Hapus <span class="image-title">Gambar</span></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                         </div>
@@ -97,12 +191,12 @@
                 </div>
                 <div class="card-footer bg-transparent border-success">
                     <button type="submit" class="btn btn-outline-success d-grid gap-2 col-2 mx-auto">
-                        <i class="far fa-save"></i> Save
+                        <i class="far fa-save"></i> Simpan
                     </button>
                     <button type="button" class="btn btn-outline-danger d-grid gap-2 col-2 mx-auto" onclick="javascript:history.back()">
-                        <i class="fa fa-arrow-circle-left"></i> Cancel
+                        <i class="fa fa-arrow-circle-left"></i> Batal
                     </button>
-                    <input type="hidden" name="user_id" value="<?php echo $user[0]['user_id']; ?>">
+                    <input type="hidden" name="id_user" value="<?php echo $users[0]['id_user']; ?>">
                 </div>
             </div>
         </div>
@@ -111,34 +205,50 @@
 <script>
     function readURL(input) {
         if (input.files && input.files[0]) {
+
             var reader = new FileReader();
 
             reader.onload = function(e) {
-                $('#imageResult')
-                    .attr('src', e.target.result);
+                $('.image-upload-wrap').hide();
+
+                $('.file-upload-image').attr('src', e.target.result);
+                $('.file-upload-image1').hide();
+                $('.file-upload-content').show();
+                $('.file-upload-content1').show();
+
+                $('.image-title').html(input.files[0].name);
             };
+
             reader.readAsDataURL(input.files[0]);
+
+        } else {
+            removeUpload();
         }
     }
 
-    $(function() {
-        $('#upload').on('change', function() {
-            readURL(input);
-        });
-    });
-
-    /*  ==========================================
-        SHOW UPLOADED IMAGE NAME
-    * ========================================== */
-    var input = document.getElementById('upload');
-    var infoArea = document.getElementById('upload-label');
-
-    input.addEventListener('change', showFileName);
-
-    function showFileName(event) {
-        var input = event.srcElement;
-        var fileName = input.files[0].name;
-        infoArea.textContent = 'File name: ' + fileName;
+    function removeUpload() {
+        $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+        $('.file-upload-content').hide();
+        $('.image-upload-wrap').show();
     }
+
+    function removeUpload1() {
+
+        $('.file-upload-content1').hide();
+        $('.image-title-wrap1').hide();
+    }
+    $('.image-upload-wrap').bind('dragover', function() {
+        $('.image-upload-wrap').addClass('image-dropping');
+    });
+    $('.image-upload-wrap').bind('dragleave', function() {
+        $('.image-upload-wrap').removeClass('image-dropping');
+    });
+</script>
+<script type="text/javascript">
+    window.setTimeout(function() {
+        $('#flash_data').fadeTo(500, 0).slideUp(500, function() {
+            $(this).remove()
+        });
+    }, 2500);
 </script>
 <?php echo view('layouts/Bottom') ?>

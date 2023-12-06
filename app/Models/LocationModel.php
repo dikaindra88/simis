@@ -7,8 +7,8 @@ use CodeIgniter\Model;
 class LocationModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'location';
-    protected $primaryKey       = 'id_location';
+    protected $table            = 'tb_rak';
+    protected $primaryKey       = 'id_rak';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = 'array';
@@ -42,7 +42,7 @@ class LocationModel extends Model
 
     public function getData()
     {
-        return $this->db->table('location')
+        return $this->db->table('tb_rak')
             //->join('spareparts', 'spareparts.kd_sparepart=spareparts_in.kd_sparepart')
             // ->join('airlane', 'airlane.airline_id=passanger.airline_id')
             // ->where('passanger.role_id', '2')
@@ -50,26 +50,26 @@ class LocationModel extends Model
     }
     public function insertLocation($data)
     {
-        $this->db->table('location')
+        $this->db->table('tb_rak')
             ->insert($data);
     }
-    public function getDetail($id_location)
+    public function getDetail($id_rak)
     {
-        return $this->db->table('location')
+        return $this->db->table('tb_rak')
             //->join('spareparts', 'spareparts.kd_sparepart=spareparts_out.kd_sparepart')
             // ->join('airlane', 'airlane.airline_id=passanger.airline_id')
-            ->where('location.id_location', $id_location)
+            ->where('tb_rak.id_rak', $id_rak)
 
             ->get()->getResultArray();
     }
     public function editData($data)
     {
-        $this->db->table('location')
-            ->where('id_location', $data['id_location'])
+        $this->db->table('tb_rak')
+            ->where('id_rak', $data['id_rak'])
             ->update($data);
     }
-    public function deleteLocation($id_location)
+    public function deleteLocation($id_rak)
     {
-        $this->db->table('location')->delete(array('id_location' => $id_location));
+        $this->db->table('tb_rak')->delete(array('id_rak' => $id_rak));
     }
 }

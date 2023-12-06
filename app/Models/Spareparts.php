@@ -7,8 +7,8 @@ use CodeIgniter\Model;
 class Spareparts extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'spareparts';
-    protected $primaryKey       = 'id_sparepart';
+    protected $table            = 'tb_barang';
+    protected $primaryKey       = 'id_barang';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = 'array';
@@ -46,25 +46,26 @@ class Spareparts extends Model
 
     public function countSparepart()
     {
-        $query = $this->db->query("SELECT * FROM spareparts");
+        $query = $this->db->query("SELECT * FROM tb_barang");
         $sparepart = $query->getNumRows();
         return $sparepart;
     }
 
     public function getData()
     {
-        return $this->db->table('spareparts')
-            ->join('spareparts_out', 'spareparts_out.kd_sparepart=spareparts.kd_sparepart')
+        return $this->db->table('tb_barang')
+            ->join('tb_satuan', 'tb_satuan.id_satuan=tb_barang.id_satuan')
+            //->join('brg_keluar', 'brg_keluar.kd_barang=tb_barang.kd_barang')
             // ->join('airlane', 'airlane.airline_id=passanger.airline_id')
             // ->where('spareparts.id_sparepart=' . $id_sparepart)
             ->get()->getResultArray();
     }
-    public function getDetail($id_partout)
+    public function getDetail($id_keluar)
     {
-        return $this->db->table('spareparts_out')
-            ->join('spareparts', 'spareparts.kd_sparepart=spareparts_out.kd_sparepart')
+        return $this->db->table('brg_keluar')
+            ->join('tb_barang', 'tb_barang.kd_barang=brg_keluar.kd_barang')
             // ->join('airlane', 'airlane.airline_id=passanger.airline_id')
-            ->where('spareparts_out.id_partout', $id_partout)
+            ->where('brg_keluar.id_keluar', $id_keluar)
 
             ->get()->getResultArray();
     }
@@ -73,30 +74,39 @@ class Spareparts extends Model
     // list sparepart
     public function getDatas()
     {
-        return $this->db->table('spareparts')->get()->getResultArray();
+        return $this->db->table('tb_barang')
+            ->join('tb_satuan', 'tb_satuan.id_satuan=tb_barang.id_satuan')
+            ->get()->getResultArray();
+    }
+    public function getDatasp()
+    {
+        return $this->db->table('tb_barang')
+            ->join('brg_masuk', 'brg_masuk.kd_barang=tb_barang.kd_barang')
+            ->get()->getResultArray();
     }
     public function insertSparepart($data)
     {
-        $this->db->table('spareparts')
+        $this->db->table('tb_barang')
             ->insert($data);
     }
-    public function getDetails($id_sparepart)
+    public function getDetails($id_barang)
     {
-        return $this->db->table('spareparts')
+        return $this->db->table('tb_barang')
+            ->join('tb_satuan', 'tb_satuan.id_satuan=tb_barang.id_satuan')
             //->join('spareparts', 'spareparts.kd_sparepart=spareparts_out.kd_sparepart')
             // ->join('airlane', 'airlane.airline_id=passanger.airline_id')
-            ->where('spareparts.id_sparepart', $id_sparepart)
+            ->where('tb_barang.id_barang', $id_barang)
 
             ->get()->getResultArray();
     }
     public function editSparepart($data)
     {
-        $this->db->table('spareparts')
-            ->where('id_sparepart', $data['id_sparepart'])
+        $this->db->table('tb_barang')
+            ->where('id_barang', $data['id_barang'])
             ->update($data);
     }
-    public function deleteSpareparts($id_sparepart)
+    public function deleteSpareparts($id_barang)
     {
-        $this->db->table('spareparts')->delete(array('id_sparepart' => $id_sparepart));
+        $this->db->table('tb_barang')->delete(array('id_barang' => $id_barang));
     }
 }

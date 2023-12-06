@@ -35,7 +35,7 @@ class Database extends Config
         'hostname' => 'localhost',
         'username' => 'root',
         'password' => '',
-        'database' => 'rdg_db',
+        'database' => 'ats_invent',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
         'pConnect' => false,

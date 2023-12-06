@@ -7,8 +7,8 @@ use CodeIgniter\Model;
 class SparepartOutModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'spareparts_out';
-    protected $primaryKey       = 'id_partout';
+    protected $table            = 'brg_keluar';
+    protected $primaryKey       = 'id_keluar';
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = 'array';
@@ -42,67 +42,84 @@ class SparepartOutModel extends Model
 
     public function countSparepartOut()
     {
-        $query = $this->db->query("SELECT * FROM spareparts_out");
-        $sparepart_out = $query->getNumRows();
-        return $sparepart_out;
+        return $this->db->table('brg_keluar')->get()->getNumRows();
     }
     public function dataKeluar($data)
     {
-        $this->db->table('spareparts_out')
+        $this->db->table('brg_keluar')
             ->insert($data);
+    }
+    public function countSparepart()
+    {
+        return $this->db->table('brg_keluar')->selectSum('qty_out')->get()->getResultArray();
+    }
+    public function countSparepart2($first_date, $end_date, $kd_barang)
+    {
+        return $this->db->table('brg_keluar')
+            ->selectSum('qty_out')
+            ->where('brg_keluar.tgl_keluar >=', $first_date)
+            ->where('brg_keluar.tgl_keluar <=', $end_date)
+            ->where('brg_keluar.kd_barang =', $kd_barang)
+            ->get()->getResultArray();
     }
     public function getData()
     {
-        return $this->db->table('spareparts_out')
-            ->join('spareparts', 'spareparts.kd_sparepart=spareparts_out.kd_sparepart')
-            ->join('conditions', 'conditions.id_condition=spareparts_out.id_condition')
-            ->join('oum', 'oum.id_oum=spareparts_out.id_oum')
-            ->join('givento', 'givento.id_given_to=spareparts_out.id_given_to')
-            // ->join('airlane', 'airlane.airline_id=passanger.airline_id')
-            // ->where('spareparts.id_sparepart=' . $id_sparepart)
-            ->orderBy('id_partout', 'asc')
+        return $this->db->table('brg_keluar')
+            ->join('tb_barang', 'tb_barang.kd_barang=brg_keluar.kd_barang')
+            ->join('tb_kondisi', 'tb_kondisi.id_kondisi=brg_keluar.id_kondisi')
+            ->join('tb_personnel', 'tb_personnel.id_personnel=brg_keluar.id_personnel')
+            ->join('tb_satuan', 'tb_satuan.id_satuan=brg_keluar.id_satuan')
+            ->orderBy('id_keluar', 'asc')
             ->get()->getResultArray();
     }
-    public function getDetail2($first_date, $end_date)
+    public function getData2($id_keluar)
     {
-        return $this->db->table('spareparts_out')
-        ->join('spareparts', 'spareparts.kd_sparepart=spareparts_out.kd_sparepart')
-            ->join('conditions', 'conditions.id_condition=spareparts_out.id_condition')
-            ->join('oum', 'oum.id_oum=spareparts_out.id_oum')
-            ->join('givento', 'givento.id_given_to=spareparts_out.id_given_to')
-        ->where('spareparts_out.date_out >=', $first_date)
-        ->where('spareparts_out.date_out <=', $end_date)
+        return $this->db->table('brg_keluar')
+            ->join('tb_barang', 'tb_barang.kd_barang=brg_keluar.kd_barang')
+            ->join('tb_kondisi', 'tb_kondisi.id_kondisi=brg_keluar.id_kondisi')
+            ->join('tb_personnel', 'tb_personnel.id_personnel=brg_keluar.id_personnel')
+            ->join('tb_satuan', 'tb_satuan.id_satuan=brg_keluar.id_satuan')
+            ->where('brg_keluar.id_keluar=' . $id_keluar)
 
-        ->get()->getResultArray();
-        
+            ->get()->getResultArray();
+    }
+    public function getDetail2($first_date, $end_date, $kd_barang)
+    {
+        return $this->db->table('brg_keluar')
+            ->join('tb_barang', 'tb_barang.kd_barang=brg_keluar.kd_barang')
+            ->join('tb_kondisi', 'tb_kondisi.id_kondisi=brg_keluar.id_kondisi')
+            ->join('tb_personnel', 'tb_personnel.id_personnel=brg_keluar.id_personnel')
+            ->join('tb_satuan', 'tb_satuan.id_satuan=brg_keluar.id_satuan')
+            ->where('brg_keluar.tgl_keluar >=', $first_date)
+            ->where('brg_keluar.tgl_keluar <=', $end_date)
+            ->where('brg_keluar.kd_barang =', $kd_barang)
+            ->get()->getResultArray();
     }
     public function getDetail3()
     {
         return $this->db->table('spareparts_in')
-        ->join('spareparts', 'spareparts.kd_sparepart=spareparts_in.kd_sparepart')
-        // ->join('airlane', 'airlane.airline_id=passanger.airline_id')
-       
+            ->join('spareparts', 'spareparts.kd_sparepart=spareparts_in.kd_sparepart')
+            // ->join('airlane', 'airlane.airline_id=passanger.airline_id')
 
-        ->get()->getResultArray();
-        
+
+            ->get()->getResultArray();
     }
     public function getData3()
     {
-        return $this->db->table('spareparts_out')
-        ->join('spareparts', 'spareparts.kd_sparepart=spareparts_out.kd_sparepart')
-        // ->join('airlane', 'airlane.airline_id=passanger.airline_id')
-        ->get()->getResultArray();
-        
+        return $this->db->table('brg_keluar')
+            ->join('tb_barang', 'tb_barang.kd_barang=brg_keluar.kd_barang')
+            // ->join('airlane', 'airlane.airline_id=passanger.airline_id')
+            ->get()->getResultArray();
     }
     public function editData($data)
     {
-        $this->db->table('spareparts_out')
-            ->where('id_partout', $data['id_partout'])
+        $this->db->table('brg_keluar')
+            ->where('id_keluar', $data['id_keluar'])
             ->update($data);
     }
-    
-    public function deleteSparepart($id_partout)
+
+    public function deleteSparepart($id_keluar)
     {
-        $this->db->table('spareparts_out')->delete(array('id_partout' => $id_partout));
+        $this->db->table('brg_keluar')->delete(array('id_keluar' => $id_keluar));
     }
 }
